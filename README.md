@@ -1,1 +1,0 @@
-# obsidian-vault-github-II
