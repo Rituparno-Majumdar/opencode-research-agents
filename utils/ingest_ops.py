@@ -188,7 +188,7 @@ def extract_zettels(combined_content: str, slug: str) -> dict:
     Returns: {"zettels": [...], "structure_note": {...}, "register_entry": {...}}
     """
     timestamp = datetime.utcnow().isoformat()
-    user_msg = f"RESEARCH SLUG: {slug}\n\n{combined_content}\n\nTimestamp: {timestamp}"
+    user_msg = "RESEARCH SLUG: " + slug + "\n\n" + combined_content + "\n\nTimestamp: " + timestamp
 
     raw = call_sync(
         system_prompt=EXTRACTION_SYSTEM,

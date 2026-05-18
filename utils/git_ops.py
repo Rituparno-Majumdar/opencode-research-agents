@@ -28,7 +28,7 @@ def git(cmd: list[str]):
     subprocess.run(cmd, check=True)
 
 
-def git_commit_push(message: str, paths: list[str] = None):
+def git_commit_push(message: str, paths: list = None):
     subprocess.run(["git", "config", "user.name", "research-bot"], check=True)
     subprocess.run(["git", "config", "user.email", "bot@research-system"], check=True)
     if paths:
@@ -44,8 +44,8 @@ def git_commit_push(message: str, paths: list[str] = None):
 
 def snapshot_prompt(agent_file: str) -> Path:
     timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-    src = Path("agents/prompts") / f"{agent_file}.md"
-    dst = Path("memory/prompt_versions") / f"{timestamp}_{agent_file}.md"
+    src = Path("agents/prompts") / (agent_file + ".md")
+    dst = Path("memory/prompt_versions") / (timestamp + "_" + agent_file + ".md")
     dst.parent.mkdir(parents=True, exist_ok=True)
     dst.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
     return dst
@@ -57,9 +57,9 @@ def create_github_pr(branch: str, title: str, body: str) -> str:
     if not token or not repo:
         return ""
     resp = requests.post(
-        f"https://api.github.com/repos/{repo}/pulls",
+        "https://api.github.com/repos/" + repo + "/pulls",
         headers={
-            "Authorization": f"token {token}",
+            "Authorization": "token " + token,
             "Accept": "application/vnd.github.v3+json"
         },
         json={"title": title, "body": body, "head": branch, "base": "main"}
@@ -73,33 +73,33 @@ def write_pending_file(timestamp: str, weakest_agent: str,
                        branch: str, improvement: dict) -> Path:
     pending_dir = Path("logs/pending_improvements")
     pending_dir.mkdir(parents=True, exist_ok=True)
-    path = pending_dir / f"{timestamp}_{weakest_agent}.md"
+    path = pending_dir / (timestamp + "_" + weakest_agent + ".md")
     score_before = improvement.get("score_before", "?")
     change_desc = improvement.get("change_description", "improvement")
-    path.write_text(f"""# Pending Improvement: {weakest_agent}
-Generated: {timestamp}
-Branch: {branch}
-
-## What Changed
-{change_desc}
-
-## Metric Improved
-{improvement.get('metric_being_improved', 'N/A')} — was {score_before}/10
-
-## Evidence
-{chr(10).join(f'- {e}' for e in improvement.get('evidence', []))}
-
-## Diff
-Section: {improvement.get('diff', {}).get('section', 'N/A')}
-Added: {improvement.get('diff', {}).get('added', 'N/A')}
-Removed: {improvement.get('diff', {}).get('removed', 'None')}
-
-## To Apply
-git merge {branch}
-
-## To Reject
-git branch -D {branch}
-""", encoding="utf-8")
+    diff_info = improvement.get("diff", {})
+    evidence = improvement.get("evidence", [])
+    evidence_lines = "\n".join("- " + e for e in evidence)
+    path.write_text(
+        "# Pending Improvement: " + weakest_agent + "\n"
+        "Generated: " + timestamp + "\n"
+        "Branch: " + branch + "\n\n"
+        "## What Changed\n"
+        + change_desc + "\n\n"
+        "## Metric Improved\n"
+        + str(improvement.get("metric_being_improved", "N/A"))
+        + " — was " + str(score_before) + "/10\n\n"
+        "## Evidence\n"
+        + evidence_lines + "\n\n"
+        "## Diff\n"
+        "Section: " + str(diff_info.get("section", "N/A")) + "\n"
+        "Added: " + str(diff_info.get("added", "N/A")) + "\n"
+        "Removed: " + str(diff_info.get("removed", "None")) + "\n\n"
+        "## To Apply\n"
+        "git merge " + branch + "\n\n"
+        "## To Reject\n"
+        "git branch -D " + branch + "\n",
+        encoding="utf-8"
+    )
     return path
 
 
@@ -110,7 +110,7 @@ def run_improve() -> dict:
 
     gap_log = load_memory("gap_log.json")
 
-    agent_scores: dict[str, int] = {}
+    agent_scores = {}
     for run in last_5:
         wa = run.get("weakest_agent", "")
         if wa:
@@ -122,18 +122,16 @@ def run_improve() -> dict:
     prompt_file = AGENT_FILE_MAP.get(weakest_agent, weakest_agent)
     current_prompt = load_prompt(prompt_file)
 
-    improve_input = f"""
-LAST 5 EVALUATION REPORTS:
-{json.dumps(last_5, indent=2)}
-
-RECURRING GAPS (last 20):
-{json.dumps(gap_log[-20:] if isinstance(gap_log, list) else [], indent=2)}
-
-CURRENT PROMPT FOR {weakest_agent}:
-{current_prompt}
-
-Produce a targeted improvement. Return JSON only.
-"""
+    gap_data = gap_log[-20:] if isinstance(gap_log, list) else []
+    improve_input = (
+        "LAST 5 EVALUATION REPORTS:\n"
+        + json.dumps(last_5, indent=2)
+        + "\n\nRECURRING GAPS (last 20):\n"
+        + json.dumps(gap_data, indent=2)
+        + "\n\nCURRENT PROMPT FOR " + weakest_agent + ":\n"
+        + current_prompt
+        + "\n\nProduce a targeted improvement. Return JSON only."
+    )
     system = load_prompt("prompt_updater")
     raw = call_sync(system, improve_input, temperature=0.3, max_tokens=6000)
     json_match = re.search(r'\{[\s\S]*\}', raw)
@@ -148,16 +146,15 @@ Produce a targeted improvement. Return JSON only.
     snapshot_prompt(prompt_file)
 
     timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-    branch = f"improve/{weakest_agent}_{timestamp}"
+    branch = "improve/" + weakest_agent + "_" + timestamp
     score_before = improvement.get("score_before", "?")
     change_desc = improvement.get("change_description", "targeted improvement")
-    commit_msg = f"improve({weakest_agent}): {change_desc} [score was {score_before}/10]"
+    commit_msg = "improve(" + weakest_agent + "): " + change_desc + " [score was " + str(score_before) + "/10]"
 
     git(["git", "checkout", "-b", branch])
-    Path(f"agents/prompts/{prompt_file}.md").write_text(
-        updated_prompt, encoding="utf-8"
-    )
-    git_commit_push(commit_msg, [f"agents/prompts/{prompt_file}.md", "memory/"])
+    prompt_path = Path("agents/prompts/" + prompt_file + ".md")
+    prompt_path.write_text(updated_prompt, encoding="utf-8")
+    git_commit_push(commit_msg, ["agents/prompts/" + prompt_file + ".md", "memory/"])
     git(["git", "push", "origin", branch])
     git(["git", "checkout", "main"])
 
@@ -166,33 +163,28 @@ Produce a targeted improvement. Return JSON only.
     token = os.environ.get("GITHUB_TOKEN", "")
     repo = os.environ.get("GITHUB_REPO", "")
     if token and repo:
-        pr_body = f"""## Automated Prompt Improvement
-
-**Agent:** {weakest_agent}
-**Metric Improved:** {improvement.get('metric_being_improved', 'N/A')}
-**Score Before:** {score_before}/10
-**Change Type:** {improvement.get('change_type', 'N/A')}
-
-### What Changed
-{change_desc}
-
-### Evidence
-{chr(10).join(f'- {e}' for e in improvement.get('evidence', []))}
-
-### Diff
-**Section:** {improvement.get('diff', {}).get('section', 'N/A')}
-**Added:** {improvement.get('diff', {}).get('added', 'N/A')}
-**Removed:** {improvement.get('diff', {}).get('removed', 'None')}
-
----
-_DO NOT merge without reading the diff carefully._
-_If this improvement looks wrong: close PR, run `git branch -D {branch}`_
-"""
-        pr_url = create_github_pr(
-            branch,
-            f"[Auto-Improve] {weakest_agent}: {change_desc}",
-            pr_body
+        evidence_lines = "\n".join("- " + e for e in improvement.get("evidence", []))
+        diff_info = improvement.get("diff", {})
+        pr_title = "[Auto-Improve] " + weakest_agent + ": " + change_desc
+        pr_body = (
+            "## Automated Prompt Improvement\n\n"
+            "**Agent:** " + weakest_agent + "\n"
+            "**Metric Improved:** " + str(improvement.get("metric_being_improved", "N/A")) + "\n"
+            "**Score Before:** " + str(score_before) + "/10\n"
+            "**Change Type:** " + str(improvement.get("change_type", "N/A")) + "\n\n"
+            "### What Changed\n"
+            + change_desc + "\n\n"
+            "### Evidence\n"
+            + evidence_lines + "\n\n"
+            "### Diff\n"
+            "**Section:** " + str(diff_info.get("section", "N/A")) + "\n"
+            "**Added:** " + str(diff_info.get("added", "N/A")) + "\n"
+            "**Removed:** " + str(diff_info.get("removed", "None")) + "\n\n"
+            "---\n"
+            "_DO NOT merge without reading the diff carefully._\n"
+            "_If this improvement looks wrong: close PR, run `git branch -D " + branch + "`_\n"
         )
+        pr_url = create_github_pr(branch, pr_title, pr_body)
         if pr_url:
             improvement["pr_url"] = pr_url
             return improvement
