@@ -5,6 +5,10 @@ on:
     - cron: '30 21 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   evaluate-and-improve:
     runs-on: ubuntu-latest
