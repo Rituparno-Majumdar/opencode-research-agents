@@ -33,13 +33,12 @@ eval_metrics:
   - temporal_depth
   - contradiction_quality
 
-atomic_note_types:
-  - concepts
-  - people
-  - texts
-  - patterns
-  - traditions
-  - questions
+zettel_config:
+  zettel_folder:     "./vault/zettel"
+  structure_folder:  "./vault/structure"
+  register_folder:   "./vault/register"
+  reference_folder:  "./vault/reference"
+  id_style: "sequential"
 
 routing_defaults:
   tibetan_buddhist:        indic_traditions

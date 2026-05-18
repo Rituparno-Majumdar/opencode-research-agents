@@ -1,6 +1,6 @@
 """
 Memory read/write utilities.
-domain_memory.json — sources that proved rich per domain
+domain_memory.json — Zettels by research run
 gap_log.json       — recurring gaps across runs
 eval_history.json  — all evaluation scores
 """
@@ -29,22 +29,26 @@ def save_memory(filename: str, data: dict | list):
     )
 
 
-def update_domain_memory(slug: str, notes: list):
+def update_domain_memory(slug: str, zettels: list):
+    """
+    Track Zettels per research run.
+    zettels: list of {"id": "1a", "title": "Atman", "topic": slug}
+    """
     memory = load_memory("domain_memory.json")
-    for note in notes:
-        note_type = note.get("type", "concepts")
-        title = note.get("title", "")
-        if not title:
-            continue
-        if note_type not in memory:
-            memory[note_type] = {}
-        if title not in memory[note_type]:
-            memory[note_type][title] = {
-                "first_seen": slug,
-                "topics": [slug]
-            }
-        elif slug not in memory[note_type][title]["topics"]:
-            memory[note_type][title]["topics"].append(slug)
+    if "zettels" not in memory:
+        memory["zettels"] = {}
+    if slug not in memory["zettels"]:
+        memory["zettels"][slug] = []
+    for z in zettels:
+        zettel_record = {
+            "zettel_id": z.get("id"),
+            "title": z.get("title", ""),
+            "linked_to": z.get("linked_to", []),
+            "created_at": datetime.utcnow().isoformat()
+        }
+        existing_ids = [x["zettel_id"] for x in memory["zettels"][slug]]
+        if z.get("id") not in existing_ids:
+            memory["zettels"][slug].append(zettel_record)
     save_memory("domain_memory.json", memory)
 
 
@@ -70,3 +74,12 @@ def append_eval_result(result: dict):
 def get_last_eval_results(n: int = 5) -> list:
     history = load_memory("eval_history.json")
     return history[-n:] if isinstance(history, list) else []
+
+
+def get_zettel_map(slug: str = None) -> dict:
+    """Return all Zettels, optionally filtered by slug."""
+    memory = load_memory("domain_memory.json")
+    zettels = memory.get("zettels", {})
+    if slug:
+        return zettels.get(slug, [])
+    return zettels

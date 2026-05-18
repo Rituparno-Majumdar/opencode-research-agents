@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 from datetime import datetime
 from utils.openrouter_ops import call_sync
-from utils.file_ops import load_prompt, read_research_files, get_recent_slugs
+from utils.file_ops import load_prompt, read_research_files, get_recent_slugs, write_zettel, write_structure_note, write_register_entry
 from utils.memory_ops import load_memory, append_gap_log, append_eval_result
 
 
