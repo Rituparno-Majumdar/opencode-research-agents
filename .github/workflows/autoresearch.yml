@@ -4,9 +4,9 @@
 name: Autoresearch Nightly
 
 on:
-  # Run every night at 12:07 AM UTC (5:37 AM IST)
+  # Run every night at 12:07 AM IST (6:37 PM UTC previous day)
   schedule:
-    - cron: '7 0 * * *'
+    - cron: '37 18 * * *'
   # Allow manual trigger
   workflow_dispatch:
     inputs:
