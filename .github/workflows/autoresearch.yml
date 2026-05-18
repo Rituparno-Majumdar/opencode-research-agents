@@ -1,0 +1,76 @@
+# Autoresearch - Cloud Workflow
+# Runs overnight to improve all specialists autonomously
+
+name: Autoresearch Nightly
+
+on:
+  # Run every night at 2 AM UTC (7:30 AM IST)
+  schedule:
+    - cron: '0 2 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+  # Run on push to main for any changes
+  push:
+    branches: [main]
+
+jobs:
+  autoresearch:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Set OpenRouter API Key
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          echo "OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}" >> $GITHUB_ENV
+
+      - name: Run Autoresearch for Top 3 Specialists
+        run: |
+          cd .opencode/autoresearch
+          python3 -c "
+          import sys
+          import os
+          sys.path.insert(0, '.')
+          
+          # Set API key from env
+          os.environ['OPENAI_API_KEY'] = os.environ.get('OPENROUTER_API_KEY', '')
+          
+          from workflow import run_autoresearch_for_specialists
+          run_autoresearch_for_specialists(['nexus', 'flux', 'vector'])
+          "
+
+      - name: Check results
+        run: |
+          echo "=== Results Summary ==="
+          if [ -f .opencode/autoresearch/results.tsv ]; then
+            echo "Results file exists"
+            cat .opencode/autoresearch/results.tsv
+          else
+            echo "No results yet - first run"
+          fi
+
+      - name: Commit improvements
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Check if there are changes to commit
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "Autoresearch: Daily improvement cycle $(date +%Y-%m-%d)"
+            echo "Changes committed"
+          else
+            echo "No changes to commit"
+          fi
+
+      - name: Push changes
+        run: |
+          git push origin main || echo "No changes to push"

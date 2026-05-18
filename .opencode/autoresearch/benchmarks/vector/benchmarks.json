@@ -1,0 +1,54 @@
+{
+  "benchmarks": [
+    {
+      "id": "vector_01",
+      "prompt": "Write a short email to a colleague about a meeting reschedule",
+      "style_requirements": {
+        "tone": "professional but friendly",
+        "length": "50-100 words",
+        "must_include": ["new time", "apology for inconvenience"]
+      },
+      "evaluation": {"val_coherence": 1.0}
+    },
+    {
+      "id": "vector_02",
+      "prompt": "Explain what a stock is to a 10-year-old",
+      "style_requirements": {
+        "tone": "simple and clear",
+        "length": "50-150 words",
+        "must_avoid": ["jargon", "complex terms"]
+      },
+      "evaluation": {"val_coherence": 1.0}
+    },
+    {
+      "id": "vector_03",
+      "prompt": "Write a LinkedIn post about completing a project",
+      "style_requirements": {
+        "tone": "professional and celebratory",
+        "length": "100-200 words",
+        "must_include": ["achievement", "team", "thanks"]
+      },
+      "evaluation": {"val_coherence": 1.0}
+    },
+    {
+      "id": "vector_04",
+      "prompt": "Write a brief product description for a new coffee app",
+      "style_requirements": {
+        "tone": "persuasive and engaging",
+        "length": "50-100 words",
+        "must_include": ["feature", "benefit"]
+      },
+      "evaluation": {"val_coherence": 1.0}
+    },
+    {
+      "id": "vector_05",
+      "prompt": "Write a thank you note to a mentor",
+      "style_requirements": {
+        "tone": "sincere and warm",
+        "length": "50-100 words",
+        "must_include": ["specific example", "gratitude"]
+      },
+      "evaluation": {"val_coherence": 1.0}
+    }
+  ]
+}

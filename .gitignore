@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Obsidian
+.obsidian/workspace.json
+.obsidian/graph.json
+
+# Python
+__pycache__/
+*.pyc
+
+# OpenCode
+.opencode/**/*.db
+.opencode/**/*.db-shm
+.opencode/**/*.db-wal
+.opencode/autoresearch/__pycache__/
+
+# Temporary
+*.tmp
+*.log
