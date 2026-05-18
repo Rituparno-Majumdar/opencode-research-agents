@@ -1,0 +1,50 @@
+{
+  "topic": "reincarnation",
+  "slug": "reincarnation",
+  "research_question": "What is the concept of reincarnation across different religious and philosophical traditions?",
+  "timestamp": "2026-05-18T23:48:00Z",
+  "agent_assignments": {
+    "indic_traditions": {
+      "scope": "Reincarnation concepts in Hindu, Buddhist, Jain, and Sikh traditions",
+      "known_sources": [
+        "Bhagavad Gita - Krishna's discourse on soul transmigration",
+        "Upanishads - concept of Atman",
+        "Buddhist doctrine of Rebirth - Dhammapada",
+        "Jain theory of Karma and soul migration"
+      ],
+      "search_languages": ["Sanskrit", "Pali", "Bengali", "Hindi", "Tamil"],
+      "special_instructions": "Include detailed analysis of karma, moksha, samsara, and how rebirth differs between Hindu and Buddhist frameworks"
+    },
+    "western_philosophy": {
+      "scope": "Reincarnation in Western philosophical traditions, Pythagorean and Platonic thought",
+      "known_sources": [
+        "Plato - Phaedo, Republic Myth of Er",
+        "Pythagorean metempsychosis",
+        "Orphic soul migration beliefs"
+      ],
+      "search_languages": ["Ancient Greek", "English", "German", "Latin"],
+      "special_instructions": "Include analysis of how ancient Greek thought influenced modern Western interpretations"
+    },
+    "ancient_civilizations": {
+      "scope": "Reincarnation beliefs in ancient Egypt, Mesopotamia, and other early civilizations",
+      "known_sources": [
+        "Egyptian Book of the Dead - soul journey",
+        "Mesopotamian underworld beliefs"
+      ],
+      "search_languages": ["Ancient Egyptian", "Sumerian", "Akkadian", "Hebrew"],
+      "special_instructions": "Distinguish between reincarnation and afterlife concepts in these traditions"
+    },
+    "contemporary_scholarship": {
+      "scope": "Modern academic study of reincarnation, parapsychology research, comparative religion analysis",
+      "known_sources": [
+        "Ian Stevenson - Twenty Cases Suggestive of Reincarnation",
+        "Jim Tucker - Past Life Memories in Children",
+        "Dr. Walter Semkiw - Return to Life",
+        "Dr. Satwant Pasricha - Claims of Reincarnation in India"
+      ],
+      "search_languages": ["English", "German", "French"],
+      "special_instructions": "Focus on empirical research, methodological challenges, and controversies in the field"
+    }
+  },
+  "boundary_cases": []
+}
