@@ -1,0 +1,62 @@
+name: Daily Improve (Karpathy Loop)
+
+on:
+  schedule:
+    - cron: '30 21 * * *'
+  workflow_dispatch:
+
+jobs:
+  evaluate-and-improve:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install -r requirements.txt
+
+      - name: Evaluate last 3 runs
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          python -c "
+          import sys; sys.path.insert(0, '.')
+          from utils.evaluate_ops import score_recent_runs, format_score_table
+          results = score_recent_runs(3)
+          for r in results:
+              print(format_score_table(r))
+          print(f'Evaluated {len(results)} runs')
+          "
+
+      - name: Run improvement proposal
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO: ${{ github.repository }}
+        run: |
+          python -c "
+          import sys; sys.path.insert(0, '.')
+          from utils.git_ops import run_improve
+          result = run_improve()
+          if 'error' in result:
+              print(f'Skipped: {result[\"error\"]}')
+          elif 'pr_url' in result:
+              print(f'PR: {result[\"pr_url\"]}')
+              print(f'Change: {result.get(\"change_description\")}')
+          else:
+              print(f'Pending: {result.get(\"pending_file\")}')
+          "
+
+      - name: Commit memory updates
+        run: |
+          git config user.name "research-bot"
+          git config user.email "bot@research-system"
+          git add memory/ logs/
+          git diff --cached --quiet || git commit -m "chore: eval + gap log update"
+          git push

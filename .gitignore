@@ -19,3 +19,7 @@ __pycache__/
 # Temporary
 *.tmp
 *.log
+
+# Environment
+.env
+.env.local
