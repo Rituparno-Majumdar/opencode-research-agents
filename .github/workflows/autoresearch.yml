@@ -88,10 +88,10 @@ with open('.opencode/autoresearch/checkpoint.json', 'w') as f:
             echo "checkpoint_saved=false" >> $GITHUB_ENV
           fi
 
-      - name: Run Autoresearch for CEO (Axiom) - First
+      - name: Run Autoresearch for CEO - First
         if: env.checkpoint_saved == 'false'
         run: |
-          echo "=== Running Autoresearch for CEO (Axiom) ==="
+          echo "=== Running Autoresearch for CEO ==="
           cd .opencode/autoresearch
           python3 -c "
 import sys
