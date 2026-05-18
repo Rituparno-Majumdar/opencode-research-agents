@@ -1,0 +1,24 @@
+{
+  "appMode": "default",
+  "showInlineTitle": true,
+  "language": "en",
+  "agentMode": "default",
+  "channel": "stable",
+  "showUnlinkedItems": false,
+  "attachmentFolderPath": "",
+  "hintPopup": true,
+  "spellcheck": {
+    "dictionary": [],
+    "checkUkrainian": false,
+    "checkRussian": false
+  },
+  "enableAI": true,
+  "aiProvider": "openai",
+  "openAIModel": "gpt-4o-mini",
+  "openAIMaxToken": 3000,
+  "openAIEndpoint": "https://openrouter.ai/api/v1",
+  "openAIApiKey": "",
+  "openRouterModel": "",
+  "openRouterEndpoint": "",
+  "openRouterApiKey": ""
+}

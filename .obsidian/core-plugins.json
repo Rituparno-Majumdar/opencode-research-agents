@@ -1,0 +1,72 @@
+{
+  "audioRecorder": {
+    "path": "./audio-recorder"
+  },
+  "backlink": true,
+  "bookmarks": true,
+  "canvas": true,
+  "daily-notes": true,
+  "editor": {
+    "path": "./editor.json"
+  },
+  "file-explorer": true,
+  "globalSearch": {
+    "path": "./search.json"
+  },
+  "graph": true,
+  "outline": true,
+  "prettier": {
+    "path": "./prettier.json"
+  },
+  "quick-later": {
+    "path": "./quick-later.json"
+  },
+  "random-note": true,
+  "recent-files": {
+    "path": "./recent-files.json"
+  },
+  "saved-search": {
+    "path": "./saved-search.json"
+  },
+  "search": {
+    "path": "./search.json"
+  },
+  "slides": true,
+  "sort": {
+    "path": "./sort.json"
+  },
+  "switcher": true,
+  "sync": true,
+  "tag-pane": true,
+  "templates": true,
+  "terminal": {
+    "path": "./terminal.json"
+  },
+  "word-count": true,
+  "workspaces": true,
+  "journal": {
+    "path": "./journal.json"
+  },
+  "obsidian-git": {
+    "path": "./obsidian-git.json"
+  },
+  "dataview": {
+    "path": "./dataview.json"
+  },
+  "global-search": true,
+  "outgoing-link": true,
+  "footnotes": false,
+  "properties": true,
+  "page-preview": true,
+  "note-composer": true,
+  "command-palette": true,
+  "slash-command": false,
+  "editor-status": true,
+  "markdown-importer": false,
+  "zk-prefixer": false,
+  "audio-recorder": false,
+  "file-recovery": true,
+  "publish": false,
+  "bases": true,
+  "webviewer": false
+}

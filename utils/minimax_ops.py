@@ -1,7 +1,6 @@
 """
-OpenRouter API wrapper.
-OpenRouter is OpenAI-compatible — same SDK, different base_url and key.
-Model is set in config.yaml. Change model in one place, affects everything.
+Minimax API call wrapper.
+Supports both async (for parallel agent dispatch) and sync (for Opencode tool calls).
 """
 
 import os
@@ -11,20 +10,20 @@ import yaml
 
 
 def load_config() -> dict:
-    return yaml.safe_load(open("config.yaml", encoding="utf-8").read())
+    return yaml.safe_load(open("config.yaml").read())
 
 
 def get_async_client() -> AsyncOpenAI:
     return AsyncOpenAI(
-        api_key=os.environ["OPENROUTER_API_KEY"],
-        base_url="https://openrouter.ai/api/v1"
+        api_key=os.environ["MINIMAX_API_KEY"],
+        base_url=os.environ.get("MINIMAX_BASE_URL", "https://api.minimax.chat/v1")
     )
 
 
 def get_sync_client() -> OpenAI:
     return OpenAI(
-        api_key=os.environ["OPENROUTER_API_KEY"],
-        base_url="https://openrouter.ai/api/v1"
+        api_key=os.environ["MINIMAX_API_KEY"],
+        base_url=os.environ.get("MINIMAX_BASE_URL", "https://api.minimax.chat/v1")
     )
 
 
@@ -69,6 +68,11 @@ def call_sync(
 
 
 async def call_parallel(calls: list[dict]) -> list[str]:
+    """
+    Dispatch multiple Minimax calls truly in parallel.
+    Each call dict: {system, user, temperature, max_tokens}
+    Returns list of responses in same order as input.
+    """
     tasks = [
         call_async(
             system_prompt=c["system"],

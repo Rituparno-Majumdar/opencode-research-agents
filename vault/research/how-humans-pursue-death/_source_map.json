@@ -1,0 +1,106 @@
+{
+  "topic": "How humans pursue death",
+  "slug": "how-humans-pursue-death",
+  "research_question": "How do human cultures across traditions conceptualize, ritualize, and actively pursue engagement with death — as transformation, confrontation, liberation, or understanding — rather than merely fearing or avoiding it?",
+  "timestamp": "2026-05-18T11:17:50Z",
+  "agent_assignments": {
+    "indic_traditions": {
+      "scope": "Indian philosophical and religious traditions that frame death as a deliberate spiritual pursuit, transformation, or liberation (moksha, videhamukti, sanga-tyaga). Covers Vedic, Upanishadic, Bhagavad Gita, Buddhist, and Jain death cosmologies; Bengali and vernacular death-sufi traditions (Mrityur Pore); Ramakrishna's death teachings.",
+      "known_sources": [
+        "Katha Upanishad — Yama's teaching to Nachiketa on the nature of death and the Self",
+        "Bhagavad Gita Chapters 8-9 — Arjuna's questions on death and the imperishable dharma",
+        "Brihadaranyaka Upanishad — Self (Atman) and the nature of mortality",
+        "Buddhist Suttas (Mahaparinirvana Sutta, Mahasakuludayi Sutta) — Buddhist death practices and consciousness at death",
+        "Jain Agamas — Sallekhana and moksha through deliberate surrender of the body",
+        "Mrityur Pore (Bengali) — vernacular Bengali death-sufi meditative tradition",
+        "Ramakrishna's Gospel — Ramakrishna's lived death preparation and teachings on Maya"
+      ],
+      "search_languages": ["Sanskrit", "Bengali", "Hindi", "Pali", "Prakrit"],
+      "special_instructions": "Focus specifically on death as actively pursued goal (moksha, videhamukti) rather than passive mortality. Include Jain sallekhana as primary example of deliberate death pursuit. Cover Indic soteriologies where death is the gateway explicitly sought. Note: Tibetan Buddhist death practices (bardo, phowa) are covered here due to Indian Buddhist origin."
+    },
+    "western_philosophy": {
+      "scope": "Western philosophical and depth-psychological traditions that theorize death-drive, mortality-awareness, and the pursuit of meaning through or against death. Covers existentialism, psychoanalysis, ancient Greek philosophy, Stoicism, and twentieth-century death theory.",
+      "known_sources": [
+        "Martin Heidegger — Being and Time: Being-toward-death, anticipation, authenticity",
+        "Søren Kierkegaard — Fear and Trembling, Sickness Unto Death: death as absolute relationship to self",
+        "Sigmund Freud — Thanatos and death drive theory",
+        "Carl Jung — Red Book, Symbols of Transformation: death as individuation catalyst",
+        "Epicurus — Letter to Menoeceus: death is nothing to us, pursuit of ataraxia regarding mortality",
+        "Stoics (Seneca, Marcus Aurelius, Epictetus) — death as the supreme exercise, memento mori as practice",
+        "Ernest Becker — Denial of Death: hero-systems and the pursuit of symbolic immortality"
+      ],
+      "search_languages": ["German", "English", "Latin", "Greek", "French"],
+      "special_instructions": "Distinguish death as conceptualized from death as pursued. Heidegger's anticipatory Being-toward-death is not pursuit but is relevant as active confrontation. Becker's Denial of Death is primary contemporary anchor. Cover Epicurean and Stoic practices of rehearsing death as active orientation toward mortality."
+    },
+    "ancient_civilizations": {
+      "scope": "Mortuary traditions, eschatological texts, and afterlife mythologies from ancient civilizations where death-rites served as deliberate human engagement with death. Covers Egyptian, Mesopotamian, Greek, Quranic/Islamic, and Sufi traditions.",
+      "known_sources": [
+        "Egyptian Book of the Dead — Papyrus of Ani: human pursuit of favorable judgment and afterlife through ritual text",
+        "Epic of Gilgamesh — Gilgamesh's pursuit of immortality and confrontation with mortality's finality",
+        "Greek underworld myths (Orphic, Platonic) — katabasis, afterlife journey, philosophical death pursuit",
+        "Quran — Barzakh doctrine and the grave as intermediary realm",
+        "Rumi — Masnavi: death as union (fana), the lover's pursuit of annihilation in the beloved",
+        "Ibn Arabi — Fusus al-Hikam, death of the ego as mystical pursuit",
+        "Hafez — Divan: death as return, love as vehicle for death-transcendence"
+      ],
+      "search_languages": ["Ancient Greek", "Arabic", "Persian", "Hebrew", "Coptic"],
+      "special_instructions": "Cover the Islamic eschatological frame (Barzakh, grave trials, Qiyamah) as human pursuit through ritual compliance. Rumi, Ibn Arabi, and Hafez assigned here per routing defaults. Orphic katabasis traditions as deliberate death-journey are primary. Egyptian Book of the Dead as the foundational text of humans actively pursuing a favorable death-transition."
+    },
+    "contemporary_scholarship": {
+      "scope": "Modern academic, psychological, and consciousness research on death, near-death experiences, terror management, and contemporary death practices across cultures. Covers thanatology, NDE research, transpersonal psychology, and death ethics.",
+      "known_sources": [
+        "Elisabeth Kübler-Ross — On Death and Dying: five stages as human engagement with approaching death",
+        "Philippe Ariès — Western Attitudes Toward Death: historical shift from controlled death to medicalized death",
+        "Greyson — Near-Death Experience research: empirical studies of consciousness at death threshold",
+        "David Chalmers — Hard problem of consciousness: relevance to consciousness persistence at death",
+        "Stanislav Grof — LSD research, holotropic breathwork: death and rebirth as psychospiritual pursuit",
+        "Terror Management Theory (Solomon, Greenberg) — mortality salience and the human pursuit of meaning under death awareness",
+        "Raymond Moody — Life After Life: NDE phenomenology"
+      ],
+      "search_languages": ["English", "German", "French", "Japanese"],
+      "special_instructions": "NDE research as humans approaching/pursuing the death threshold from the other side — assign here per routing defaults. Cover contemporary death practices: death meditation retreats, psilocybin death-therapy, voluntary stop-eating (VSED) as deliberate death pursuits. Ken Wilber and Grof are primary transpersonal contributors. Include contemporary ethics of death pursuit (assisted dying, advance directives) as active human engagement."
+    }
+  },
+  "boundary_cases": [
+    {
+      "source": "Tibetan Buddhist death practices (bardo teachings, phowa, tukdam)",
+      "assigned_to": "indic_traditions",
+      "reason": "Indian Buddhist origin. The bardo system derives from the Bardo Thodol (Tibetan Book of the Dead), a text translated from Sanskrit and Buddhist source traditions originating in Indian Mahayana Buddhism. Classified under routing default: tibetan_buddhist → indic_traditions."
+    },
+    {
+      "source": "Ernest Becker — Denial of Death (1974)",
+      "assigned_to": "western_philosophy",
+      "reason": "Cultural anthropologist and philosopher writing in the Western academic tradition, synthesizing Freud, Rank, and existentialism into a Western death theory. Primary classification: western_philosophy per routing defaults. Jung is also in western_philosophy, which provides interpretive context for Becker's work."
+    },
+    {
+      "source": "Near-death experience research (Greyson Scale, NDE phenomenology)",
+      "assigned_to": "contemporary_scholarship",
+      "reason": "Empirical psychological and consciousness research originating in late 20th-century academic settings (Moody 1975, Greyson 1983). Per routing default: nde_research → contemporary_scholarship. This is research into humans at the threshold of death, not a philosophical or religious tradition."
+    },
+    {
+      "source": "Egyptian Book of the Dead (Papyrus of Ani)",
+      "assigned_to": "ancient_civilizations",
+      "reason": "Primary mortuary text of ancient Egyptian civilization. Humans actively pursuing favorable judgment through ritualized death-text performance. Classical example of death as deliberate engagement within an ancient civilization context."
+    },
+    {
+      "source": "Rumi / Masnavi, Hafez / Divan, Ibn Arabi / Fusus al-Hikam",
+      "assigned_to": "ancient_civilizations",
+      "reason": "Sufi mysticism framed within the classical Islamic eschatological tradition (Barzakh, grave, Qiyamah) that has roots in ancient Near Eastern and Hellenistic philosophical synthesis. Per routing default: sufi_poetry → ancient_civilizations. These are classical (not contemporary living) mystical texts."
+    },
+    {
+      "source": "Ken Wilber — transpersonal psychology and death",
+      "assigned_to": "contemporary_scholarship",
+      "reason": "Per routing default: ken_wilber → contemporary_scholarship. Wilber synthesizes Eastern and Western traditions but writes in contemporary academic psychology context."
+    },
+    {
+      "source": "Ramakrishna's Gospel (Gospel of Sri Ramakrishna)",
+      "assigned_to": "indic_traditions",
+      "reason": "Living Bengali Indian spiritual teacher tradition. Per routing default: living_indian_teachers → indic_traditions. Covers vernacular Bengali death-sufi meditative tradition alongside Vedantic teachings on death and Maya."
+    },
+    {
+      "source": "Sam Harris — Waking Up, Free Will, death as the cessation of suffering",
+      "assigned_to": "contemporary_scholarship",
+      "reason": "Contemporary public intellectual and philosopher writing in English. While drawing on Buddhist and Stoic sources, Harris produces contemporary secular scholarship in the Western analytical tradition. Assigned to contemporary_scholarship per academic_cross_tradition rule."
+    }
+  ]
+}

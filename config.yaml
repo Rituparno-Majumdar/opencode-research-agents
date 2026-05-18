@@ -1,52 +1,52 @@
-model: "minimax/minimax-m2.5:free"
+# config.yaml — Central configuration. All settings live here. Never hardcode.
 
+# Model
+model: "MiniMax-Text-01"
+
+# Token budgets per call type
 max_tokens:
-  source_map:  3000
-  agent:       12000
-  review:      4000
-  ingest:      15000
-  evaluate:    3000
-  improve:     6000
+  source_map: 3000
+  agent: 12000
+  review: 4000
+  ingest: 15000
+  evaluate: 3000
+  improve: 6000
 
+# Temperatures
 temperature:
-  source_map:  0.2
-  agent:       0.3
-  review:      0.4
-  ingest:      0.2
-  evaluate:    0.1
-  improve:     0.3
+  source_map: 0.2
+  agent: 0.3
+  review: 0.4
+  ingest: 0.2
+  evaluate: 0.1
+  improve: 0.3
 
+# Paths
 obsidian_vault_path: "./vault"
-agents_path:         "./agents/prompts"
-memory_path:         "./memory"
-logs_path:           "./logs"
+agents_path: "./agents/prompts"
+memory_path: "./memory"
 
-min_evals_before_improve:   2
+# Improvement gates
+min_evals_before_improve: 2
 improvement_score_threshold: 0.5
 
-eval_metrics:
-  - source_density
-  - language_coverage
-  - quote_quality
-  - cross_tradition_richness
-  - boundary_accuracy
-  - temporal_depth
-  - contradiction_quality
+# Atomic note types
+atomic_note_types:
+  - concepts
+  - people
+  - texts
+  - patterns
+  - traditions
+  - questions
 
-zettel_config:
-  zettel_folder:     "./vault/zettel"
-  structure_folder:  "./vault/structure"
-  register_folder:   "./vault/register"
-  reference_folder:  "./vault/reference"
-  id_style: "sequential"
-
+# Boundary case routing defaults (resolved per-topic in _source_map.json)
 routing_defaults:
-  tibetan_buddhist:        indic_traditions
-  sufi_poetry:             ancient_civilizations
-  jung:                    western_philosophy
-  ken_wilber:              contemporary_scholarship
-  nde_research:            contemporary_scholarship
-  living_indian_teachers:  indic_traditions
+  tibetan_buddhist: indic_traditions
+  sufi_poetry: ancient_civilizations
+  jung: western_philosophy
+  ken_wilber: contemporary_scholarship
+  nde_research: contemporary_scholarship
+  living_indian_teachers: indic_traditions
   academic_cross_tradition: contemporary_scholarship
-  christian_mysticism:     western_philosophy
-  celtic_norse_mayan:      ancient_civilizations
+  christian_mysticism: western_philosophy
+  celtic_norse_mayan: ancient_civilizations

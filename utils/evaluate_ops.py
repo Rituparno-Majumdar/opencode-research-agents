@@ -1,12 +1,13 @@
 """
 Research run scoring utilities.
-Scores on 7 metrics including quote_quality.
+Called by Opencode during evaluate pipeline.
 """
 
 import json
 import re
 from pathlib import Path
-from utils.openrouter_ops import call_sync
+from datetime import datetime
+from utils.minimax_ops import call_sync
 from utils.file_ops import load_prompt, read_research_files, get_recent_slugs
 from utils.memory_ops import load_memory, append_gap_log, append_eval_result
 
@@ -14,38 +15,25 @@ from utils.memory_ops import load_memory, append_gap_log, append_eval_result
 def score_run(slug: str, vault_path: str = "./vault") -> dict:
     files = read_research_files(slug, vault_path)
     if not files:
-        raise FileNotFoundError("No research files found for: " + slug)
+        raise FileNotFoundError(f"No research files found for slug: {slug}")
 
     gap_log = load_memory("gap_log.json")
     domain_memory = load_memory("domain_memory.json")
 
-    files_preview = {}
-    for k, v in files.items():
-        files_preview[k] = v[:3000]
+    eval_input = f"""
+SLUG: {slug}
 
-    gap_data = gap_log[-20:] if isinstance(gap_log, list) else []
-    domain_data = {k: len(v) for k, v in domain_memory.items()} if isinstance(domain_memory, dict) else {}
+RESEARCH FILES (truncated to first 3000 chars each for evaluation):
+{json.dumps({k: v[:3000] for k, v in files.items()}, indent=2)}
 
-    eval_input = """
-SLUG: %s
+GAP LOG (last 20 entries):
+{json.dumps(gap_log[-20:] if isinstance(gap_log, list) else [], indent=2)}
 
-RESEARCH FILES (first 3000 chars each):
-%s
+DOMAIN MEMORY SUMMARY:
+{json.dumps({k: len(v) for k, v in domain_memory.items()} if isinstance(domain_memory, dict) else {}, indent=2)}
 
-GAP LOG (last 20):
-%s
-
-DOMAIN MEMORY:
-%s
-
-Score on all 7 metrics including quote_quality. Return JSON only.
-""" % (
-        slug,
-        json.dumps(files_preview, indent=2),
-        json.dumps(gap_data, indent=2),
-        json.dumps(domain_data, indent=2),
-    )
-
+Score this run on all 7 metrics. Return valid JSON only.
+"""
     system = load_prompt("evaluator")
     raw = call_sync(system, eval_input, temperature=0.1, max_tokens=3000)
 
@@ -69,42 +57,41 @@ Score on all 7 metrics including quote_quality. Return JSON only.
 
 
 def score_recent_runs(n: int = 3, vault_path: str = "./vault") -> list[dict]:
+    slugs = get_recent_slugs(n, vault_path)
     results = []
-    for slug in get_recent_slugs(n, vault_path):
+    for slug in slugs:
         try:
-            results.append(score_run(slug, vault_path))
+            result = score_run(slug, vault_path)
+            results.append(result)
         except Exception as e:
-            print("  Warning: Could not score " + slug + ": " + str(e))
+            print(f"  ⚠ Could not score {slug}: {e}")
     return results
 
 
 def format_score_table(result: dict) -> str:
     scores = result.get("scores", {})
-    sep = "=" * 42
-    dash = "-" * 42
-    topic = result.get("topic", result.get("run_id", "?"))
     lines = [
-        sep,
-        "EVALUATION: " + topic,
-        dash,
+        f"\n{'═'*40}",
+        f"EVALUATION: {result.get('topic', result.get('run_id', 'unknown'))}",
+        f"{'─'*40}"
     ]
-    labels = {
-        "source_density":           "Source Density     ",
-        "language_coverage":        "Language Coverage  ",
-        "quote_quality":            "Quote Quality      ",
-        "cross_tradition_richness": "Cross-Tradition    ",
-        "boundary_accuracy":        "Boundary Accuracy  ",
-        "temporal_depth":           "Temporal Depth     ",
-        "contradiction_quality":    "Contradiction Qual ",
+    metric_labels = {
+        "source_density": "Source Density    ",
+        "language_coverage": "Language Coverage ",
+        "gap_rate": "Gap Rate          ",
+        "cross_tradition_richness": "Cross-Tradition   ",
+        "boundary_accuracy": "Boundary Accuracy ",
+        "temporal_depth": "Temporal Depth    ",
+        "contradiction_quality": "Contradiction Qual"
     }
-    for key, label in labels.items():
+    for key, label in metric_labels.items():
         if key in scores:
-            s = scores[key].get("score", 0)
-            bar = chr(9608) * s + chr(9617) * (10 - s)
-            lines.append("  " + label + " " + bar + " " + str(s) + "/10")
-    lines.append(dash)
-    lines.append("  TOTAL               " + str(result.get("total_score", 0)) + "/70")
-    lines.append("  Weakest Agent:      " + str(result.get("weakest_agent", "N/A")))
-    lines.append("  Priority:           " + str(result.get("improvement_priority", "N/A")))
-    lines.append(sep + "\n")
+            score = scores[key].get("score", 0)
+            bar = "█" * score + "░" * (10 - score)
+            lines.append(f"  {label} {bar} {score}/10")
+    lines.append(f"{'─'*40}")
+    lines.append(f"  TOTAL              {result.get('total_score', 0)}/70")
+    lines.append(f"  Weakest Agent:     {result.get('weakest_agent', 'N/A')}")
+    lines.append(f"  Priority:          {result.get('improvement_priority', 'N/A')}")
+    lines.append(f"{'═'*40}\n")
     return "\n".join(lines)

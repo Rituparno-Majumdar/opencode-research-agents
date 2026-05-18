@@ -37,8 +37,8 @@ jobs:
           import asyncio, json, re, sys
           from datetime import datetime
           sys.path.insert(0, '.')
-          from utils.file_ops import load_prompt, write_vault_file, write_zettel, write_structure_note, write_register_entry
-          from utils.openrouter_ops import call_async, call_parallel
+          from utils.file_ops import load_prompt, write_vault_file
+          from utils.minimax_ops import call_async, call_parallel
 
           async def run(topic):
               orch = load_prompt('orchestrator')
@@ -88,27 +88,22 @@ jobs:
         run: |
           python -c "
           import sys; sys.path.insert(0, '.')
-          from utils.file_ops import get_last_slug, read_research_files, write_zettel, write_structure_note, write_register_entry
-          from utils.ingest_ops import extract_zettels, validate_zettels
+          from utils.file_ops import get_last_slug, read_research_files, write_atomic_note, append_crossref
+          from utils.ingest_ops import extract_atomic_notes, validate_notes
           from utils.memory_ops import update_domain_memory
-          from datetime import datetime
           slug = get_last_slug()
           files = read_research_files(slug)
           combined = '\n\n'.join(f'FILE: {k}\n{v}' for k,v in files.items())
-          result = extract_zettels(combined, slug)
-          zettels = validate_zettels(result.get('zettels', []))
+          notes = validate_notes(extract_atomic_notes(combined, slug))
           written = 0
-          for z in zettels:
-              _, is_new = write_zettel(z['id'], z['content'])
-              if is_new: written += 1
-          if result.get('structure_note'):
-              write_structure_note(slug, result['structure_note']['content'])
-          if result.get('register_entry'):
-              write_register_entry(slug, result['register_entry']['content'])
-          update_domain_memory(slug, zettels)
-          print(f'Ingest: {written} new Zettels from {slug}')
-          print(f'Structure Note: vault/structure/{slug}.md')
-          print(f'Register: vault/register/{slug}.md')
+          for n in notes:
+              path, is_new = write_atomic_note(n['type'], n['filename'], n['content'])
+              if not is_new:
+                  append_crossref(n['type'], n['filename'], slug)
+              else:
+                  written += 1
+          update_domain_memory(slug, notes)
+          print(f'Ingest complete: {written} new notes')
           "
 
       - name: Commit and push
