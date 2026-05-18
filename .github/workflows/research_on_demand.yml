@@ -60,7 +60,9 @@ jobs:
               calls = []
               for pf, ak, _ in agents:
                   a = sm['agent_assignments'][ak]
-                  msg = f'RESEARCH TOPIC: {sm[\"topic\"]}\nRESEARCH QUESTION: {sm[\"research_question\"]}\nYOUR SCOPE: {a[\"scope\"]}\nKNOWN SOURCES:\n' + '\n'.join(a['known_sources']) + f'\nLANGUAGES: {chr(44).join(a[\"search_languages\"])}\nSPECIAL: {a.get(\"special_instructions\",\"\")}\nTIMESTAMP: {datetime.utcnow().isoformat()}'
+                  known = '\n'.join(a['known_sources'])
+                  langs = ','.join(a['search_languages'])
+                  msg = 'RESEARCH TOPIC: ' + sm['topic'] + '\nRESEARCH QUESTION: ' + sm['research_question'] + '\nYOUR SCOPE: ' + a['scope'] + '\nKNOWN SOURCES:\n' + known + '\nLANGUAGES: ' + langs + '\nSPECIAL: ' + a.get('special_instructions', '') + '\nTIMESTAMP: ' + datetime.utcnow().isoformat()
                   calls.append({'system': load_prompt(pf), 'user': msg, 'temperature': 0.3, 'max_tokens': 12000})
               results = await call_parallel(calls)
               for (_, _, fname), content in zip(agents, results):
@@ -69,10 +71,10 @@ jobs:
 
               print('[Phase 3] Orchestrator review...')
               combined = '\n\n'.join(
-                  f'FILE: {a[2]}\n' + open(f'vault/research/{slug}/{a[2]}').read()
+                  'FILE: ' + a[2] + '\n' + open('vault/research/' + slug + '/' + a[2]).read()
                   for a in agents
               )
-              review = await call_async(orch, f'TOPIC: {topic}\n\n{combined}', 0.4, 4000)
+              review = await call_async(orch, 'TOPIC: ' + topic + '\n\n' + combined, 0.4, 4000)
               write_vault_file(slug, 'orchestrator_review.md', review)
               print(f'Complete: vault/research/{slug}/')
 
