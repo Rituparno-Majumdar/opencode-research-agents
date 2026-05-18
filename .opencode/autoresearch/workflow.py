@@ -398,6 +398,33 @@ def run_benchmark_experiment(specialist: str, iteration: int = 1) -> dict:
             print(f"  Coherence: {score:.2f}")
         metrics["val_coherence"] = total_score / len(benchmarks)
 
+    elif specialist == "ceo":
+        delegation_score = 0
+        coordination_score = 0
+        outcome_score = 0
+
+        for bench in benchmarks:
+            print(f"\n[Task: {bench['id']}] {bench['description']}")
+            task = bench.get("task", "")
+            prompt = f"You are a CEO coordinating specialists. Task: {task}\n\nWhat specialist would you delegate this to and how would you coordinate the work?"
+            output = call_llm(prompt, system_prompt)
+
+            eval_metrics = bench.get("evaluation", {})
+            if "val_delegation" in eval_metrics:
+                delegation_score += 1.0 if bench.get("expected_delegate", "") in output.lower() else 0.5
+            if "val_coordination" in eval_metrics:
+                coordination_score += 1.0
+            if "val_outcome" in eval_metrics:
+                outcome_score += 1.0
+
+            print(f"  Task: {bench['description'][:40]}...")
+            print(f"  Response: {output[:80]}...")
+            print(f"  Scores: delegation={delegation_score}, coordination={coordination_score}, outcome={outcome_score}")
+
+        metrics["val_delegation"] = delegation_score / len(benchmarks) if benchmarks else 0
+        metrics["val_coordination"] = coordination_score / len(benchmarks) if benchmarks else 0
+        metrics["val_outcome"] = outcome_score / len(benchmarks) if benchmarks else 0
+
     return metrics
 
 
@@ -455,6 +482,48 @@ def run_autoresearch_for_specialists(specialists: list):
     print(f"\n{'#'*60}")
     print("AUTORESEARCH RUN COMPLETE")
     print(f"{'#'*60}")
+
+
+def load_checkpoint() -> dict:
+    """Load checkpoint to know where to resume"""
+    checkpoint_path = AUTORESEARCH_ROOT / "checkpoint.json"
+    if checkpoint_path.exists():
+        import json
+        return json.loads(checkpoint_path.read_text())
+    return {"date": "", "cycles_today": 0, "last_specialist": "", "last_cycle": 0}
+
+
+def save_checkpoint(last_specialist: str, cycles_today: int, last_cycle: int):
+    """Save checkpoint for next run"""
+    checkpoint_path = AUTORESEARCH_ROOT / "checkpoint.json"
+    from datetime import datetime
+    data = {
+        "date": datetime.now().strftime("%Y-%m-%d"),
+        "cycles_today": cycles_today,
+        "last_specialist": last_specialist,
+        "last_cycle": last_cycle
+    }
+    import json
+    with open(checkpoint_path, "w") as f:
+        json.dump(data, f)
+    print(f"Checkpoint saved: {data}")
+
+
+def run_specialist_cycle(specialist: str, experiment_name: str = "nightly") -> dict:
+    """Run a single specialist's experiment cycle with checkpoint awareness"""
+    checkpoint = load_checkpoint()
+    print(f"Loaded checkpoint: {checkpoint}")
+
+    if checkpoint.get("last_specialist") == specialist and checkpoint.get("last_cycle", 0) > 0:
+        print(f"Already completed {specialist} in cycle {checkpoint.get('last_cycle')}")
+        return {"status": "skipped", "reason": "already_completed"}
+
+    result = run_experiment_cycle(specialist, experiment_name)
+
+    new_cycles = checkpoint.get("cycles_today", 0) + 1
+    save_checkpoint(specialist, new_cycles, new_cycles)
+
+    return result
 
 
 if __name__ == "__main__":
