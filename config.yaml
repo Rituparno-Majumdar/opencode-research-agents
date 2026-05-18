@@ -1,4 +1,4 @@
-model: "qwen/qwen3-235b-a22b:free"
+model: "minimax/minimax-m2.5:free"
 
 max_tokens:
   source_map:  3000
