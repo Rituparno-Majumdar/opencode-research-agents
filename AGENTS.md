@@ -41,18 +41,14 @@ Never ask for clarification before starting. Act immediately.
 
 ### Before starting any phase:
 1. Load config.yaml for all settings
-2. Load .env for API keys
-3. Read agents/prompts/orchestrator.md for phase instructions
+2. Read agents/prompts/orchestrator.md for phase instructions
 
 ---
 
 ### PHASE 1 — PRE-DISPATCH PLANNING
 
-Call: python -c "from utils.minimax_ops import call_sync; ..."
-Or use Opencode's native API call capability directly.
-
-Pass the RESEARCH topic to the orchestrator prompt (agents/prompts/orchestrator.md),
-Phase 1 section only.
+Use OpenCode's native LLM capability to call the orchestrator prompt
+(agents/prompts/orchestrator.md), Phase 1 section only.
 
 The orchestrator returns a JSON source map. Parse it.
 Extract: slug, research_question, agent_assignments, boundary_cases.
@@ -146,13 +142,18 @@ Load last slug from memory/domain_memory.json (or use provided slug).
 
 Read all 5 markdown files from vault/research/{slug}/.
 
-Call utils/ingest_ops.py extract_atomic_notes() with the combined content.
+Use OpenCode's native LLM to extract atomic notes from the combined content.
+Prompt: "Extract atomic notes from this research. For each note, output:
+- type: concept|person|text|pattern
+- title: brief title
+- content: 2-3 sentence summary
+- tags: relevant tags"
 
 For each note returned:
 - If file does NOT exist: write to vault/atomic-notes/{type}/{filename}
 - If file EXISTS: append cross-reference line only
 
-Call utils/memory_ops.py update_domain_memory() with new notes and slug.
+Update memory/domain_memory.json with new notes and slug.
 
 Print:
 ```
@@ -175,25 +176,40 @@ git push
 
 ## EVALUATE PIPELINE
 
-Call utils/evaluate_ops.py score_runs() for last 3 research slugs.
+Use OpenCode's native LLM to score the last 3 research runs.
+Prompt: "Evaluate these research outputs on 7 metrics (1-10 each):
+1. Source Density - quality and number of sources
+2. Language Coverage - multilingual source diversity
+3. Gap Rate - missing obvious sources
+4. Cross-Tradition - connections between traditions
+5. Boundary Accuracy - correct source routing
+6. Temporal Depth - historical span covered
+7. Contradiction Quality - handling of conflicting views
+
+Also evaluate the orchestrator on:
+1. Source Map Quality - better assignment logic
+2. Synthesis Quality - better cross-reference creation
+3. Gap Identification - better missing source detection"
 
 Print a score table:
 ```
-════════════════════════════════════════
+═══════════════════════════════════════
 EVALUATION RESULTS
 ───────────────────────────────
 Run: {slug}
-  Source Density:        {n}/10
-  Language Coverage:     {n}/10
-  Gap Rate:              {n}/10
-  Cross-Tradition:       {n}/10
-  Boundary Accuracy:     {n}/10
-  Temporal Depth:        {n}/10
-  Contradiction Quality: {n}/10
+  SOURCE AGENTS:
+    Indic Traditions:     {n}/10
+    Western Philosophy:  {n}/10
+    Ancient Civilizations: {n}/10
+    Contemporary:        {n}/10
+  ORCHESTRATOR:
+    Source Map Quality:  {n}/10
+    Synthesis Quality:   {n}/10
+    Gap Identification:  {n}/10
   ─────────────────────────────
   TOTAL:                {n}/70
   Weakest: {agent} — {metric}
-════════════════════════════════════════
+═══════════════════════════════════════
 ```
 
 Append results to memory/eval_history.json.
@@ -212,22 +228,32 @@ git push
 
 Read memory/eval_history.json (last 5 entries).
 Read memory/gap_log.json.
-Identify weakest agent (most frequently lowest across runs).
+
+Identify weakest component (could be agent OR orchestrator).
 Read its current prompt from agents/prompts/.
 
-Call utils/git_ops.py run_improve() — this handles:
-1. Generating prompt improvement via Minimax
-2. Snapshotting old prompt to memory/prompt_versions/
-3. Writing new prompt
-4. Creating git branch
-5. Committing changes
-6. Creating GitHub PR
+Generate prompt improvement using OpenCode's native LLM.
+Snapshot old prompt to memory/prompt_versions/{timestamp}_{agent}.md.
+Write new prompt to agents/prompts/{agent}.md.
+
+Create git branch:
+```bash
+git checkout -b improve/{agent}-{timestamp}
+git add agents/prompts/{agent}.md
+git commit -m "improve: {agent} prompt - {change_description}"
+git push -u origin improve/{agent}-{timestamp}
+```
+
+Create GitHub PR:
+```bash
+gh pr create --title "Improve {agent} prompt" --body "Evaluation: {metric} improved from {old} to {new}. Changes: {description}"
+```
 
 Print:
 ```
 ═══════════════════════════════════════
 ✓ Improvement PR created
-  Agent: {agent}
+  Component: {agent/orchestrator}
   Metric: {metric}
   Change: {description}
   Review at: {pr_url}
@@ -248,6 +274,7 @@ DO NOT merge without reading the diff.
 6. NEVER commit .env or any file containing API keys.
 7. ALWAYS print the orchestrator review to terminal after Phase 3.
 8. ALWAYS commit research files to git after each completed run.
+9. ALWAYS include orchestrator in evaluation and improvement cycles.
 
 ---
 
@@ -273,6 +300,7 @@ Apply in order when assigning ambiguous sources:
 | What | Where |
 |---|---|
 | Agent prompts | agents/prompts/{name}.md |
+| Orchestrator prompt | agents/prompts/orchestrator.md |
 | Research output | vault/research/{slug}/*.md |
 | Atomic notes | vault/atomic-notes/{type}/{name}.md |
 | Source map | vault/research/{slug}/_source_map.json |
