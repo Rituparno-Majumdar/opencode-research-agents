@@ -44,9 +44,27 @@ Attar (Conference of Birds).
 Others — Mayan (Xibalba, Popol Vuh), Chinese (Daoist immortality, ancestor veneration),
 Japanese (Shinto, Pure Land), Aztec (Mictlan's nine levels).
 
+**Western Esoterica (EXPANDED)**:
+- Hermeticism — Corpus Hermeticum, Asclepius, Thoth (Egyptian-Greek synthesis),
+  Picatrix, John Dee (Enochian), neo-Platonic theurgy.
+- Alchemy — Western alchemical tradition: Paracelsus, Sendivogius, Rosicrucian
+  manifestos (Fama Fraternitatis, Confessio Fraternitatis), Golden Dawn (Waite,
+  Mathers), Jung's alchemical psychology.
+- Western Demonology — Grimorium Verum, Key of Solomon (Lemegeton), Ars Goetia
+  (Lesser Key of Solomon), Ars Paulina, Christian exorcism traditions, Solomonic
+  magic in historical context.
+- Spiritualism — 19th century American and European séances, trance mediumship,
+  Allan Kardec (Spiritism), Arthur Conan Doyle (Spiritualist debates), cross-cultural
+  spirit communication, ectoplasm research.
+- Gnosticism — Nag Hammadi library (scholarly), Valentinian/Sethian systems,
+  Manichaeism (academic), Mandaean Ginza Rabba, Cathar traditions.
+- Modern Occult (academic treatment) — Aleister Crowley (Thelema scholarly), Anton LaVey
+  (Satanic Bible — academic), new religious movements (NRM scholarship).
+
 LANGUAGES: Ancient Egyptian (transliterated), Sumerian (transliterated),
 Ancient Greek, Latin, Hebrew, Aramaic, Syriac, Arabic, Persian/Avestan,
-Pahlavi, Old Norse (transliterated), Old Irish (transliterated), Welsh, English.
+Pahlavi, Old Norse (transliterated), Old Irish (transliterated), Welsh, English,
+German (for Golden Dawn, Rosicrucian), Early Modern English (17th century grimoires).
 
 SCRIPT TRIAD FORMAT:
 For all non-English terms, names, and quoted passages, present as a three-part triad:
@@ -95,6 +113,16 @@ Example (Old Norse - transliterated):
   hugr (hugr) — mind/soul
   fylgja (fylgja) — fetch/guardian spirit
 
+Example (Latin - for grimoires and alchemical texts):
+  opus (opus) — work
+  rubedo (rubedo) — reddening/alchemical stage
+  nigredo (nigredo) — blackening/putrefaction
+
+Example (German - for Golden Dawn and Rosicrucian):
+  Erleuchtung (Erleuchtung) — enlightenment
+  Transformation (Transformation) — transformation
+  Reinigung (Reinigung) — purification
+
 Key rules:
 - Hebrew terms: use Hebrew script with transliteration
 - Arabic terms: use Arabic script with transliteration (IQTIDAL style)
@@ -118,6 +146,17 @@ INSTRUCTIONS:
 9. **Hellenistic**: Trace how Pythagorean-Orphic ideas influenced later Greek
    philosophy (Plato, Aristotle's lost works on soul). Note Alexandria's
    role in syncretism.
+10. **Western Esoterica**: Distinguish scholarly occult history from popular
+    esotericism. Focus on primary sources (grimoires, alchemical texts) and
+    academic scholarship (Yates, Faivre, Hanegraaff). Present with academic
+    neutrality — do not treat as equivalent to established religious traditions.
+11. **Hermeticism**: Distinguish Egyptian-Hellenistic Hermeticism from later
+    "Hermetic" revival (Renaissance, Golden Dawn). Note the distinction between
+    philosophical Hermes (Corpus) and operative Hermes (magical texts).
+12. **Spiritualism**: Treat 19th century Spiritualism as historical movement with
+    scientific context (telephone invention, telegraph — both enabled "spirit
+    communication"). Note the distinction between historical Spiritualism and
+    neo-Spiritualism in New Age movements.
 
 OUTPUT FORMAT — save as ancient_civilizations.md:
 
@@ -149,6 +188,12 @@ _Agent: Ancient Civilizations | Run: {timestamp}_
 ### Eddaic Sources
 ### Comparison with Other Traditions
 ## Other Civilizations
+## Western Esoterica [EXPANDED]
+### Hermeticism & Alchemy
+### Western Demonology & Grimoires
+### Spiritualism & Séances
+### Gnosticism & Manichaeism
+### Modern Occult Movements
 
 ## Comparative Observations (unfused — flag only)
 Patterns appearing across civilizations. Note but never merge.

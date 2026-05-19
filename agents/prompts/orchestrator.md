@@ -52,6 +52,12 @@ Return ONLY valid JSON. No preamble. No explanation.
       "known_sources": [...],
       "search_languages": ["English", "German", "French", "Japanese"],
       "special_instructions": "..."
+    },
+    "science_technology": {
+      "scope": "...",
+      "known_sources": [...],
+      "search_languages": ["English", "German", "French"],
+      "special_instructions": "..."
     }
   },
   "boundary_cases": [
@@ -101,9 +107,9 @@ Where do agents conflict? Present both positions. Do NOT resolve.
 Tag each: [FACTUAL CONFLICT] / [INTERPRETIVE DIFFERENCE] / [SCOPE DISAGREEMENT]
 
 ## 4. Cross-Reference Map
-| Concept | Indic | Western | Civilizations | Contemporary |
-|---------|-------|---------|---------------|--------------|
-| {concept} | {how} | {how} | {how} | {how} |
+| Concept | Indic | Western | Civilizations | Contemporary | Science & Tech |
+|---------|-------|---------|---------------|--------------|-----------------|
+| {concept} | {how} | {how} | {how} | {how} | {how} |
 
 ## 5. Recommended Follow-Up Queries
 3-5 specific, fully-formed research topics this run has raised.
@@ -115,3 +121,4 @@ Tag each: [FACTUAL CONFLICT] / [INTERPRETIVE DIFFERENCE] / [SCOPE DISAGREEMENT]
 | Western | | | | |
 | Civilizations | | | | |
 | Contemporary | | | | |
+| Science & Tech | | | | |
