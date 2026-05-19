@@ -1,0 +1,42 @@
+{
+  "topic": "karma",
+  "slug": "karma-action",
+  "research_question": "What is karma in Indian religious philosophy? How does it relate to rebirth, action, and moral causation across Hindu, Buddhist, and Jain traditions?",
+  "timestamp": "2026-05-19T08:39:50Z",
+  "agent_assignments": {
+    "indic_traditions": {
+      "scope": "Hindu dharma, Buddhist kamma, Jain karmavāda — Sanskrit/Pali sources",
+      "known_sources": ["Karma — Wendy Doniger", "Brahma-sūtra — Śaṅkara", "Abhidhamma Pitaka"],
+      "search_languages": ["Sanskrit", "Pali", "Hindi"],
+      "special_instructions": "Include Devanagari triad for key terms"
+    },
+    "western_philosophy": {
+      "scope": "Aristotle's hexis, Stoic ethics of action, Schopenhauer's Will",
+      "known_sources": ["Nicomachean Ethics", "Discourses — Epictetus", "World as Will — Schopenhauer"],
+      "search_languages": ["German", "Greek", "English"],
+      "special_instructions": "Greek triad for key terms"
+    },
+    "ancient_civilizations": {
+      "scope": "Egyptian ma'at (cosmic order), Greek moira (fate)",
+      "known_sources": ["Book of the Dead", "The Odyssey"],
+      "search_languages": ["Ancient Greek", "Egyptian hieroglyphics"],
+      "special_instructions": "Note: karma is Indic-native, these are comparative parallels"
+    },
+    "contemporary_scholarship": {
+      "scope": "Modern scholarship on karma, reincarnation research",
+      "known_sources": ["Karma: An Anthropological Inquiry — Apple"],
+      "search_languages": ["English", "German"],
+      "special_instructions": "Recent debates on rebirth in contemporary philosophy"
+    },
+    "science_technology": {
+      "scope": "Minimal — karma is philosophical, not physics",
+      "known_sources": [],
+      "search_languages": ["English"],
+      "special_instructions": "Not primary — skip unless topic has scientific dimension"
+    }
+  },
+  "boundary_cases": [
+    { "source": "Tibetan karma", "assigned_to": "indic_traditions", "reason": "Vajrayana is Indian-origin" },
+    { "source": "Theravada vs Mahayana divergence", "assigned_to": "indic_traditions", "reason": "Both originate in Indian Buddhism" }
+  ]
+}

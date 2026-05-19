@@ -1,27 +1,40 @@
 ---
 title: Karma
 type: concepts
-topic: reincarnation
+topic: karma-action
 created: 2026-05-19
-tags: [hinduism, buddhism, ethics, causation, action]
+tags: [hinduism, buddhism, jainism, ethics, causation, rebirth]
 ---
 
 # Karma
 
-Karma is the law of moral causation linking actions to their consequences across lifetimes. In Hindu and Buddhist thought, wholesome actions produce favorable rebirth conditions while unwholesome actions lead to suffering in subsequent existences.
+Action and moral causation in Indian traditions — the principle that intentional actions produce consequences affecting future rebirths.
 
-## Appears In
-- [[research/reincarnation/indic_traditions]] — Central to all Indic traditions
-- [[research/reincarnation/western_philosophy]] — Pythagorean metempsychosis parallels
+## Causal Links (A → B)
+- [[avidya]] → [[karma]] — ignorance leads to action
+- [[karma]] → [[rebirth]] — action determines next birth
+- [[desire]] → [[karma]] — craving produces volitional action
+
+## Effect Links (A ← B)
+- [[moksha]] ← [[karma]] — liberation is the cessation of karmic effects
+- [[suffering]] ← [[karma]] — negative karma produces suffering
+
+## Symmetric Links (A ↔ B)
+- [[karma]] ↔ [[dharma]] — action and law/righteousness are intertwined
+- [[karma]] ↔ [[samsara]] — karma drives the cycle, cycle perpetuates karma
 
 ## Related Concepts
-[[samsara]] | [[moksha]] | [[vipaka]] | [[vasana]]
+- [[avidya]] | [[moksha]] | [[samsara]] | [[rebirth]] | [[dharma]] | [[karma_phala]]
 
 ## Related Traditions
-[[hinduism]] | [[buddhism]] | [[jainism]]
+- [[hinduism]] | [[buddhism]] | [[jainism]] | [[yoga]]
 
-## Cross-Tradition Notes
-Buddhist karma differs from Hindu: it focuses on intention (cetana) rather than ritual action. Jain karma is literally material—particles that bind the soul.
+## Related People
+- [[shankara]] | [[patanjali]]
+
+## Appears In
+- [[research/karma-action/indic_traditions]] — primary source
+- [[research/karma-action/western_philosophy]] — comparative parallels
 
 ## Source
-Extracted from: [[research/reincarnation/indic_traditions]]
+Extracted from: [[research/karma-action/indic_traditions]]
