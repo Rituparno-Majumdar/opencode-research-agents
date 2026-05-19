@@ -1,0 +1,54 @@
+{
+  "topic": "reincarnation",
+  "slug": "reincarnation-v2",
+  "research_question": "What do different philosophical and religious traditions say about reincarnation?",
+  "timestamp": "2026-05-19T00:00:00Z",
+  "agent_assignments": {
+    "indic_traditions": {
+      "scope": "Hindu, Buddhist, Jain, Sikh doctrines of rebirth; karma; atman; jiva; liberation (moksha/nirvana); historical development from Vedic to classical periods",
+      "known_sources": ["Bhagavad Gita - Krishna's teachings on karma and rebirth", "Upanishads - Atman and Brahman", "Buddhist Abhidharma - rebirth mechanics", "Jain theory of karmic particles (leshya)"],
+      "search_languages": ["Sanskrit", "Pali", "Bengali", "Hindi", "Tamil"],
+      "special_instructions": "Distinguish between Hindu 'reincarnation' (re-birth) and Buddhist 'rebirth' (no eternal self). Cover Jain vs Buddhist vs Hindu variations."
+    },
+    "western_philosophy": {
+      "scope": "Greek pre-Socratic, Platonic, Neoplatonic reincarnation; Western esotericism; 19th-20th century philosophical debates; analytical philosophy of mind on personal identity",
+      "known_sources": ["Plato - Phaedo, Republic (Er myth)", "Plotinus - Enneads", "Porphyry - Life of Pythagoras", "Arthur Schopenhauer - World as Will", "Henry David Thoreau - Walden references"],
+      "search_languages": ["Ancient Greek", "German", "English", "Latin"],
+      "special_instructions": "Cover Pythagorean-Orphic roots, Plato's influence on later esotericism, modern analytic philosophy debates (Parfit, Nozick) on personal identity."
+    },
+    "ancient_civilizations": {
+      "scope": "Ancient Egyptian afterlife beliefs; Mesopotamian; Gnostic; early Christian; Manichaean; Greco-Egyptian; Zoroastrian; ancient Mediterranean mystery traditions",
+      "known_sources": ["Egyptian Book of the Dead", "Zoroastrian Fad-dahist", "Orphic Gold Tablets", "Manichaean texts", "Hermetic Corpus"],
+      "search_languages": ["Ancient Greek", "Egyptian", "Hebrew", "Aramaic", "Persian", "Latin"],
+      "special_instructions": "Distinguish cyclic rebirth (Orphic/Pythagorean) from linear eschatology (Egyptian). Cover Gnostic dualism vs reincarnation."
+    },
+    "contemporary_scholarship": {
+      "scope": "Empirical research, NDE studies, philosophical debates on rebirth; Ian Stevenson's methodology; van Lommel Lancet 2001; AWARE study; consciousness studies (Chalmers, Penrose)",
+      "known_sources": [
+        "Ian Stevenson - Twenty Cases Suggestive of Reincarnation",
+        "Pim van Lommel - Lancet 2001 NDE study",
+        "AWARE study - Sam Parnia",
+        "David Chalmers - consciousness hard problem"
+      ],
+      "search_languages": ["English", "German", "Dutch"],
+      "special_instructions": "Cover empirical methodology debates, critiques (Paul Edwards replication argument), consciousness studies. Clearly separate peer-reviewed from contested claims."
+    }
+  },
+  "boundary_cases": [
+    {
+      "source": "Tibetan Buddhist 'bardo' texts",
+      "assigned_to": "indic_traditions",
+      "reason": "Originates in Indian Buddhist Mahayana tradition, now distinct but rooted in Indic framework"
+    },
+    {
+      "source": "Pythagorean-Reincarnation in Western tradition",
+      "assigned_to": "western_philosophy",
+      "reason": "Greek philosophical tradition, even though influencing later esoteric movements"
+    },
+    {
+      "source": "Near-Death Experience research",
+      "assigned_to": "contemporary_scholarship",
+      "reason": "Modern empirical/scientific research methodology per config routing"
+    }
+  ]
+}

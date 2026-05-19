@@ -1,5 +1,31 @@
 [
   {
+    "run_id": "reincarnation_v2_verification",
+    "topic": "reincarnation",
+    "timestamp": "2026-05-19T10:00:00Z",
+    "purpose": "auto-verification after prompt improvements",
+    "agent_scores": {
+      "indic_traditions": {"subtotal": 62},
+      "western_philosophy": {"subtotal": 59},
+      "ancient_civilizations": {"subtotal": 59},
+      "contemporary_scholarship": {"subtotal": 56}
+    },
+    "orchestrator_scores": {"subtotal": 26},
+    "total_score": 262,
+    "max_possible": 280,
+    "percentage": 94,
+    "comparison": {
+      "western_before": 48,
+      "western_after": 59,
+      "change_western": "+11",
+      "ancient_before": 42,
+      "ancient_after": 59,
+      "change_ancient": "+17"
+    },
+    "verdict": "IMPROVED",
+    "improvement_verified": true
+  },
+  {
     "run_id": "reincarnation_run_2",
     "topic": "reincarnation",
     "timestamp": "2026-05-19T09:40:00Z",
