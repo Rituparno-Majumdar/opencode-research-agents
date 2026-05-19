@@ -139,20 +139,67 @@ git push
 
 ---
 
-## INGEST PIPELINE
+## INGEST PIPELINE (Atomic Note Extraction)
 
 Load last slug from memory/domain_memory.json (or use provided slug).
 
 Read all 5 markdown files from vault/research/{slug}/.
 
-Use OpenCode's native LLM to extract atomic notes from the combined content.
-Prompt: "Extract atomic notes from this research. For each note, output:
-- type: concept|person|text|pattern|question
-- title: brief title
-- content: 2-3 sentence summary
-- tags: relevant tags
+Use OpenCode's native LLM to extract atomic notes. Use this ENHANCED PROMPT:
 
-Also extract 2-3 research questions raised by this topic that would benefit from future investigation. Tag these as type: question."
+```
+Extract atomic notes from this research for DAILY READING - clean, efficient, linked format.
+
+ATOMIC NOTE STRUCTURE (simplified for reading):
+
+---
+title: {title}
+type: {concept|person|text|pattern|question}
+topic: {research topic}
+created: {date}
+tags: [tag1, tag2]
+---
+
+# {Title (clean, no script)}
+
+{1-2 sentence definition - straight to point}
+
+## Causal Links (A → B)
+- [[concept A]] → [[concept B]] — if A causes B
+
+## Effect Links (A ← B)
+- [[trigger]] ← [[result]] — if B results from A
+
+## Symmetric Links (A ↔ B)
+- [[related concept 1]] ↔ [[related concept 2]] — bidirectional relationships
+
+## Related Concepts
+[[concept1]] | [[concept2]]
+
+## Related People
+[[person1]] | [[person2]]
+
+## Related Traditions
+[[tradition1]] | [[tradition2]]
+
+## Appears In
+- [[research/{slug}/{agent_file}]]
+
+## Source
+Extracted from: [[research/{slug}/{agent_file}]]
+---
+
+KEY RULES:
+1. NO blockquotes in atomic notes - use clean inline format only
+2. Include triad ONLY for 3-5 central concepts (use simplified: term — English)
+3. Identify CAUSAL relationships: "A → B" means A causes B
+4. Identify EFFECT relationships: "A ← B" means B is effect of A
+5. Identify SYMMETRIC relationships: "A ↔ B" means bidirectional
+6. For "effects" concepts (butterfly effect, emergence, chaos): trace causal chains across traditions
+7. Keep content SHORT - 1-2 sentences max for daily reading
+
+Extract 3-5 research questions as type: question.
+```
 
 For each note returned:
 - If file does NOT exist: write to vault/atomic-notes/{type}/{filename}
@@ -161,6 +208,20 @@ For each note returned:
 Update memory/domain_memory.json with new notes and slug.
 
 Print:
+```
+══════════════════════════════════════════════
+✓ Ingest complete: {slug}
+  {n} new atomic notes written
+  {m} existing notes updated
+  vault/atomic-notes/ updated
+══════════════════════════════════════════════
+```
+
+Commit:
+```bash
+git add vault/atomic-notes/ memory/domain_memory.json
+git commit -m "ingest: {slug}"
+git push
 ```
 ═══════════════════════════════════════
 ✓ Ingest complete: {slug}
