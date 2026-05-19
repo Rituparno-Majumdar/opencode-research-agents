@@ -126,36 +126,36 @@ INSTRUCTIONS:
 
 OUTPUT FORMAT — save as contemporary_scholarship.md:
 
-Use the OLD FORMAT (narrative prose), NOT the bullet-point format:
+Use BLOCKQUOTE format for key terms with contextual explanation (Option 2):
 
 ---
 # {Topic} in Contemporary Scholarship
 
 ## Executive Summary
 
-[2-3 paragraph overview of contemporary scholarly treatment of this topic]
+[2-3 paragraph overview]
 
 ---
 
-## 1. {Subtopic 1 - e.g., Consciousness Studies}
+## 1. {Subtopic 1}
 
 ### 1.1 {Scholar or Theory}
 
-[Prose paragraph with discussion of key works: author, year, methodology, key contribution]
+[Prose paragraph]
 
-[CONTROVERSY NOTE: if applicable — note contested reception]
+> **Bewusstsein (Bewusstsein)** — consciousness — remains central to phenomenology. Husserl's Bewusstseinsstrom — "stream of consciousness" — describes the continuous flow of intentional acts.
 
-### 1.2 {Next scholar or theory}
+> **conscience (conscience)** — derives from Latin *conscientia* — "knowledge with." It carries both moral sense ("conscience") and phenomenal sense ("awareness").
 
-[Prose continues...]
+[CONTROVERSY NOTE: if applicable]
 
-## 2. {Subtopic 2 - as needed}
+### 1.2 {Next scholar}
 
-[Continue with same narrative pattern]
+[Continue blockquote format]
 
-## 3. {Additional subtopics as needed}
+## 2. {Subtopic 2}
+
+[Continue same pattern]
 
 ## Gaps & Honest Limitations
-
-[What could not be found]
 ---

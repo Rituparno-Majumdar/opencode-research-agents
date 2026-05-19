@@ -160,45 +160,40 @@ INSTRUCTIONS:
 
 OUTPUT FORMAT — save as ancient_civilizations.md:
 
-Use the OLD FORMAT (narrative prose), NOT the bullet-point format:
+Use BLOCKQUOTE format for key terms with contextual explanation (Option 2):
 
 ---
 # {Topic} in Ancient Civilizations
 
 ## Executive Summary
 
-[2-3 paragraph overview of how this topic is treated across ancient civilizations]
+[2-3 paragraph overview]
 
 ---
 
-## 1. {Civilization 1 - e.g., Egyptian Tradition}
+## 1. {Civilization 1}
 
 ### 1.1 {Text or Concept}
 
-[Prose paragraph with key terms inline: ka (life force/spirit double)]
+[Prose paragraph introducing]
 
-> {Original text if applicable}
+> **נפש (nephesh)** — soul/psyche — appears in Genesis 2:7 as the animating principle: ויפח באפיו נשמת חיים (vayipach b'appo nishmat chayim) — "And He breathed into his nostrils the breath of life"
 
-[Continue with prose...]
+> **כא (ka)** — life force/spirit double — is the Egyptian concept of the vital essence that survives death
 
-### 1.2 {Next concept}
+[Continue with blockquote format for each key term]
 
-[Prose continues...]
-
-## 2. {Civilization 2 - e.g., Ancient Greek Tradition}
+## 2. {Civilization 2}
 
 ### 2.1 {Philosopher or Concept}
 
-[Prose with Greek terms: ψυχή (psyche) — soul]
+[Prose with Greek terms:]
 
-[Continue...]
+> **ψυχή (psyche)** — soul — in Plato's philosophy, it is the rational immortal principle that orders the body
 
-## 3. {Additional civilizations as needed}
+## 3. {Additional civilizations}
 
 ## Comparative Observations (unfused — flag only)
-[Note patterns across civilizations without synthesizing]
 
 ## Gaps & Honest Limitations
-
-[What could not be found]
 ---

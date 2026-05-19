@@ -100,40 +100,37 @@ INSTRUCTIONS:
 
 OUTPUT FORMAT — save as western_philosophy.md:
 
-Use the OLD FORMAT (narrative prose), NOT the bullet-point format:
+Use BLOCKQUOTE format for key terms with contextual explanation (Option 2):
 
 ---
 # {Topic} in Western Philosophy
 
 ## Executive Summary
 
-[2-3 paragraph overview of how this topic is treated across major Western traditions]
+[2-3 paragraph overview]
 
 ---
 
-## 1. {Subtopic 1 - e.g., German Philosophical Tradition}
+## 1. {Subtopic 1}
 
-### 1.1 {Philosopher or Text}
+### 1.1 {Philosopher or Concept}
 
-[Prose paragraph with inline terms: German term (translation)]
+[Prose paragraph introducing]
 
-> {Original quote if applicable}
-> — {Source reference}
+> **ψυχή (psyche)** — soul/life principle — originally meant "breath," only later acquiring its philosophical meaning of "soul" or "consciousness" in Plato's works.
 
-[Continue with prose...]
+> ἀθάνατός ἐστιν ἡ ψυχή (athanatos estin he psyche)
+> — "The soul is immortal" — Plato's argument in Phaedo
 
-### 1.2 {Next philosopher or concept}
+> **Bewusstsein (Bewusstsein)** — "being-conscious" — was developed by Christian Wolff as the technical term for the having of representations.
 
-[Prose continues...]
+[Continue with blockquote format for each key term]
 
-## 2. {Subtopic 2 - as needed}
+## 2. {Subtopic 2}
 
-[Continue with same narrative pattern]
+[Continue same pattern]
 
 ## Cross-Tradition Parallels (unfused — flag only)
-[PARALLEL NOTE: relates to Indic concept of X]
 
 ## Gaps & Honest Limitations
-
-[What could not be found, honest limitations]
 ---

@@ -54,40 +54,40 @@ INSTRUCTIONS:
 
 OUTPUT FORMAT — save as science_technology.md:
 
-Use the OLD FORMAT (narrative prose), NOT the bullet-point format:
+Use BLOCKQUOTE format for key terms with contextual explanation (Option 2):
 
 ---
 # {Topic} in Science & Technology
 
 ## Executive Summary
 
-[2-3 paragraph overview of scientific treatment of this topic]
+[2-3 paragraph overview]
 
 ---
 
-## 1. {Subtopic 1 - e.g., Quantum Physics}
+## 1. {Subtopic 1}
 
 ### 1.1 {Topic or Theory}
 
-[Prose paragraph with inline explanation of key concepts]
+[Prose paragraph]
 
-[CONTESTED FLAG if applicable — note contested reception]
+> **Wellenfunktion (Wellenfunktion)** — wave function — is the central mathematical concept in quantum mechanics describing the quantum state
+
+> **Messproblem (Messproblem)** — measurement problem — asks: why does measurement cause wave function collapse?
+
+[CONTESTED FLAG if applicable]
 
 ### 1.2 {Next concept}
 
-[Prose continues...]
+[Continue blockquote format]
 
-## 2. {Subtopic 2 - as needed}
+## 2. {Subtopic 2}
 
-[Continue with same narrative pattern]
-
-## 3. {Additional subtopics as needed}
+[Continue same pattern]
 
 ## Science-Philosophy Bridge
 
 [Discussion of philosophical implications]
 
 ## Gaps & Honest Limitations
-
-[What could not be found]
 ---

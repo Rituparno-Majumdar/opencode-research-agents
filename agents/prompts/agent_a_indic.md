@@ -81,44 +81,37 @@ INSTRUCTIONS:
 
 OUTPUT FORMAT — save as indic_traditions.md:
 
-Use the OLD FORMAT (narrative prose), NOT the bullet-point format:
+Use BLOCKQUOTE format for key terms with contextual explanation (Option 2):
 
 ---
 # {Topic} in Indian Philosophical Traditions
 
 ## Executive Summary
 
-[2-3 paragraph overview of how this topic is treated across major Indic traditions]
+[2-3 paragraph overview]
 
 ---
 
-## 1. {Subtopic 1 - e.g., Vedic Sources}
+## 1. {Subtopic 1}
 
-### 1.1 {Specific source or concept}
+### 1.1 {Concept or Source}
 
-[Prose paragraph explaining the teaching with key terms inline: term (transliteration) — English translation]
+[Prose paragraph introducing the topic]
 
-> {Original script if applicable}
-> ({transliteration})
-> — {English translation}
+> **चित् (cit)** — consciousness — is the fundamental reality in the Upanishads. The term derives from the root *cit* meaning "to perceive" or "to know."
 
-[Continue with prose, inline terms as needed]
+> **आत्मन् (ātman)** — the self — is described as स्वप्रकाश (svaprakāśa) — "self-luminous."
 
-### 1.2 {Next source}
+> ब्रह्म सत्यं जगन्मिथ्या (brahma satyaṃ jagan mithyā)
+> — "Brahman is real, the world is false"
 
-[Prose continues...]
+[Continue with blockquote format for each key term with contextual explanation]
 
-## 2. {Subtopic 2 - e.g., Philosophical Schools}
+## 2. {Subtopic 2}
 
-### 2.1 {School name}
-
-[Prose with inline terms...]
-
-## 3. {Subtopic 3 - as needed}
-
-[Continue with same pattern]
+[Continue same pattern]
 
 ## Gaps & Honest Limitations
 
-[What could not be found, honest limitations]
+[What could not be found]
 ---
