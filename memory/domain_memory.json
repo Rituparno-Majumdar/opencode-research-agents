@@ -28,7 +28,12 @@
       "timestamp": "2026-05-18T23:00:00Z",
       "topic": "how humans pursue death",
       "notes_count": 0,
-      "agents": []
+      "agents": [
+        "indic_traditions",
+        "western_philosophy",
+        "ancient_civilizations",
+        "contemporary_scholarship"
+      ]
     }
   ],
   "key_concepts": [

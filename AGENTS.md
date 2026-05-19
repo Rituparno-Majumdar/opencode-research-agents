@@ -31,6 +31,8 @@ Classify every user input into one of these intents before acting:
 | "status" | STATUS | Show last run summary from memory |
 | "review <slug>" | REVIEW | Print orchestrator_review.md for slug |
 | "memory" | MEMORY | Print domain_memory.json summary |
+| "merge" | MERGE | Merge approved PRs to main branch |
+| "approve <pr_number>" | APPROVE | Approve and merge specific PR |
 
 When in doubt: treat as RESEARCH intent.
 Never ask for clarification before starting. Act immediately.
@@ -144,10 +146,12 @@ Read all 5 markdown files from vault/research/{slug}/.
 
 Use OpenCode's native LLM to extract atomic notes from the combined content.
 Prompt: "Extract atomic notes from this research. For each note, output:
-- type: concept|person|text|pattern
+- type: concept|person|text|pattern|question
 - title: brief title
 - content: 2-3 sentence summary
-- tags: relevant tags"
+- tags: relevant tags
+
+Also extract 2-3 research questions raised by this topic that would benefit from future investigation. Tag these as type: question."
 
 For each note returned:
 - If file does NOT exist: write to vault/atomic-notes/{type}/{filename}
@@ -264,6 +268,45 @@ DO NOT merge without reading the diff.
 
 ---
 
+## MERGE PIPELINE
+
+After a PR has been reviewed and approved:
+
+1. Switch to main branch:
+   ```bash
+   git checkout main
+   ```
+
+2. Pull latest changes:
+   ```bash
+   git pull
+   ```
+
+3. Merge the improvement branch:
+   ```bash
+   git merge improve/{agent}-{timestamp}
+   ```
+
+4. Push to main:
+   ```bash
+   git push
+   ```
+
+5. Delete the merged branch (optional):
+   ```bash
+   git branch -d improve/{agent}-{timestamp}
+   ```
+
+Print:
+```
+═══════════════════════════════════════
+✓ Merged: improve/{agent}-{timestamp}
+  Main branch updated with prompt improvements
+═══════════════════════════════════════
+```
+
+---
+
 ## ABSOLUTE RULES (never violate)
 
 1. NEVER synthesize findings across traditions. Each agent file is standalone.
@@ -275,6 +318,7 @@ DO NOT merge without reading the diff.
 7. ALWAYS print the orchestrator review to terminal after Phase 3.
 8. ALWAYS commit research files to git after each completed run.
 9. ALWAYS include orchestrator in evaluation and improvement cycles.
+10. ALWAYS run "merge" after PR is approved.
 
 ---
 
