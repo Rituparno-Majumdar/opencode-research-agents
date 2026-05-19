@@ -36,5 +36,81 @@
     "weakest_agent": "Western",
     "weakest_metric": "language_coverage",
     "improvement_priority": "language_coverage"
+  },
+  {
+    "run_id": "reincarnation_run_1",
+    "topic": "reincarnation",
+    "scores": {
+      "source_density": {
+        "score": 9,
+        "justification": "Utilizes foundational texts (Vedic, Upanishadic, Book of the Dead), key philosophical works (Plato), and prominent contemporary researchers."
+      },
+      "language_coverage": {
+        "score": 7,
+        "justification": "Incorporates terms from Sanskrit, Pali, Ancient Egyptian, and references original language traditions, but the orchestrator notes significant missing non-English academic sources (e.g., Arabic, Old Norse, Celtic)."
+      },
+      "gap_rate": {
+        "score": 9,
+        "justification": "Multiple agents and the orchestrator explicitly identify and detail significant, genuine gaps in coverage, including specific philosophical traditions and source types."
+      },
+      "cross_tradition_richness": {
+        "score": 9,
+        "justification": "The orchestrator effectively identifies and details three significant conceptual convergences across Indic, Western, and Ancient Civilizations traditions."
+      },
+      "boundary_accuracy": {
+        "score": 9,
+        "justification": "Clearly distinguishes reincarnation from related afterlife beliefs (e.g., Egyptian, Mesopotamian) and accurately identifies its non-central but present role in Western thought."
+      },
+      "temporal_depth": {
+        "score": 10,
+        "justification": "Covers an extensive historical range, from ancient Egyptian and Vedic periods (3rd-2nd millennium BCE) through classical Greek, medieval developments, and contemporary scholarship."
+      },
+      "contradiction_quality": {
+        "score": 10,
+        "justification": "Identifies a core, substantive factual contradiction between Hindu (eternal Atman) and Buddhist (no-self Anatta) doctrines regarding the persistence of an entity."
+      }
+    },
+    "total_score": 63,
+    "weakest_agent": "western_philosophy",
+    "weakest_metric": "language_coverage",
+    "improvement_priority": "language_coverage"
+  },
+  {
+    "run_id": "how-humans-pursue-death",
+    "topic": "how-humans-pursue-death",
+    "scores": {
+      "source_density": {
+        "score": 9,
+        "justification": "Sources are consistently primary texts or foundational scholarly works, well-identified with specific references and original language details where applicable."
+      },
+      "language_coverage": {
+        "score": 8,
+        "justification": "Strong inclusion of original language terms and scripts for Indic and Western Philosophy. Ancient Civilizations includes terms but lacks original script for them. Contemporary Scholarship acknowledges original language for Ariès."
+      },
+      "gap_rate": {
+        "score": 3,
+        "justification": "The orchestrator review identifies numerous significant omissions across Indic (4), Western Philosophy (5), and Ancient Civilizations (5) agents, indicating a high rate of unaddressed topics."
+      },
+      "cross_tradition_richness": {
+        "score": 1,
+        "justification": "No explicit cross-references, comparisons, or syntheses between the different traditions or agent outputs are evident in the provided research files."
+      },
+      "boundary_accuracy": {
+        "score": 9,
+        "justification": "Each agent accurately defines and contextualizes 'pursuit of death' within its tradition, distinguishing it from mere biological death or passive acceptance, and correctly assigning boundary cases."
+      },
+      "temporal_depth": {
+        "score": 8,
+        "justification": "Excellent historical depth for ancient traditions (Upanishads, Book of the Dead). Contemporary scholarship covers appropriate recent history. Western Philosophy focuses deeply on one key 20th-century text."
+      },
+      "contradiction_quality": {
+        "score": 7,
+        "justification": "Some substantive contradictions or debates are noted, such as the paradox in Indic traditions, priestly vs. popular beliefs in Ancient Civilizations, and scholarly contestation in Contemporary Scholarship."
+      }
+    },
+    "total_score": 45,
+    "weakest_agent": "ancient_civilizations",
+    "weakest_metric": "cross_tradition_richness",
+    "improvement_priority": "gap_rate"
   }
 ]
