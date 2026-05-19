@@ -18,8 +18,12 @@ from utils.memory_ops import load_memory, get_last_eval_results
 AGENT_FILE_MAP = {
     "indic_traditions": "agent_a_indic",
     "western_philosophy": "agent_b_western",
+    "Western": "agent_b_western",
     "ancient_civilizations": "agent_c_civilizations",
-    "contemporary_scholarship": "agent_d_contemporary"
+    "Ancient": "agent_c_civilizations",
+    "contemporary_scholarship": "agent_d_contemporary",
+    "Contemporary": "agent_d_contemporary",
+    "Indic": "agent_a_indic"
 }
 
 

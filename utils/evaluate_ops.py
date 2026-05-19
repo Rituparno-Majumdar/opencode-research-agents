@@ -7,9 +7,56 @@ import json
 import re
 from pathlib import Path
 from datetime import datetime
-from utils.minimax_ops import call_sync
+from utils.minimax_ops import call_sync, load_config
 from utils.file_ops import load_prompt, read_research_files, get_recent_slugs
 from utils.memory_ops import load_memory, append_gap_log, append_eval_result
+
+
+def try_parse_json(text: str) -> dict | None:
+    """Try to parse JSON, return None if fails."""
+    try:
+        return json.loads(text)
+    except (json.JSONDecodeError, TypeError):
+        return None
+
+
+def normalize_eval_result(result: dict, slug: str) -> dict:
+    """Normalize evaluation result to required format."""
+    # Check if already in correct format
+    if "total_score" in result and "scores" in result:
+        # Has nested scores format - verify it has weakest_agent
+        if "weakest_agent" not in result:
+            scores = result.get("scores", {})
+            if scores:
+                result["weakest_agent"] = min(scores.keys(), key=lambda k: scores[k].get("score", 10))
+                result["weakest_metric"] = result["weakest_agent"]
+                result["improvement_priority"] = result["weakest_agent"]
+        return result
+    
+    # Flat format like {"source_density": 5, "language_coverage": 6, ...}
+    metrics = ["source_density", "language_coverage", "gap_rate", "cross_tradition_richness", 
+               "boundary_accuracy", "temporal_depth", "contradiction_quality"]
+    
+    scores = {}
+    for m in metrics:
+        if m in result:
+            scores[m] = {"score": result[m], "justification": ""}
+    
+    # Calculate total
+    total = sum(v.get("score", 0) for v in scores.values())
+    
+    # Find weakest
+    weakest = min(scores.keys(), key=lambda k: scores[k]["score"]) if scores else "unknown"
+    
+    return {
+        "run_id": f"{slug}_run_1",
+        "topic": slug,
+        "scores": scores,
+        "total_score": total,
+        "weakest_agent": weakest,
+        "weakest_metric": weakest,
+        "improvement_priority": weakest
+    }
 
 
 def score_run(slug: str, vault_path: str = "./vault") -> dict:
@@ -34,17 +81,24 @@ DOMAIN MEMORY SUMMARY:
 
 Score this run on all 7 metrics. Return valid JSON only.
 """
+    config = load_config()
     system = load_prompt("evaluator")
-    raw = call_sync(system, eval_input, temperature=0.1, max_tokens=3000)
+    raw = call_sync(system, eval_input, temperature=0.1, max_tokens=config["max_tokens"]["evaluate"])
 
-    json_match = re.search(r'\{[\s\S]*\}', raw)
-    if not json_match:
+    # Robust JSON extraction - try multiple patterns
+    result = None
+    result = try_parse_json(raw)
+    if result is None:
+        # Try extracting just the JSON portion
+        json_match = re.search(r'\{[\s\S]*\}', raw)
+        if json_match:
+            result = try_parse_json(json_match.group())
+    
+    if result is None:
         raise ValueError("Could not parse evaluation JSON")
 
-    result = json.loads(json_match.group())
-    if "total_score" not in result:
-        scores = result.get("scores", {})
-        result["total_score"] = sum(v.get("score", 0) for v in scores.values())
+    # Normalize to required format
+    result = normalize_eval_result(result, slug)
 
     for fname, content in files.items():
         if "Gaps & Honest Limitations" in content:
