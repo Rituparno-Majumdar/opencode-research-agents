@@ -205,22 +205,61 @@ For each note returned:
 - If file does NOT exist: write to vault/atomic-notes/{type}/{filename}
 - If file EXISTS: append cross-reference line only
 
+---
+
+### Step 2: AUTOMATIC EVALUATION & AMENDMENT
+
+After extraction, invoke the Atomic Note Agent (agent_atomic_notes.md) to:
+
+1. **Evaluate** each extracted note on 5 metrics:
+   - Connection Direction (25%)
+   - Content Accuracy (25%)
+   - Link Completeness (20%)
+   - Triad Quality (15%)
+   - Source References (15%)
+
+2. **Apply amendments** for notes scoring below 8/10:
+   - Fix directional arrows
+   - Add missing connections
+   - Expand incomplete content
+   - Correct source references
+
+3. **Update memory/atomic_notes_tracker.json** with evaluation results
+
+Print evaluation summary:
+```
+══════════════════════════════════════════════
+ATOMIC NOTES EVALUATION
+────────────────────────────────────────
+Extracted: {n} notes
+Evaluated: {n} notes
+  • Excellent (8-10): {x}
+  • Good (6-7): {y}
+  • Fair (4-5): {z}
+  • Poor (<4): {w}
+Amended: {m} notes
+  • {list of changes}
+══════════════════════════════════════════════
+```
+
 Update memory/domain_memory.json with new notes and slug.
 
-Print:
+Print final summary:
 ```
 ══════════════════════════════════════════════
 ✓ Ingest complete: {slug}
   {n} new atomic notes written
   {m} existing notes updated
+  {k} notes evaluated
+  {p} notes amended
   vault/atomic-notes/ updated
 ══════════════════════════════════════════════
 ```
 
 Commit:
 ```bash
-git add vault/atomic-notes/ memory/domain_memory.json
-git commit -m "ingest: {slug}"
+git add vault/atomic-notes/ memory/domain_memory.json memory/atomic_notes_tracker.json
+git commit -m "ingest: {slug} - {n} notes extracted, {k} evaluated, {p} amended"
 git push
 ```
 ═══════════════════════════════════════
@@ -440,12 +479,14 @@ Apply in order when assigning ambiguous sources:
 |---|---|
 | Agent prompts | agents/prompts/{name}.md |
 | Orchestrator prompt | agents/prompts/orchestrator.md |
+| Atomic Note Agent | agents/prompts/agent_atomic_notes.md |
 | Research output | vault/research/{slug}/*.md |
 | Atomic notes | vault/atomic-notes/{type}/{name}.md |
 | Source map | vault/research/{slug}/_source_map.json |
 | Domain memory | memory/domain_memory.json |
 | Gap log | memory/gap_log.json |
 | Eval history | memory/eval_history.json |
+| Atomic notes tracker | memory/atomic_notes_tracker.json |
 | Prompt snapshots | memory/prompt_versions/{ts}_{agent}.md |
 | Config | config.yaml |
 
