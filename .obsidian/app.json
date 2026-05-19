@@ -1,24 +1,46 @@
 {
-  "appMode": "default",
-  "showInlineTitle": true,
-  "language": "en",
-  "agentMode": "default",
-  "channel": "stable",
-  "showUnlinkedItems": false,
-  "attachmentFolderPath": "",
-  "hintPopup": true,
-  "spellcheck": {
-    "dictionary": [],
-    "checkUkrainian": false,
-    "checkRussian": false
-  },
-  "enableAI": true,
-  "aiProvider": "openai",
-  "openAIModel": "gpt-4o-mini",
-  "openAIMaxToken": 3000,
-  "openAIEndpoint": "https://openrouter.ai/api/v1",
-  "openAIApiKey": "",
-  "openRouterModel": "",
-  "openRouterEndpoint": "",
-  "openRouterApiKey": ""
+  "atomic-notes-graph": {
+    "id": "atomic-notes-graph",
+    "name": "Atomic Notes Graph",
+    "open": true,
+    "tabs": [
+      {
+        "id": "graph-tab-1",
+        "type": "graph",
+        "state": {
+          "graph": {
+            "mode": "local",
+            "rules": {
+              "folders": ["vault/atomic-notes"],
+              "tags": [],
+              "files": ["vault/atomic-notes/**"]
+            },
+            "options": {
+              "showTags": true,
+              "showLinks": true,
+              "showOrphans": false,
+              "centrality": 30,
+              "collapse": false,
+              "maxDistance": 6,
+              "cluster": true
+            },
+            "filters": {
+              "showAttachments": false,
+              "showComments": false,
+              "showImplicitLinks": false,
+              "showWikiLinks": true,
+              "showMarkdownLinks": true
+            },
+            "keyboard": {
+              "remove": [],
+              "navigation": []
+            }
+          },
+          "file": "vault/atomic-notes/graph-view-guide.md"
+        }
+      }
+    ],
+    "activeTab": "graph-tab-1",
+    "leafState": {}
+  }
 }

@@ -1,0 +1,17 @@
+# Ignore patterns for Obsidian Graph View
+
+# Ignore system folders - only show atomic-notes
+**/.obsidian/
+**/.git/
+**/memory/
+**/.trash/
+
+# Ignore agent prompts - not relevant for graph view
+agents/**
+
+# Ignore research files - only atomic notes
+vault/research/**
+
+# Only include atomic notes folder
+!vault/atomic-notes/
+vault/atomic-notes/**

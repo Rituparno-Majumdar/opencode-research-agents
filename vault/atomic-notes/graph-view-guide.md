@@ -1,32 +1,58 @@
 ---
-title: Atomic Notes Graph
+title: Graph View Guide
 type: system
-tags: [graph, navigation]
+tags: [graph, navigation, atomic-notes]
 ---
 
-# Atomic Notes Graph View
+# How to View Atomic Notes Graph
 
-This note is a helper for accessing only the atomic-notes in graph view.
+## ⚡ Quick Method
 
-## Quick Access
+1. **Open Obsidian**
+2. Go to **File Explorer** (left sidebar)
+3. Click on **`vault/atomic-notes/`** folder
+4. **Right-click** on any file inside that folder
+5. Select **"Open local graph view"**
 
-1. **Navigate** to `vault/atomic-notes/` in the file explorer
-2. **Right-click** on any note in that folder
-3. Select **"Open local graph view"**
+This will show ONLY atomic notes and their interconnections.
 
-This will show ONLY notes from the atomic-notes folder and their connections to each other.
+---
 
-## Alternative Method
+## 🎯 What You'll See
 
-1. Open any note in `vault/atomic-notes/`
-2. Press `Ctrl/Cmd + G` to open graph view
-3. In the top-left of the graph view, click the filter icon
-4. Set "Search in folder" to `vault/atomic-notes`
+The graph will display:
+- ✅ `vault/atomic-notes/concepts/*.md`
+- ✅ `vault/atomic-notes/people/*.md`
+- ✅ `vault/atomic-notes/texts/*.md`
+- ✅ `vault/atomic-notes/patterns/*.md`
+- ✅ `vault/atomic-notes/questions/*.md`
 
-## Notes
+---
 
-- This vault contains atomic notes extracted from research documents
-- These notes are optimized for daily reading
-- Each note has directional connections (→ causal, ← effect, ↔ symmetric)
+## 🚫 What's Excluded
 
-For questions about the graph structure, see individual note connections.
+These are NOT shown (filtered out):
+- ❌ agents/ folder
+- ❌ memory/ folder
+- ❌ vault/research/ folder
+- ❌ System files
+
+---
+
+## 📊 Alternative: Dashboard View
+
+Open `vault/atomic-notes/index.md` for:
+- List of all atomic notes by type
+- Quick statistics
+- Recent notes
+
+---
+
+## 🔧 If Graph Shows Wrong Content
+
+If you see unwanted files (like agent prompts):
+
+1. Close the graph view
+2. Navigate to `vault/atomic-notes/` in file explorer
+3. Right-click again → "Open local graph view"
+4. The graph should now only show atomic notes
