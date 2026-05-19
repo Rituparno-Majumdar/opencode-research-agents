@@ -1,0 +1,30 @@
+{
+  "Atomic Notes": {
+    "id": "atomic-notes-workspace",
+    "name": "Atomic Notes",
+    "root": "vault/atomic-notes/",
+    "tabs": [
+      {
+        "type": "graph",
+        "state": {
+          "graph": {
+            "mode": "local",
+            "folder": "vault/atomic-notes",
+            "showOrphans": false,
+            "showTags": true,
+            "showLinks": true
+          }
+        }
+      }
+    ],
+    "activeTab": 0,
+    "leafState": {
+      "graph": {
+        "collapsed": false,
+        "filters": {
+          "folder": "vault/atomic-notes"
+        }
+      }
+    }
+  }
+}
