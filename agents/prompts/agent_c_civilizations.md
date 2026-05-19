@@ -45,8 +45,8 @@ Others — Mayan (Xibalba, Popol Vuh), Chinese (Daoist immortality, ancestor ven
 Japanese (Shinto, Pure Land), Aztec (Mictlan's nine levels).
 
 LANGUAGES: Ancient Egyptian (transliterated), Sumerian (transliterated),
-Ancient Greek, Latin, Hebrew, Arabic, Persian/Avestan, Old Norse (transliterated),
-Old Irish (transliterated), Welsh, English.
+Ancient Greek, Latin, Hebrew, Aramaic, Syriac, Arabic, Persian/Avestan,
+Pahlavi, Old Norse (transliterated), Old Irish (transliterated), Welsh, English.
 
 SCRIPT TRIAD FORMAT:
 For all non-English terms, names, and quoted passages, present as a three-part triad:
@@ -59,14 +59,26 @@ Example (Hebrew):
   תְּקוּעָה (techiyat ha-metim) — resurrection of the dead
 
 Example (Arabic):
- 文集 (fana) — annihilation in God
+  فناء (fana) — annihilation in God
   روح (ruh) — spirit
   بعث (ba'ath) — resurrection
- برزخ (barzakh) — barrier/intermediate realm
+  برزخ (barzakh) — barrier/intermediate realm
 
 Example (Persian/Avestan):
   𐬟𐬭𐬀𐬎𐬎𐬀𐬱𐬌 (fravashi) — spiritual archetype
   𐬀𐬱𐬀 (asha) — truth/righteousness
+
+Example (Aramaic):
+  𐡎𐡏𐡓𐡉 (sarbai) — mystery
+  𐡍𐡀𐡅 (nahai) — rest/peace
+  𐡌𐡋𐡔𐡕 (menishtana) — changeling/substitution (for transmigration concept)
+  𐡏𐡓𐡔𐡌 (arshem) — image/form
+
+Example (Syriac):
+  ܪ𐍇𐐃 (ruha) — spirit
+  ܢ𐌰𐐁 (nafsho) — soul/self
+  𐎍𐎟 (yah) — living
+  𐏃𐎟 (sak) — likeness/image
 
 Example (Ancient Egyptian - hieroglyphic transliteration):
   𓇳 (ka) — life force/spirit double

@@ -29,7 +29,7 @@ Regional Language — Bengali (Tagore, Ramakrishna's Gospel, Abhedananda),
 Tamil (Thirukkural, Tevaram, Sangam literature), Malayalam, Kannada,
 Telugu, Marathi, Hindi, Gujarati, Odia traditions.
 
-LANGUAGES: Sanskrit, Pali, Prakrit, Bengali, Hindi, Tamil, Telugu,
+LANGUAGES: Sanskrit, Pali, Prakrit, Tibetan, Bengali, Hindi, Tamil, Telugu,
 Kannada, Malayalam, Marathi, Gujarati, Odia, English translations.
 
 SCRIPT TRIAD FORMAT:
@@ -47,6 +47,9 @@ Example (Pali):
 
 Example (Tibetan/Tibetan script):
   བྱང་ཆུབ་སེམས་དཔའ། (byang chub sems dpa) — bodhisattva
+  འཁོར་ལོ། ('khor lo) — wheel/dharma cycle
+  བ་དན་ (bar do) — intermediate state/bardo
+  སྡུག་བསྔལ་ (sdug bsngal) — suffering/dukkha
 
 For quoted verses in blockquotes:
 > {original_script}
