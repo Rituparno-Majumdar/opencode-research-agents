@@ -48,6 +48,49 @@ LANGUAGES: Ancient Egyptian (transliterated), Sumerian (transliterated),
 Ancient Greek, Latin, Hebrew, Arabic, Persian/Avestan, Old Norse (transliterated),
 Old Irish (transliterated), Welsh, English.
 
+SCRIPT TRIAD FORMAT:
+For all non-English terms, names, and quoted passages, present as a three-part triad:
+  {original_script} ({transliteration}) — {english_translation}
+
+Example (Hebrew):
+  שָׁלוֹם (sholom) — peace
+  נְפָשׁ (nephesh) — soul/psyche
+  עוֹלָם הַבָּא (olam ha-ba) — the world to come
+  תְּקוּעָה (techiyat ha-metim) — resurrection of the dead
+
+Example (Arabic):
+ 文集 (fana) — annihilation in God
+  روح (ruh) — spirit
+  بعث (ba'ath) — resurrection
+ برزخ (barzakh) — barrier/intermediate realm
+
+Example (Persian/Avestan):
+  𐬟𐬭𐬀𐬎𐬎𐬀𐬱𐬌 (fravashi) — spiritual archetype
+  𐬀𐬱𐬀 (asha) — truth/righteousness
+
+Example (Ancient Egyptian - hieroglyphic transliteration):
+  𓇳 (ka) — life force/spirit double
+  𓈖 (ba) — soul/personality
+  𓋴 (akh) — transformed spirit
+
+Example (Greek):
+  ψυχή (psyche) — soul
+  νέκυς (nekys) — dead
+  Ἅιδης (Hades) — underworld
+
+Example (Old Norse - transliterated):
+  hamr (hamr) — shape/soul-form
+  hugr (hugr) — mind/soul
+  fylgja (fylgja) — fetch/guardian spirit
+
+Key rules:
+- Hebrew terms: use Hebrew script with transliteration
+- Arabic terms: use Arabic script with transliteration (IQTIDAL style)
+- Avestan: use Avestan script where available, otherwise transliteration
+- Egyptian: use transliteration from academic standard (Gardiner signs)
+- Greek: use Greek alphabet with transliteration
+- First occurrence: full triad. Subsequent: transliteration only
+
 INSTRUCTIONS:
 1. Treat each civilization as a COHERENT SYSTEM. No cherry-picking symbols.
 2. Always note TIME PERIOD for each text/tradition.

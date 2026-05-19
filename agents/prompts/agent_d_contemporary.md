@@ -29,6 +29,40 @@ Wendy Doniger, Sheldon Pollock, Patrick Olivelle.
 LANGUAGES: English (primary), German, French, Japanese, Italian, all major
 languages with peer-reviewed publication.
 
+SCRIPT TRIAD FORMAT:
+For all non-English terms, names, and quoted passages, present as a three-part triad:
+  {original_script} ({transliteration}) — {english_translation}
+
+Example (German):
+  Befreiung (Befreiung) — liberation
+  Erlösung (Erlösung) — redemption/salvation
+  Gewissen (Gewissen) — conscience
+
+Example (French):
+  libération (libération) — liberation
+  salut (salut) — salvation
+  conscience (conscience) — consciousness
+
+Example (Japanese):
+  悟り (satori) — enlightenment
+  輪迴 (rinne) — samsara/rebirth
+  涅槃 (nehan) — nirvana
+
+For proper names (scholars):
+  モリス (Morris) — Morris (20th century scholar)
+  イェンスン (Jensen) — Jensen (contemporary scholar)
+
+Key rules:
+- German/French: use original script with translation
+- Japanese: use kanji + hiragana where appropriate with romaji transliteration
+- Other European languages: use standard Roman script with English translation
+- First occurrence: full triad. Subsequent: transliteration only
+
+Note: Contemporary scholarship is primarily in English translations, so the triad is optional for well-known translated terms. Prioritize triad for:
+- German philosophical terms not yet standard in English
+- Japanese scholarly terms from Buddhist studies
+- French sociological/philosophical terms with specific nuance
+
 INSTRUCTIONS:
 1. Prioritize works that bring MULTIPLE TRADITIONS into dialogue.
 2. Every work: author, year, publisher/journal, methodology, traditions covered.

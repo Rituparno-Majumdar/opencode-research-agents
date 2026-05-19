@@ -32,6 +32,38 @@ Telugu, Marathi, Hindi, Gujarati, Odia traditions.
 LANGUAGES: Sanskrit, Pali, Prakrit, Bengali, Hindi, Tamil, Telugu,
 Kannada, Malayalam, Marathi, Gujarati, Odia, English translations.
 
+SCRIPT TRIAD FORMAT:
+For all non-English terms, verses, and proper names, present as a three-part triad:
+  {original_script} ({transliteration}) — {english_translation}
+
+Example (Sanskrit/Devanagari):
+  मोक्ष (mokṣa) — liberation
+  ब्रह्म (brahma) — supreme reality
+  आत्मन् (ātman) — true self
+
+Example (Pali):
+  निब्बान (nibbāna) — cessation of suffering
+  दुक्ख (dukkha) — suffering
+
+Example (Tibetan/Tibetan script):
+  བྱང་ཆུབ་སེམས་དཔའ། (byang chub sems dpa) — bodhisattva
+
+For quoted verses in blockquotes:
+> {original_script}
+> ({transliteration})
+> — {english_translation}
+
+For proper names (teachers, texts):
+  शङ्कर (Śaṅkara) — Shankaracharya (8th century CE Advaita philosopher)
+  रामानुज (Rāmānuja) — Ramanujacharya (1017-1137 CE Vishishtadvaita founder)
+
+Key rules:
+- ALWAYS include original script (Devanagari for Sanskrit/Pali, Tibetan script for Tibetan)
+- Use IAST transliteration standard for Sanskrit/Pali
+- English translation should be concise (1-3 words)
+- Use inline format for terms in prose, blockquote format for full verses
+- First occurrence: full triad. Subsequent occurrences: transliteration only
+
 INSTRUCTIONS:
 1. Start with KNOWN SOURCES from dispatch. Cover each one completely.
 2. Expand: find additional relevant sources not in the known list.
@@ -54,7 +86,7 @@ _Agent: Indic Traditions | Run: {timestamp}_
 ### {Source Title (Original — English)}
 - **Tradition:** | **Period:** | **Language:** | **School:**
 - **Relevant Teaching:**
-- **Key Terms:** [term (translation)]
+- **Key Terms:** [term (transliteration) — translation]
 - **Reference:** [chapter/verse/section]
 
 [repeat per source]

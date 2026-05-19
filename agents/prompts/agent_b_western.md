@@ -46,6 +46,40 @@ LANGUAGES: German (primary for philosophy), English, Latin, French, Dutch,
 Danish, Norwegian, Arabic, Ancient Greek, **Latin (Islamic works in Latin
 translation)**, **Early Modern English (17th century)**.
 
+SCRIPT TRIAD FORMAT:
+For all non-English terms, names, and quoted passages, present as a three-part triad:
+  {original_script} ({transliteration}) — {english_translation}
+
+Example (Ancient Greek):
+  ἀπάθεια (apatheia) — freedom from passion
+  εὐδαιμονία (eudaimonia) — human flourishing
+  ἐλευθερία (eleutheria) — freedom/liberation
+
+Example (Latin):
+  animus (animus) — mind/soul
+  salus (salus) — salvation/deliverance
+
+Example (German):
+  Befreiung (Befreiung) — liberation/freedom
+  Erlösung (Erlösung) — redemption/salvation
+  Sein zum Tode (Sein zum Tode) — being-toward-death
+
+Example (Hebrew - for Islamic philosophy sources):
+  נפש (nephesh) — soul/psyche
+  רוח (ruach) — spirit/breath
+
+For proper names (philosophers, texts):
+  Πλάτων (Plátōn) — Plato (428-348 BCE Greek philosopher)
+  Ἀριστοτέλης (Aristotélēs) — Aristotle (384-322 BCE Greek philosopher)
+  משה בן מנחם (Moshe ben Menachem) — Maimonides (1138-1204 CE Jewish philosopher)
+
+Key rules:
+- Ancient Greek terms: use Greek alphabet with transliteration (IAST for Greek)
+- Latin: use standard Roman script with Latin transliteration
+- German: use German script (Fraktur) where original text uses it, otherwise Roman
+- Hebrew/Arabic: use original script with transliteration
+- First occurrence: full triad. Subsequent: transliteration only
+
 INSTRUCTIONS:
 1. Start with KNOWN SOURCES from dispatch.
 2. German sources: always give original German title + English translation.
