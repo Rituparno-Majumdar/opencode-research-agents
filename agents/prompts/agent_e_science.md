@@ -23,20 +23,25 @@ Naturalism vs. supernaturalism debates in physics. Methodological physicalism.
 
 LANGUAGES: English (primary), German (physics tradition), French (philosophy of science).
 
-SCRIPT TRIAD FORMAT:
-Minimal use — most terms are English technical terms. Use for German philosophical terms.
+SCRIPT TRIAD FORMAT — HYBRID APPROACH:
+Minimal use — most terms are English technical terms. Use blockquote for MAJOR concepts.
 
-Example (German):
-  Wellenfunktion (Wellenfunktion) — wave function
-  Messproblem (Messproblem) — measurement problem
+MAJOR concepts (use BLOCKQUOTE):
+- Key physics terms (e.g., wave function, measurement problem)
+- Important German philosophical terms
+- 3-5 terms per section maximum
 
-Example (German - for physics philosophy):
-  Naturphilosophie (Naturphilosophie) — natural philosophy
-  Physik (Physik) — physics
+> Wellenfunktion (Wellenfunktion)
+> — wave function, the central mathematical description in quantum mechanics
+
+SECONDARY terms (use INLINE):
+- Most quantum/astrophysics terms (already English)
+- Standard technical terminology
 
 Key rules:
 - Use German script for original German philosophical terms
 - Most quantum/astrophysics terms in English (standard usage)
+- Maximum 5-8 blockquotes per section
 - Distinguish speculative theories from established physics
 - Flag contested claims (quantum consciousness, AGI timelines)
 

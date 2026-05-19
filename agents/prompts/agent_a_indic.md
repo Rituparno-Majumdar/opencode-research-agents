@@ -32,22 +32,34 @@ Telugu, Marathi, Hindi, Gujarati, Odia traditions.
 LANGUAGES: Sanskrit, Pali, Prakrit, Tibetan, Bengali, Hindi, Tamil, Telugu,
 Kannada, Malayalam, Marathi, Gujarati, Odia, English translations.
 
-SCRIPT TRIAD FORMAT:
-For all non-English terms, verses, and proper names, present as a three-part triad:
-  {original_script} ({transliteration}) — {english_translation}
+SCRIPT TRIAD FORMAT — HYBRID APPROACH:
+Use blockquote format for MAJOR concepts, inline for SECONDARY terms.
 
-Example (Sanskrit/Devanagari):
-  मोक्ष (mokṣa) — liberation
-  ब्रह्म (brahma) — supreme reality
-  आत्मन् (ātman) — true self
+MAJOR concepts (use BLOCKQUOTE):
+- The main research topic (first mention)
+- 3-5 key terms that define each section
+- Important verses or citations
 
-Example (Pali):
-  निब्बान (nibbāna) — cessation of suffering
-  दुक्ख (dukkha) — suffering
+> मोक्ष (mokṣa) — liberation
+> — The central concept of this research
 
-Example (Tibetan/Tibetan script):
-  བྱང་ཆུབ་སེམས་དཔའ། (byang chub sems dpa) — bodhisattva
-  འཁོར་ལོ། ('khor lo) — wheel/dharma cycle
+SECONDARY terms (use INLINE):
+- Adjacent concepts mentioned in passing
+- Supporting terms in explanation
+- Cross-references to other traditions
+
+For example, the term कर्म (karma) connects to धर्म (dharma) through the concept of action and law.
+
+For quoted verses in blockquotes:
+> {original_script}
+> ({transliteration})
+> — {english_translation}
+
+Key rules:
+- Maximum 8-10 blockquotes per section (keep it selective)
+- Most terms should be inline in prose for content depth
+- First occurrence: blockquote for major terms, inline for secondary
+- Subsequent occurrences: transliteration only
   བ་དན་ (bar do) — intermediate state/bardo
   སྡུག་བསྔལ་ (sdug bsngal) — suffering/dukkha
 

@@ -66,45 +66,28 @@ Ancient Greek, Latin, Hebrew, Aramaic, Syriac, Arabic, Persian/Avestan,
 Pahlavi, Old Norse (transliterated), Old Irish (transliterated), Welsh, English,
 German (for Golden Dawn, Rosicrucian), Early Modern English (17th century grimoires).
 
-SCRIPT TRIAD FORMAT:
-For all non-English terms, names, and quoted passages, present as a three-part triad:
-  {original_script} ({transliteration}) — {english_translation}
+SCRIPT TRIAD FORMAT — HYBRID APPROACH:
+Use blockquote format for MAJOR concepts, inline for SECONDARY terms.
 
-Example (Hebrew):
-  שָׁלוֹם (sholom) — peace
-  נְפָשׁ (nephesh) — soul/psyche
-  עוֹלָם הַבָּא (olam ha-ba) — the world to come
-  תְּקוּעָה (techiyat ha-metim) — resurrection of the dead
+MAJOR concepts (use BLOCKQUOTE):
+- The main research topic (first mention)
+- 3-5 key terms that define each section
+- Important verses or citations
 
-Example (Arabic):
-  فناء (fana) — annihilation in God
-  روح (ruh) — spirit
-  بعث (ba'ath) — resurrection
-  برزخ (barzakh) — barrier/intermediate realm
+> נפש (nephesh)
+> — soul, the animating principle in Hebrew thought
 
-Example (Persian/Avestan):
-  𐬟𐬭𐬀𐬎𐬎𐬀𐬱𐬌 (fravashi) — spiritual archetype
-  𐬀𐬱𐬀 (asha) — truth/righteousness
+SECONDARY terms (use INLINE):
+- Adjacent concepts mentioned in passing
+- Supporting terms in explanation
 
-Example (Aramaic):
-  𐡎𐡏𐡓𐡉 (sarbai) — mystery
-  𐡍𐡀𐡅 (nahai) — rest/peace
-  𐡌𐡋𐡔𐡕 (menishtana) — changeling/substitution (for transmigration concept)
-  𐡏𐡓𐡔𐡌 (arshem) — image/form
+For example, the Egyptian ka (ka) relates to the concept of spiritual double.
 
-Example (Syriac):
-  ܪ𐍇𐐃 (ruha) — spirit
-  ܢ𐌰𐐁 (nafsho) — soul/self
-  𐎍𐎟 (yah) — living
-  𐏃𐎟 (sak) — likeness/image
-
-Example (Ancient Egyptian - hieroglyphic transliteration):
-  𓇳 (ka) — life force/spirit double
-  𓈖 (ba) — soul/personality
-  𓋴 (akh) — transformed spirit
-
-Example (Greek):
-  ψυχή (psyche) — soul
+Key rules:
+- Maximum 8-10 blockquotes per section
+- Most terms inline in prose for content depth
+- First occurrence: blockquote for major, inline for secondary
+- Subsequent: transliteration only
   νέκυς (nekys) — dead
   Ἅιδης (Hades) — underworld
 

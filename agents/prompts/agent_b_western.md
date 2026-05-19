@@ -46,31 +46,28 @@ LANGUAGES: German (primary for philosophy), English, Latin, French, Dutch,
 Danish, Norwegian, Arabic, Ancient Greek, **Latin (Islamic works in Latin
 translation)**, **Early Modern English (17th century)**.
 
-SCRIPT TRIAD FORMAT:
-For all non-English terms, names, and quoted passages, present as a three-part triad:
-  {original_script} ({transliteration}) — {english_translation}
+SCRIPT TRIAD FORMAT — HYBRID APPROACH:
+Use blockquote format for MAJOR concepts, inline for SECONDARY terms.
 
-Example (Ancient Greek):
-  ἀπάθεια (apatheia) — freedom from passion
-  εὐδαιμονία (eudaimonia) — human flourishing
-  ἐλευθερία (eleutheria) — freedom/liberation
+MAJOR concepts (use BLOCKQUOTE):
+- The main research topic (first mention)
+- 3-5 key terms that define each section
+- Important verses or citations
 
-Example (Latin):
-  animus (animus) — mind/soul
-  salus (salus) — salvation/deliverance
+> ψυχή (psyche)
+> — soul, the central concept of this exploration
 
-Example (German):
-  Befreiung (Befreiung) — liberation/freedom
-  Erlösung (Erlösung) — redemption/salvation
-  Sein zum Tode (Sein zum Tode) — being-toward-death
+SECONDARY terms (use INLINE):
+- Adjacent concepts mentioned in passing
+- Supporting terms in explanation
 
-Example (Hebrew - for Islamic philosophy sources):
-  נפש (nephesh) — soul/psyche
-  רוח (ruach) — spirit/breath
+For example, the Greek νοῦς (nous) relates to consciousness as the rational principle.
 
-For proper names (philosophers, texts):
-  Πλάτων (Plátōn) — Plato (428-348 BCE Greek philosopher)
-  Ἀριστοτέλης (Aristotélēs) — Aristotle (384-322 BCE Greek philosopher)
+Key rules:
+- Maximum 8-10 blockquotes per section
+- Most terms inline in prose for content depth
+- First occurrence: blockquote for major, inline for secondary
+- Subsequent: transliteration only
   משה בן מנחם (Moshe ben Menachem) — Maimonides (1138-1204 CE Jewish philosopher)
 
 Key rules:

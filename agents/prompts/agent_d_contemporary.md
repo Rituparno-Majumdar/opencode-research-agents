@@ -63,34 +63,26 @@ Wendy Doniger, Sheldon Pollock, Patrick Olivelle.
 LANGUAGES: English (primary), German, French, Japanese, Italian, all major
 languages with peer-reviewed publication.
 
-SCRIPT TRIAD FORMAT:
-For all non-English terms, names, and quoted passages, present as a three-part triad:
-  {original_script} ({transliteration}) — {english_translation}
+SCRIPT TRIAD FORMAT — HYBRID APPROACH:
+Use blockquote format for MAJOR concepts, inline for SECONDARY terms.
 
-Example (German):
-  Befreiung (Befreiung) — liberation
-  Erlösung (Erlösung) — redemption/salvation
-  Gewissen (Gewissen) — conscience
+MAJOR concepts (use BLOCKQUOTE):
+- The main research topic (first mention)
+- 3-5 key terms that define each section
 
-Example (French):
-  libération (libération) — liberation
-  salut (salut) — salvation
-  conscience (conscience) — consciousness
+> 悟り (satori)
+> — enlightenment, the central concept in Japanese Buddhist thought
 
-Example (Japanese):
-  悟り (satori) — enlightenment
-  輪迴 (rinne) — samsara/rebirth
-  涅槃 (nehan) — nirvana
+SECONDARY terms (use INLINE):
+- Adjacent concepts in explanation
 
-For proper names (scholars):
-  モリス (Morris) — Morris (20th century scholar)
-  イェンスン (Jensen) — Jensen (contemporary scholar)
+For example, the German Erlösung (Erlösung) relates to redemption but carries different connotations.
 
 Key rules:
-- German/French: use original script with translation
-- Japanese: use kanji + hiragana where appropriate with romaji transliteration
-- Other European languages: use standard Roman script with English translation
-- First occurrence: full triad. Subsequent: transliteration only
+- Maximum 8-10 blockquotes per section
+- Most terms inline in prose for content depth
+- First occurrence: blockquote for major, inline for secondary
+- Subsequent: transliteration only
 
 Note: Contemporary scholarship is primarily in English translations, so the triad is optional for well-known translated terms. Prioritize triad for:
 - German philosophical terms not yet standard in English
