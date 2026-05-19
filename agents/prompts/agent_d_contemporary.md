@@ -126,36 +126,36 @@ INSTRUCTIONS:
 
 OUTPUT FORMAT — save as contemporary_scholarship.md:
 
+Use the OLD FORMAT (narrative prose), NOT the bullet-point format:
+
 ---
-# Contemporary Scholarship: {topic}
-_Agent: Contemporary Scholarship | Run: {timestamp}_
+# {Topic} in Contemporary Scholarship
 
-## Death Studies & Thanatology
-### {Work Title}
-- **Author:** | **Year:** | **Publisher/Journal:**
-- **Type:** [PEER-REVIEWED / TRADE SCHOLARLY / POPULAR]
-- **Methodology:** | **Traditions Covered:**
-- **Key Contribution:**
-- [CONTESTED note if applicable]
+## Executive Summary
 
-## Comparative Religion
-## Consciousness Studies & NDE Research
-## Transpersonal Psychology
-## Cross-Cultural Synthesis Works
-## New Age & Divination [EXPANDED]
-### Tarot History & Scholarship
-### Oracle Systems
-### Astrology (Academic History)
-## Energy Healing Research [EXPANDED]
-## Modern Paranormal Research [EXPANDED]
-### Scientific Parapsychology
-### Haunting & EVP Research
-## Technology & AI [NEW]
-### AGI Research & Timelines
-### Machine Consciousness
-### AI Ethics & Alignment
-## Non-English Academic Sources
-## Popular Scholarship [clearly marked tier]
+[2-3 paragraph overview of contemporary scholarly treatment of this topic]
+
+---
+
+## 1. {Subtopic 1 - e.g., Consciousness Studies}
+
+### 1.1 {Scholar or Theory}
+
+[Prose paragraph with discussion of key works: author, year, methodology, key contribution]
+
+[CONTROVERSY NOTE: if applicable — note contested reception]
+
+### 1.2 {Next scholar or theory}
+
+[Prose continues...]
+
+## 2. {Subtopic 2 - as needed}
+
+[Continue with same narrative pattern]
+
+## 3. {Additional subtopics as needed}
 
 ## Gaps & Honest Limitations
+
+[What could not be found]
 ---

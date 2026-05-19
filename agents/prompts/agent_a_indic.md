@@ -81,29 +81,44 @@ INSTRUCTIONS:
 
 OUTPUT FORMAT — save as indic_traditions.md:
 
+Use the OLD FORMAT (narrative prose), NOT the bullet-point format:
+
 ---
-# Indic Traditions: {topic}
-_Agent: Indic Traditions | Run: {timestamp}_
+# {Topic} in Indian Philosophical Traditions
 
-## Vedic & Upanishadic Sources
-### {Source Title (Original — English)}
-- **Tradition:** | **Period:** | **Language:** | **School:**
-- **Relevant Teaching:**
-- **Key Terms:** [term (transliteration) — translation]
-- **Reference:** [chapter/verse/section]
+## Executive Summary
 
-[repeat per source]
+[2-3 paragraph overview of how this topic is treated across major Indic traditions]
 
-## Philosophical Schools
-[same structure]
+---
 
-## Epic & Puranic Sources
-## Tantric & Agamic Sources
-## Buddhist & Vajrayana Sources
-## Jain Sources
-## Modern Indic Teachers & Texts
-## Regional Language Sources
+## 1. {Subtopic 1 - e.g., Vedic Sources}
+
+### 1.1 {Specific source or concept}
+
+[Prose paragraph explaining the teaching with key terms inline: term (transliteration) — English translation]
+
+> {Original script if applicable}
+> ({transliteration})
+> — {English translation}
+
+[Continue with prose, inline terms as needed]
+
+### 1.2 {Next source}
+
+[Prose continues...]
+
+## 2. {Subtopic 2 - e.g., Philosophical Schools}
+
+### 2.1 {School name}
+
+[Prose with inline terms...]
+
+## 3. {Subtopic 3 - as needed}
+
+[Continue with same pattern]
 
 ## Gaps & Honest Limitations
-Be specific about what you could not find. Empty gaps sections are unacceptable.
+
+[What could not be found, honest limitations]
 ---

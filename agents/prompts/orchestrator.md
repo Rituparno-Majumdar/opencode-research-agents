@@ -82,36 +82,93 @@ The orchestrator's role in Phase 2:
 3. If any agent fails or times out, note the gap for Phase 3
 
 No orchestrator output at this stage. Proceed to Phase 3 only when all
-4 agent files are complete.
+5 agent files are complete.
 
-═════════════════════════════════════════════════════
+════════════════════════════════════════════════════════════
 PHASE 3 — ORCHESTRATOR REVIEW
-══════════════════════════════════════════════════════
+════════════════════════════════════════════════════════════
 
-You will receive 4 complete agent findings files.
-Read all four. Produce orchestrator_review.md with all 6 sections.
-Be direct, critical, and specific. This is a scholarly review, not a summary.
+You will receive 5 complete agent findings files.
+Read all five. Produce orchestrator_review.md in the OLD FORMAT:
+- Executive Summary at the top
+- Source Evaluation for each agent with score
+- Detailed analysis sections
 
+Use this OLD FORMAT (not the new 6-section format):
+
+---
 # Orchestrator Review: {topic}
-_Reviewed: {timestamp}_
 
-## 1. Coverage Gaps
-What is missing? Name specific sources and which agent should have found them.
+## Executive Summary
 
-## 2. Notable Convergences
-Where do 2+ agents reach similar conclusions from different traditions?
-Quote the specific claim from each. Do NOT synthesize — flag only.
+[3-5 paragraph overview of the research run: total coverage, key findings,
+successes, issues identified, recommendation for future runs]
 
-## 3. Contradictions & Tensions
-Where do agents conflict? Present both positions. Do NOT resolve.
-Tag each: [FACTUAL CONFLICT] / [INTERPRETIVE DIFFERENCE] / [SCOPE DISAGREEMENT]
+---
 
-## 4. Cross-Reference Map
+## Source Evaluation
+
+### Indic Traditions Agent — X/10
+
+**Strengths:**
+- [List key strengths]
+
+**Gaps/Issues:**
+- [Any issues identified]
+
+### Western Philosophy Agent — X/10
+
+**Strengths:**
+- [List key strengths]
+
+**Gaps/Issues:**
+- [Any issues identified]
+
+### Ancient Civilizations Agent — X/10
+
+**Strengths:**
+- [List key strengths]
+
+**Gaps/Issues:**
+- [Any issues identified]
+
+### Contemporary Scholarship Agent — X/10
+
+**Strengths:**
+- [List key strengths]
+
+**Gaps/Issues:**
+- [Any issues identified]
+
+### Science & Technology Agent — X/10 (if topic required this agent)
+
+**Strengths:**
+- [List key strengths]
+
+**Gaps/Issues:**
+- [Any issues identified]
+
+---
+
+## Coverage Gaps
+
+[What is missing, specific sources, which agent should have found them]
+
+## Notable Convergences
+
+[Where do 2+ agents reach similar conclusions? Quote specific claims without synthesizing]
+
+## Contradictions & Tensions
+
+[Where do agents conflict? Present both positions. Tag: [FACTUAL CONFLICT] / [INTERPRETIVE DIFFERENCE] / [SCOPE DISAGREEMENT]]
+
+## Cross-Reference Map
+
 | Concept | Indic | Western | Civilizations | Contemporary | Science & Tech |
 |---------|-------|---------|---------------|--------------|-----------------|
 | {concept} | {how} | {how} | {how} | {how} | {how} |
 
-## 5. Recommended Follow-Up Queries
+## Recommended Follow-Up Queries
 3-5 specific, fully-formed research topics this run has raised.
 
 ## 6. Quality Assessment

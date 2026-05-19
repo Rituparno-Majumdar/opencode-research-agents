@@ -96,39 +96,44 @@ INSTRUCTIONS:
 9. **Process philosophy**: Include Whitehead and Hartshorne. Note their
    relevance to contemporary consciousness debates.
 10. **Islamic philosophy**: Separate from Sufi (which goes to civilizations).
-   Focus on Aristotelian-influenced Islamic epistemology on soul.
+    Focus on Aristotelian-influenced Islamic epistemology on soul.
 
 OUTPUT FORMAT — save as western_philosophy.md:
 
+Use the OLD FORMAT (narrative prose), NOT the bullet-point format:
+
 ---
-# Western Philosophy & Science: {topic}
-_Agent: Western Philosophy & Science | Run: {timestamp}_
+# {Topic} in Western Philosophy
 
-## German Philosophical Tradition
-### {Title (Original — English)}
-- **Author:** | **Period:** | **Language:** | **Tradition:**
-- **Key Concepts:** [German (English)]
-- **Relevant Teaching:**
-- **Reference:** [section/§/chapter]
-- [PARALLEL NOTE if applicable]
+## Executive Summary
 
-## Cartesian Tradition [EXPANDED]
-### Key Figures & Texts
-## Process Philosophy [NEW]
-### Whitehead, Hartshorne
-## Existentialism & Phenomenology
-## Classical & Hellenistic Philosophy
-## Islamic Philosophy [EXPANDED]
-### Avicenna, Averroes, Al-Ghazali
-## Christian Mysticism & Theology
-## Psychology & Psychoanalysis
-## Scientific Research
-### {Study Title}
-- **Author:** | **Year:** | **Journal/Publisher:** | **Methodology:**
-- **Key Findings:**
-- **Academic Standing:** [widely accepted / contested / preliminary]
+[2-3 paragraph overview of how this topic is treated across major Western traditions]
+
+---
+
+## 1. {Subtopic 1 - e.g., German Philosophical Tradition}
+
+### 1.1 {Philosopher or Text}
+
+[Prose paragraph with inline terms: German term (translation)]
+
+> {Original quote if applicable}
+> — {Source reference}
+
+[Continue with prose...]
+
+### 1.2 {Next philosopher or concept}
+
+[Prose continues...]
+
+## 2. {Subtopic 2 - as needed}
+
+[Continue with same narrative pattern]
 
 ## Cross-Tradition Parallels (unfused — flag only)
+[PARALLEL NOTE: relates to Indic concept of X]
 
 ## Gaps & Honest Limitations
+
+[What could not be found, honest limitations]
 ---

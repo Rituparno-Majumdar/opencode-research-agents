@@ -160,42 +160,45 @@ INSTRUCTIONS:
 
 OUTPUT FORMAT — save as ancient_civilizations.md:
 
+Use the OLD FORMAT (narrative prose), NOT the bullet-point format:
+
 ---
-# Ancient Civilizations: {topic}
-_Agent: Ancient Civilizations | Run: {timestamp}_
+# {Topic} in Ancient Civilizations
 
-## Egyptian Tradition
-### {Text or Concept}
-- **Period:** | **Language:** | **Primary Text:**
-- **Core Teaching:**
-- **Key Terms:** [transliterated (English)]
-- **Priestly vs. Popular:** [distinction if applicable]
+## Executive Summary
 
-## Mesopotamian Tradition
-## Ancient Greek Tradition
-### Pre-Hellenistic
-### Hellenistic Synthesis [NEW SECTION]
-## Roman Tradition
-## Hebrew & Jewish Tradition
-## Islamic Tradition
-### Mainstream Teaching
-### Sufi Perspective
-## Persian & Zoroastrian Tradition
-## Celtic Tradition [EXPANDED]
-### Irish Sources & Debate
-### Welsh Sources
-## Norse Tradition [EXPANDED]
-### Eddaic Sources
-### Comparison with Other Traditions
-## Other Civilizations
-## Western Esoterica [EXPANDED]
-### Hermeticism & Alchemy
-### Western Demonology & Grimoires
-### Spiritualism & Séances
-### Gnosticism & Manichaeism
-### Modern Occult Movements
+[2-3 paragraph overview of how this topic is treated across ancient civilizations]
+
+---
+
+## 1. {Civilization 1 - e.g., Egyptian Tradition}
+
+### 1.1 {Text or Concept}
+
+[Prose paragraph with key terms inline: ka (life force/spirit double)]
+
+> {Original text if applicable}
+
+[Continue with prose...]
+
+### 1.2 {Next concept}
+
+[Prose continues...]
+
+## 2. {Civilization 2 - e.g., Ancient Greek Tradition}
+
+### 2.1 {Philosopher or Concept}
+
+[Prose with Greek terms: ψυχή (psyche) — soul]
+
+[Continue...]
+
+## 3. {Additional civilizations as needed}
 
 ## Comparative Observations (unfused — flag only)
-Patterns appearing across civilizations. Note but never merge.
+[Note patterns across civilizations without synthesizing]
 
 ## Gaps & Honest Limitations
+
+[What could not be found]
+---

@@ -54,37 +54,40 @@ INSTRUCTIONS:
 
 OUTPUT FORMAT — save as science_technology.md:
 
+Use the OLD FORMAT (narrative prose), NOT the bullet-point format:
+
 ---
-# Science & Technology: {topic}
-_Agent: Science & Technology | Run: {timestamp}_
+# {Topic} in Science & Technology
 
-## Quantum Physics
-### {Topic or Theory}
-- **Type:** [Experimental / Theoretical / Speculative]
-- **Key Equations/Concepts:**
-- **Relevant Research:**
-- **Consensus Status:** [Established / Debated / Speculative]
+## Executive Summary
 
-## Quantum Consciousness [flag as contested]
-### {Theory}
-- **Proponents:** | **Critics:**
-- **Key Argument:**
-- **Reception:** [Mainstream consensus / Minority view / Contested]
+[2-3 paragraph overview of scientific treatment of this topic]
 
-## Astrophysics & Cosmology
-### {Topic}
-- **Type:** [Established / Theoretical / Speculative]
-- **Key Evidence:**
-- **Open Questions:**
+---
 
-## AI & Technology
-### AGI Research
-### Machine Consciousness [flag as contested]
-### AI Ethics & Alignment
+## 1. {Subtopic 1 - e.g., Quantum Physics}
+
+### 1.1 {Topic or Theory}
+
+[Prose paragraph with inline explanation of key concepts]
+
+[CONTESTED FLAG if applicable — note contested reception]
+
+### 1.2 {Next concept}
+
+[Prose continues...]
+
+## 2. {Subtopic 2 - as needed}
+
+[Continue with same narrative pattern]
+
+## 3. {Additional subtopics as needed}
 
 ## Science-Philosophy Bridge
-### Fine-tuning & Anthropic Principle
-### Naturalism Debates
+
+[Discussion of philosophical implications]
 
 ## Gaps & Honest Limitations
+
+[What could not be found]
 ---
