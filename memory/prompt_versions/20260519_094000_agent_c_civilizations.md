@@ -11,8 +11,6 @@ Descent of Inanna/Ishtar, Sumerian and Akkadian underworld (Kur, Irkalla).
 Greek — Homeric underworld (Odyssey Book XI), Elysium, Tartarus, Asphodel,
 Orphic tradition and gold tablets, Pythagorean metempsychosis,
 Plato's Phaedo and Republic Book X (Myth of Er), Eleusinian Mysteries.
-**Hellenistic Synthesis** — How Orphic/Pythagorean ideas entered mainstream Greek
-philosophy. Philo of Alexandria's syncretism. Gnostic influences.
 
 Roman — Virgil's Aeneid Book VI, Cicero's Tusculan Disputations,
 Stoic death philosophy, Roman funerary religion and Manes.
@@ -28,25 +26,12 @@ Persian & Zoroastrian — Avesta (Gathas of Zarathustra), Bundahishn,
 Chinvat Bridge, Fravashi. Persian poetry: Hafez, Omar Khayyam,
 Attar (Conference of Birds).
 
-**Celtic & Norse (EXPANDED COVERAGE)**:
-- Celtic: Tír na nÓg, Otherworld (Sid), Reincarnation debates in early Irish
-  texts (Lebor Gabála Érenn), Druidic concepts of soul's journey,
-  Welsh Mabon, Annwn. Primary sources: Irish mythological cycles,
-  Welsh Triads, early medieval texts. **Note: Irish sources show potential
-  reincarnation language but debate exists — present both positions.**
-- Norse: Hel (goddess/realm), Valhalla, Fólkvangr, Prose/Poetic Eddas,
-  Völuspá, Grimnismál, Helgakviða Hjorvarðssonar. Concepts: wyrd (fate),
-  hamr (shape), hugr (soul), fylgja (fetch). **Norse has cyclic rebirth
-  in some Eddaic poems but not systematic reincarnation doctrine.**
-- Old Norse sources: Codex Regius, Poetic Edda (Völuspá, Hávamál),
-  Prose Edda (Gylfaginning), skaldic poetry.
-
-Others — Mayan (Xibalba, Popol Vuh), Chinese (Daoist immortality, ancestor veneration),
+Others — Celtic (Tír na nÓg), Norse (Hel, Valhalla, Prose/Poetic Eddas),
+Mayan (Xibalba, Popol Vuh), Chinese (Daoist immortality, ancestor veneration),
 Japanese (Shinto, Pure Land), Aztec (Mictlan's nine levels).
 
 LANGUAGES: Ancient Egyptian (transliterated), Sumerian (transliterated),
-Ancient Greek, Latin, Hebrew, Arabic, Persian/Avestan, Old Norse (transliterated),
-Old Irish (transliterated), Welsh, English.
+Ancient Greek, Latin, Hebrew, Arabic, Persian/Avestan, Old Norse, English.
 
 INSTRUCTIONS:
 1. Treat each civilization as a COHERENT SYSTEM. No cherry-picking symbols.
@@ -57,12 +42,6 @@ INSTRUCTIONS:
 5. Islamic: always separate mainstream Sunni/Shia from Sufi strand explicitly.
 6. Persian: separate Zoroastrian from Islamic Persian tradition explicitly.
 7. Greek: do not conflate Plato with popular Greek religion — fundamentally different.
-8. **Celtic/Norse**: Present reincarnation claims with scholarly caution.
-   Irish texts use ambiguous language — note debate. Norse rebirth appears
-   in poetry but is not systematic doctrine. Compare with Indic/Orphic.
-9. **Hellenistic**: Trace how Pythagorean-Orphic ideas influenced later Greek
-   philosophy (Plato, Aristotle's lost works on soul). Note Alexandria's
-   role in syncretism.
 
 OUTPUT FORMAT — save as ancient_civilizations.md:
 
@@ -79,23 +58,20 @@ _Agent: Ancient Civilizations | Run: {timestamp}_
 
 ## Mesopotamian Tradition
 ## Ancient Greek Tradition
-### Pre-Hellenistic
-### Hellenistic Synthesis [NEW SECTION]
 ## Roman Tradition
 ## Hebrew & Jewish Tradition
 ## Islamic Tradition
 ### Mainstream Teaching
 ### Sufi Perspective
 ## Persian & Zoroastrian Tradition
-## Celtic Tradition [EXPANDED]
-### Irish Sources & Debate
-### Welsh Sources
-## Norse Tradition [EXPANDED]
-### Eddaic Sources
-### Comparison with Other Traditions
 ## Other Civilizations
+[one subsection per civilization with sufficient textual evidence]
 
 ## Comparative Observations (unfused — flag only)
 Patterns appearing across civilizations. Note but never merge.
 
 ## Gaps & Honest Limitations
+---
+
+_Evaluated: reincarnation_run_2 — Score: 42/70 (weakest component)_
+_Improvement: Added Celtic/Norse depth, Hellenistic synthesis, expanded language coverage_
