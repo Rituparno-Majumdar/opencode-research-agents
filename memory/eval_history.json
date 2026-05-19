@@ -1,5 +1,64 @@
 [
   {
+    "run_id": "reincarnation_run_2",
+    "topic": "reincarnation",
+    "timestamp": "2026-05-19T09:40:00Z",
+    "agent_scores": {
+      "indic_traditions": {
+        "source_density": 9,
+        "language_coverage": 9,
+        "gap_rate": 8,
+        "cross_tradition": 9,
+        "boundary_accuracy": 9,
+        "temporal_depth": 9,
+        "contradiction_quality": 8,
+        "subtotal": 61
+      },
+      "western_philosophy": {
+        "source_density": 7,
+        "language_coverage": 6,
+        "gap_rate": 6,
+        "cross_tradition": 7,
+        "boundary_accuracy": 7,
+        "temporal_depth": 8,
+        "contradiction_quality": 7,
+        "subtotal": 48
+      },
+      "ancient_civilizations": {
+        "source_density": 6,
+        "language_coverage": 5,
+        "gap_rate": 5,
+        "cross_tradition": 6,
+        "boundary_accuracy": 7,
+        "temporal_depth": 7,
+        "contradiction_quality": 6,
+        "subtotal": 42
+      },
+      "contemporary_scholarship": {
+        "source_density": 8,
+        "language_coverage": 5,
+        "gap_rate": 7,
+        "cross_tradition": 6,
+        "boundary_accuracy": 7,
+        "temporal_depth": 6,
+        "contradiction_quality": 7,
+        "subtotal": 46
+      }
+    },
+    "orchestrator_scores": {
+      "source_map_quality": 7,
+      "synthesis_quality": 7,
+      "gap_identification": 6,
+      "subtotal": 20
+    },
+    "total_score": 217,
+    "max_possible": 280,
+    "percentage": 78,
+    "weakest_component": "ancient_civilizations",
+    "weakest_metrics": ["gap_rate", "language_coverage"],
+    "improvement_priority": "Add Celtic/Norse in-depth coverage and Hellenistic synthesis to ancient_civilizations agent. Add Cartesian dualism and process philosophy to western_philosophy agent."
+  },
+  {
     "run_id": "reincarnation_run_1",
     "topic": "reincarnation",
     "scores": {
