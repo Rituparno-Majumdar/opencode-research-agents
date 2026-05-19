@@ -219,6 +219,21 @@ Run: {slug}
 Append results to memory/eval_history.json.
 Update memory/gap_log.json with any new gaps found.
 
+**Check for pending improvements verification:**
+- If memory/domain_memory.json has improvements_pending_verification, compare the current run's scores
+- For each pending improvement, check if the targeted metrics improved
+- If verification succeeded, note in evaluation that improvement is CONFIRMED
+- If verification shows regression, flag for review
+
+Print verification status if any improvements are being tested:
+```
+IMPROVEMENT VERIFICATION CHECK
+────────────────────────────────────────
+Component: {agent} | Expected: {improvement}
+Status: {VERIFIED / PENDING}
+────────────────────────────────────────
+```
+
 Commit:
 ```bash
 git add memory/
@@ -260,55 +275,24 @@ Print:
   Component: {agent/orchestrator}
   Metric: {metric}
   Change: {description}
+  Expected Test: Verify during future research on "{next_topic}"
   Review at: {pr_url}
 ═══════════════════════════════════════
-Verifying improvement...
 ```
 
----
+**Verification happens through future research runs** — no duplicate research needed.
 
-### AUTO-VERIFICATION STEP
-
-After PR creation, automatically verify the improvement:
-
-1. **Record pre-improvement score** from eval_history.json (the score that triggered this improve)
-
-2. **Run research on same topic** using the new improved prompts:
-   - Use the same topic that revealed the weakness
-   - Run full research pipeline (Phase 1 → 4 agents → Phase 3)
-
-3. **Run evaluation** on new research output
-
-4. **Compare scores:**
-   - Extract the metric that was targeted for improvement
-   - Compare old vs new
-   - Check: did other metrics drop?
-
-5. **Print verification result:**
-
+**Track pending verification:**
+- Add to memory/domain_memory.json improvements_pending_verification:
+```json
+{
+  "agent": "{agent}",
+  "metric_improved": "{metric}",
+  "expected_additions": ["{specific sources/areas added}"],
+  "created_at": "{timestamp}",
+  "first_test_topic": "{next research topic suggestion}"
+}
 ```
-VERIFYING IMPROVEMENT
-────────────────────────────────────────
-Topic: {topic}
-Component: {agent} | Metric: {metric}
-────────────────────────────────────────
-Before: {old_score}/10
-After:  {new_score}/10
-Change: {+N or 0} points
-────────────────────────────────────────
-Verdict: {IMPROVED / NO CHANGE / REGRESSED}
-```
-
-6. **If IMPROVED**: Auto-suggest merge
-   ```
-   Type "merge" to apply this improvement to main
-   ```
-
-7. **If NO CHANGE or REGRESSED**: Auto-reject
-   ```
-   Improvement did not yield better results.
-   Try a different approach with "improve"
-   ```
 
 ---
 
