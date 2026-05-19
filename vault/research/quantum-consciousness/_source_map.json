@@ -1,0 +1,55 @@
+{
+  "topic": "quantum consciousness",
+  "slug": "quantum-consciousness",
+  "research_question": "What is the relationship between quantum mechanics and consciousness according to various theoretical frameworks? How do different traditions (physics, philosophy, neuroscience) address the quantum mind debate?",
+  "timestamp": "2026-05-19T07:52:18Z",
+  "agent_assignments": {
+    "indic_traditions": {
+      "scope": "Consciousness in Indian philosophical traditions - Advaita Vedanta, Samkhya, Buddhist Vijñāna, Yoga consciousness models, Tantric consciousness. No direct quantum physics but parallel non-materialist frameworks.",
+      "known_sources": ["Brahma-sutra — Shankara", "Vijñapti-matra — Vasubandhi", "Yoga Sutras — Patanjali", "Pratyabhijna-hrudayam — Utpaladeva"],
+      "search_languages": ["Sanskrit", "Pali", "Tibetan"],
+      "special_instructions": "Focus on consciousness models that parallels materialist reduction - mention quantum consciousness debate as comparative context, not as primary focus"
+    },
+    "western_philosophy": {
+      "scope": "Philosophy of mind, dualism vs physicalism, panpsychism (Strawson, Chalmers), process philosophy (Whitehead) on consciousness, German idealist consciousness (Fichte, Schelling)",
+      "known_sources": ["Chalmers — The Conscious Mind", "Whitehead — Process and Reality", "Nagel — What is it Like to be a Bat?"],
+      "search_languages": ["German", "English", "Greek"],
+      "special_instructions": "Include historical development from Descartes to contemporary panpsychism debates"
+    },
+    "ancient_civilizations": {
+      "scope": "Classical Greek concepts of psyche, ancient Greek atomism (Democritus, Epicurus on mind), Plotinus nous, Ptolemaic cosmos and soul",
+      "known_sources": ["Plato — Phaedo, Timaeus", "Aristotle — De Anima", "Epicurus — Letter to Herodotus"],
+      "search_languages": ["Ancient Greek", "Latin"],
+      "special_instructions": "Focus on pre-modern mind-body concepts - ancient atomism's relationship to modern quantum mind theories as comparative note"
+    },
+    "contemporary_scholarship": {
+      "scope": "Quantum consciousness theories (Penrose-Hameroff, Bohm), Integrated Information Theory (Tononi), Global Workspace Theory (Baars), NDE and consciousness research, transpersonal psychology",
+      "known_sources": ["Penrose — Shadows of the Mind", "Hameroff — Consciousness in the Universe", "Tononi — Phi", "Baars — Global Workspace"],
+      "search_languages": ["English", "German"],
+      "special_instructions": "PRIMARY FOCUS - Cover all major quantum consciousness theories with scientific skepticism. Note mainstream neuroscience rejection."
+    },
+    "science_technology": {
+      "scope": "Quantum physics interpretations (Copenhagen, Many Worlds, decoherence), measurement problem, quantum mechanics fundamentals, physics of consciousness",
+      "known_sources": ["Bohm — Wholeness and the Implicate Order", "Everett — Relative State Formulation", "Zeilinger — on quantum foundations"],
+      "search_languages": ["English", "German"],
+      "special_instructions": "PRIMARY FOCUS - Cover physics side of quantum consciousness. Distinguish established quantum mechanics from speculative consciousness applications. Flag contested claims clearly."
+    }
+  },
+  "boundary_cases": [
+    {
+      "source": "Penrose-Hameroff Orch-OR",
+      "assigned_to": "contemporary_scholarship",
+      "reason": "Orch-OR is consciousness theory, physics is supporting context"
+    },
+    {
+      "source": "Bohm implicate order",
+      "assigned_to": "science_technology",
+      "reason": "Bohm's physics theories first, consciousness applications secondary"
+    },
+    {
+      "source": "Whitehead process philosophy",
+      "assigned_to": "western_philosophy",
+      "reason": "Philosophical framework, not physics"
+    }
+  ]
+}
