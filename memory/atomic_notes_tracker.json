@@ -1,14 +1,25 @@
 {
-  "last_evaluation": null,
-  "total_notes_evaluated": 0,
+  "last_evaluation": "2026-05-19T08:50:00Z",
+  "total_notes_evaluated": 4,
   "total_notes_amended": 0,
   "notes_by_status": {
-    "excellent": 0,
-    "good": 0,
+    "excellent": 3,
+    "good": 1,
     "fair": 0,
     "poor": 0
   },
   "common_issues": [],
   "improvement_history": [],
-  "by_topic": {}
+  "by_topic": {
+    "karma-action": {
+      "notes_evaluated": 4,
+      "amended": 0,
+      "scores": {
+        "karma": 8.8,
+        "samsara": 8.4,
+        "moral_causation": 7.6,
+        "karma_free_will": 7.2
+      }
+    }
+  }
 }
