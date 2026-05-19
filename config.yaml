@@ -1,15 +1,15 @@
 # config.yaml — Central configuration. All settings live here. Never hardcode.
 
 # Model
-model: "MiniMax-Text-01"
+model: "gemini-2.5-flash"
 
 # Token budgets per call type
 max_tokens:
   source_map: 3000
   agent: 12000
   review: 4000
-  ingest: 15000
-  evaluate: 3000
+  ingest: 8000
+  evaluate: 6000
   improve: 6000
 
 # Temperatures

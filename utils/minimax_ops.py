@@ -13,18 +13,16 @@ def load_config() -> dict:
     return yaml.safe_load(open("config.yaml").read())
 
 
-def get_async_client() -> AsyncOpenAI:
-    return AsyncOpenAI(
-        api_key=os.environ["MINIMAX_API_KEY"],
-        base_url=os.environ.get("MINIMAX_BASE_URL", "https://api.minimax.chat/v1")
-    )
+def get_async_client():
+    from google.genai import AsyncClient
+    api_key = os.environ.get("GEMINI_API_KEY")
+    return AsyncClient(api_key=api_key)
 
 
-def get_sync_client() -> OpenAI:
-    return OpenAI(
-        api_key=os.environ["MINIMAX_API_KEY"],
-        base_url=os.environ.get("MINIMAX_BASE_URL", "https://api.minimax.chat/v1")
-    )
+def get_sync_client():
+    from google.genai import Client
+    api_key = os.environ.get("GEMINI_API_KEY")
+    return Client(api_key=api_key)
 
 
 async def call_async(
@@ -35,16 +33,18 @@ async def call_async(
 ) -> str:
     config = load_config()
     client = get_async_client()
-    response = await client.chat.completions.create(
+    
+    full_prompt = f"{system_prompt}\n\n{user_message}"
+    
+    response = await client.models.generate_content(
         model=config["model"],
-        temperature=temperature,
-        max_tokens=max_tokens,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_message}
-        ]
+        contents=[full_prompt],
+        config={
+            "temperature": temperature,
+            "max_output_tokens": max_tokens
+        }
     )
-    return response.choices[0].message.content
+    return response.text
 
 
 def call_sync(
@@ -55,16 +55,18 @@ def call_sync(
 ) -> str:
     config = load_config()
     client = get_sync_client()
-    response = client.chat.completions.create(
+    
+    full_prompt = f"{system_prompt}\n\n{user_message}"
+    
+    response = client.models.generate_content(
         model=config["model"],
-        temperature=temperature,
-        max_tokens=max_tokens,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_message}
-        ]
+        contents=[full_prompt],
+        config={
+            "temperature": temperature,
+            "max_output_tokens": max_tokens
+        }
     )
-    return response.choices[0].message.content
+    return response.text
 
 
 async def call_parallel(calls: list[dict]) -> list[str]:

@@ -82,12 +82,14 @@ def extract_atomic_notes(combined_content: str, slug: str) -> list[dict]:
     Takes combined research file content, returns list of atomic note dicts.
     Each dict has: type, filename, title, content
     """
+    from utils.minimax_ops import load_config
+    config = load_config()
     user_msg = f"RESEARCH SLUG: {slug}\n\n{combined_content}"
     raw = call_sync(
         system_prompt=EXTRACTION_SYSTEM,
         user_message=user_msg,
         temperature=0.2,
-        max_tokens=15000
+        max_tokens=config["max_tokens"]["ingest"]
     )
     cleaned = re.sub(r'```json|```', '', raw).strip()
     json_match = re.search(r'\[[\s\S]*\]', cleaned)

@@ -30,7 +30,7 @@ GAP LOG (last 20 entries):
 {json.dumps(gap_log[-20:] if isinstance(gap_log, list) else [], indent=2)}
 
 DOMAIN MEMORY SUMMARY:
-{json.dumps({k: len(v) for k, v in domain_memory.items()} if isinstance(domain_memory, dict) else {}, indent=2)}
+{json.dumps({k: len(v) if hasattr(v, '__len__') else v for k, v in domain_memory.items()} if isinstance(domain_memory, dict) else {}, indent=2)}
 
 Score this run on all 7 metrics. Return valid JSON only.
 """
