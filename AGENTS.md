@@ -261,10 +261,54 @@ Print:
   Metric: {metric}
   Change: {description}
   Review at: {pr_url}
-
-DO NOT merge without reading the diff.
 ═══════════════════════════════════════
+Verifying improvement...
 ```
+
+---
+
+### AUTO-VERIFICATION STEP
+
+After PR creation, automatically verify the improvement:
+
+1. **Record pre-improvement score** from eval_history.json (the score that triggered this improve)
+
+2. **Run research on same topic** using the new improved prompts:
+   - Use the same topic that revealed the weakness
+   - Run full research pipeline (Phase 1 → 4 agents → Phase 3)
+
+3. **Run evaluation** on new research output
+
+4. **Compare scores:**
+   - Extract the metric that was targeted for improvement
+   - Compare old vs new
+   - Check: did other metrics drop?
+
+5. **Print verification result:**
+
+```
+VERIFYING IMPROVEMENT
+────────────────────────────────────────
+Topic: {topic}
+Component: {agent} | Metric: {metric}
+────────────────────────────────────────
+Before: {old_score}/10
+After:  {new_score}/10
+Change: {+N or 0} points
+────────────────────────────────────────
+Verdict: {IMPROVED / NO CHANGE / REGRESSED}
+```
+
+6. **If IMPROVED**: Auto-suggest merge
+   ```
+   Type "merge" to apply this improvement to main
+   ```
+
+7. **If NO CHANGE or REGRESSED**: Auto-reject
+   ```
+   Improvement did not yield better results.
+   Try a different approach with "improve"
+   ```
 
 ---
 
