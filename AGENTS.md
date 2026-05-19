@@ -392,5 +392,5 @@ Apply in order when assigning ambiguous sources:
 | Each agent (×4) | 0.3 | 12000 |
 | Phase 3 (review) | 0.4 | 4000 |
 | Ingest extraction | 0.2 | 15000 |
-| Evaluate | 0.1 | 3000 |
+| Evaluate | 0.1 | 6000 |
 | Improve | 0.3 | 6000 |

@@ -8,7 +8,7 @@ max_tokens:
   source_map: 3000
   agent: 12000
   review: 4000
-  ingest: 8000
+  ingest: 15000
   evaluate: 6000
   improve: 6000
 
