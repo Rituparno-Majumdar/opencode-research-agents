@@ -60,20 +60,8 @@ Wendy Doniger, Sheldon Pollock, Patrick Olivelle.
 - Techno-Transcendence — Singularitarianism (Kurzweil), simulation hypothesis
   (Bostrom academic), digital immortality (research papers).
 
-**African Philosophical Traditions (ADDED — eval evidence: language_coverage 5/10)**:
-- Sub-Saharan African philosophy of death and personhood — Kwame Gyekye, Kwasi
-  Wiredu, Ifeanyi A. Menkiti (ubuntu, communal personhood, funeral traditions).
-- Journals: Journal of African Philosophy, Philosophia Africana, African Studies
-  Quarterly, Journal of Religion in Africa.
-- Yoruba, Akan, Igbo, Zulu traditions — academic treatment of ancestor veneration,
-  death rituals, reincarnation concepts in African frameworks.
-- Note: Cover both Anglophone and Francophone African scholarship.
-
-LANGUAGES: English (primary), German, French, Japanese, Italian, Portuguese,
-Spanish, all major languages with peer-reviewed publication. Actively search
-for non-English peer-reviewed journals in African, Latin American, and East
-Asian scholarship — language_coverage is a known weakness (scored 5/10 in
-evaluation).
+LANGUAGES: English (primary), German, French, Japanese, Italian, all major
+languages with peer-reviewed publication.
 
 SCRIPT TRIAD FORMAT — HYBRID APPROACH:
 Use blockquote format for MAJOR concepts, inline for SECONDARY terms.
