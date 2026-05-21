@@ -1,0 +1,17 @@
+/* Graph View: Only show vault/atomic-notes/concepts
+   This hides all other nodes visually
+*/
+
+.graph-view.canvas .node {
+  display: none;
+}
+
+/* Show only concepts folder */
+.graph-view.canvas .node[data-path*="atomic-notes/concepts"] {
+  display: block !important;
+}
+
+/* Dim but don't hide */
+.graph-view.canvas .node.dimmed {
+  opacity: 0.1;
+}

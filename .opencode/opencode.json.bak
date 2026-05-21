@@ -1,0 +1,15 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "skills": {
+    "paths": ["~/.config/opencode/skills"]
+  },
+  "plugin": [
+    ".opencode/plugins/graphify.js",
+    "opencode-mem",
+    "@tarquinen/opencode-dcp",
+    "opencode-notify",
+    "opencode-websearch-cited",
+    "opencode-ultra",
+    "opencode-gemini-auth"
+  ]
+}

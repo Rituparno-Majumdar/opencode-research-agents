@@ -11,9 +11,13 @@
           "graph": {
             "mode": "local",
             "rules": {
-              "folders": ["vault/atomic-notes"],
+              "folders": [
+                "vault/atomic-notes"
+              ],
               "tags": [],
-              "files": ["vault/atomic-notes/**"]
+              "files": [
+                "vault/atomic-notes/**"
+              ]
             },
             "options": {
               "showTags": true,

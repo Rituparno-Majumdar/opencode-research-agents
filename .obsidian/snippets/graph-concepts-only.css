@@ -1,0 +1,24 @@
+/* Graph View - Only show vault/atomic-notes/concepts */
+.graph-view canvas,
+.graph-view svg {
+  /* Will be controlled via JS */
+}
+
+.graph-view .node {
+  opacity: 0.3;
+}
+
+/* Show only nodes in vault/atomic-notes/concepts */
+.graph-view .node[data-path*="atomic-notes/concepts"] {
+  opacity: 1 !important;
+}
+
+/* Dim other atomic-notes (optional - can remove */
+.graph-view .node[data-path*="atomic-notes"]:not([data-path*="concepts"]) {
+  opacity: 0.3;
+}
+
+/* Hide completely non-atomic-notes */
+.graph-view .node:not([data-path*="atomic-notes"]) {
+  opacity: 0.1 !important;
+}
