@@ -43,7 +43,7 @@ Never ask for clarification before starting. Act immediately.
 
 ### Before starting any phase:
 1. Load config.yaml for all settings
-2. Read agents/prompts/orchestrator.md for phase instructions
+2. Read .agents/prompts/orchestrator.md for phase instructions
 
 ---
 
@@ -72,11 +72,11 @@ Starting parallel agent dispatch...
 Dispatch all 5 agents simultaneously (true parallel, not sequential).
 
 Agent mapping:
-- agents/prompts/agent_a_indic.md        → vault/research/{slug}/indic_traditions.md
-- agents/prompts/agent_b_western.md      → vault/research/{slug}/western_philosophy.md
-- agents/prompts/agent_c_civilizations.md → vault/research/{slug}/ancient_civilizations.md
-- agents/prompts/agent_d_contemporary.md → vault/research/{slug}/contemporary_scholarship.md
-- agents/prompts/agent_e_science.md      → vault/research/{slug}/science_technology.md
+- .agents/prompts/agent_a_indic.md        → vault/research/{slug}/indic_traditions.md
+- .agents/prompts/agent_b_western.md      → vault/research/{slug}/western_philosophy.md
+- .agents/prompts/agent_c_civilizations.md → vault/research/{slug}/ancient_civilizations.md
+- .agents/prompts/agent_d_contemporary.md → vault/research/{slug}/contemporary_scholarship.md
+- .agents/prompts/agent_e_science.md      → vault/research/{slug}/science_technology.md
 
 For each agent, construct dispatch message:
 ```
@@ -477,9 +477,9 @@ Apply in order when assigning ambiguous sources:
 
 | What | Where |
 |---|---|
-| Agent prompts | agents/prompts/{name}.md |
-| Orchestrator prompt | agents/prompts/orchestrator.md |
-| Atomic Note Agent | agents/prompts/agent_atomic_notes.md |
+| Agent prompts | .agents/prompts/{name}.md |
+| Orchestrator prompt | .agents/prompts/orchestrator.md |
+| Atomic Note Agent | .agents/prompts/agent_atomic_notes.md |
 | Research output | vault/research/{slug}/*.md |
 | Atomic notes | vault/atomic-notes/{type}/{name}.md |
 | Source map | vault/research/{slug}/_source_map.json |
@@ -489,6 +489,103 @@ Apply in order when assigning ambiguous sources:
 | Atomic notes tracker | memory/atomic_notes_tracker.json |
 | Prompt snapshots | memory/prompt_versions/{ts}_{agent}.md |
 | Config | config.yaml |
+
+---
+
+## SCRIPT TRIAD SYSTEM — HYBRID FORMAT
+
+The triad system is the consistent formatting standard for all research output files.
+It balances scholarly rigor (original scripts + transliteration) with readability.
+
+### Core Rule: Major → Blockquote, Secondary → Inline
+
+| Tier | Format | Where | Example |
+|---|---|---|---|
+| **MAJOR** (central concept, first use of key term, verse citation) | Blockquote `>` | Standalone paragraph | `> **चित (citta)** — mind-stuff — the total field of conscious and subconscious activity` |
+| **SECONDARY** (adjacent terms, later mentions, supporting concepts) | Inline in prose | Within paragraph text | `The term कर्म (karma) connects to धर्म (dharma) through action and law.` |
+| **Proper names** (teachers, texts) | Inline with full triad on first occurrence | Within paragraph | `शङ्कर (Śaṅkara) — Shankaracharya (8th century CE Advaita philosopher)` |
+
+### Blockquote Density Limit
+- **Maximum 8–10 blockquotes per section** (keep selective)
+- Most terms should be inline for content depth
+- First occurrence of a major term: blockquote. Subsequent: transliteration only
+
+### Verse Citation Format
+```
+> {original_script}
+> ({transliteration})
+> — {english_translation}
+```
+
+### Per-Language Script Rules
+
+| Language Family | Script | Transliteration Standard |
+|---|---|---|
+| **Sanskrit / Pali** | Devanagari (देवनागरी) | IAST (ISO 15919) |
+| **Tibetan** | Tibetan script (བོད་སྐད) | Wylie transliteration |
+| **Prakrit** | Devanagari | IAST |
+| **Bengali / Assamese** | Bengali script | IAST with Bengali diacritics |
+| **Tamil** | Tamil script (தமிழ்) | ISO 15919 |
+| **Telugu / Kannada / Malayalam** | Respective Brahmic scripts | ISO 15919 |
+| **Hindi / Marathi / Gujarati** | Devanagari / Gujarati script | IAST / ISO 15919 |
+| **Ancient Greek** | Greek alphabet (Ἑλληνική) | IAST for Greek (transliterated) |
+| **Latin** | Roman script | Classical Latin |
+| **German** | Fraktur where original, otherwise Roman | Standard German orthography |
+| **Hebrew** | Hebrew script (עִבְרִית) | ISO 259 / SBL |
+| **Aramaic / Syriac** | Syriac script (ܐܪܡܝܐ) | SBL / ALA-LC |
+| **Arabic** | Arabic script (العربية) | IQTIDAL / ALA-LC |
+| **Persian** | Persian script (فارسی) | ALA-LC |
+| **Avestan** | Avestan script where available, otherwise transliteration | Geldner / Hoffmann |
+| **Egyptian** | Hieroglyphic transliteration | Gardiner sign list |
+| **Old Norse** | Latin (transliterated runes) | Standard scholarly transliteration |
+| **Old Irish** | Latin (transliterated ogham) | Standard scholarly transliteration |
+| **Japanese** | Kanji + Kana (日本語) | Hepburn (rōmaji) |
+| **French** | Standard French | N/A (use original orthography) |
+| **English technical terms** | Standard English | N/A |
+
+### Per-Agent Triad Guidance
+
+| Agent | Triad Usage | Notes |
+|---|---|---|
+| **Indic (A)** | Full triad — Devanagari + IAST + English | Always include original script. Tibetan for Buddhist terms. |
+| **Western (B)** | Greek/Latin/Hebrew with transliteration | German terms in Fraktur where original. German titles: "Sein und Zeit (Being and Time)". |
+| **Civilizations (C)** | Heavy triad across 8+ language families | Hebrew, Arabic, Greek, Egyptian, Old Norse, Latin, Avestan, German. Distinguish time periods. |
+| **Contemporary (D)** | Optional triad — prioritise German, Japanese, French terms not standard in English | Most contemporary terms are English. Use triad for nuance-bearing foreign terms. |
+| **Science & Tech (E)** | Minimal triad — 5–8 blockquotes per section max | Most terms are English. Use blockquote for German philosophical terms in physics (Wellenfunktion, Messproblem). |
+
+### Example Blockquote — Major Concept (Indic)
+```
+> **चित (citta)** — mind-stuff — the total field of conscious and subconscious mental
+> activity, including the subconscious storehouse of past impressions
+```
+
+### Example Inline — Secondary Term
+```
+For example, the term कर्म (karma) connects to धर्म (dharma) through the concept of action and law.
+```
+
+### Example Blockquote — Verse Citation (Indic)
+```
+> ब्रह्म सत्यं जगन्मिथ्या (brahma satyaṃ jagan mithyā)
+> — "Brahman is real, the world is false"
+```
+
+### Example Blockquote — Greek Concept (Western)
+```
+> **ψυχή (psyche)** — soul/life principle — originally meant "breath," only later
+> acquiring its philosophical meaning of "soul" or "consciousness" in Plato's works.
+```
+
+### Example Blockquote — Hebrew Concept (Civilizations)
+```
+> **נפש (nephesh)** — soul/animating principle — appears in Genesis 2:7
+> as the breath of life breathed into Adam
+```
+
+### Example Inline — Proper Name
+```
+शङ्कर (Śaṅkara) — Shankaracharya (8th century CE Advaita philosopher)
+```
 
 ---
 
