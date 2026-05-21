@@ -26,8 +26,8 @@ Classify every user input into one of these intents before acting:
 | Any substantive topic or question | RESEARCH | Run full research pipeline |
 | "ingest" alone | INGEST_LAST | Run ingest on last completed slug |
 | "ingest <slug>" | INGEST_SLUG | Run ingest on specified slug |
-| "evaluate" | EVALUATE | Score last 3 runs |
-| "improve" | IMPROVE | Run Karpathy improvement loop |
+| "evaluate" | EVALUATE | Batch comparison of last 3 runs (auto-eval runs per research) |
+| "improve" | IMPROVE | Identify weakest component, generate prompt change, branch + PR |
 | "status" | STATUS | Show last run summary from memory |
 | "review <slug>" | REVIEW | Print orchestrator_review.md for slug |
 | "memory" | MEMORY | Print domain_memory.json summary |
@@ -50,10 +50,15 @@ Never ask for clarification before starting. Act immediately.
 ### PHASE 1 — PRE-DISPATCH PLANNING
 
 Use OpenCode's native LLM capability to call the orchestrator prompt
-(agents/prompts/orchestrator.md), Phase 1 section only.
+(.agents/prompts/orchestrator.md), Phase 1 section only.
 
 The orchestrator returns a JSON source map. Parse it.
 Extract: slug, research_question, agent_assignments, boundary_cases.
+
+Create research directory:
+```bash
+mkdir -p vault/research/{slug}/
+```
 
 Save to: vault/research/{slug}/_source_map.json
 
@@ -102,7 +107,7 @@ As each agent completes, print:
 
 ---
 
-### PHASE 3 — ORCHESTRATOR REVIEW
+### PHASE 3 — ORCHESTRATOR REVIEW & AUTO-IMPROVEMENT LOOP
 
 After ALL 5 agents are complete (not before), read all 5 output files.
 Pass their full contents to orchestrator.md Phase 3 instructions.
@@ -113,7 +118,59 @@ Save output to: vault/research/{slug}/orchestrator_review.md
 
 After saving, print the review to terminal so you can read it immediately.
 
-Then print:
+Then run the 4-step auto-improvement loop below before printing the
+completion message.
+
+#### Step A — Auto-Evaluate This Run
+
+Use OpenCode's native LLM to score this single run on 7 agent metrics
+and 3 orchestrator metrics. Follow the EVALUATION PROTOCOL below with
+N=1 (current run only). Temperature 0.1, max_tokens 6000.
+
+Print the results table to terminal.
+
+#### Step B — Log Gaps
+
+If any agent metric scores below 6/10, extract the specific source gap
+and append to .memory/gap_log.json with slug, agent, and gap detail.
+If no metrics below threshold, note "No critical gaps detected."
+
+Also log all gaps into .memory/amendments_pending.json under
+research_amendments with status "pending".
+
+#### Step C — Auto-Improve (Prompt PR)
+
+If any agent's subtotal is below 60% of max (< 42/70 agents, < 18/30 orchestrator)
+OR if any single metric is below 6/10 across 2+ consecutive runs:
+
+1. Identify the weakest agent/orchestrator component
+2. Read the prompt_updater.md and its current prompt
+3. Generate an improved prompt (temperature 0.3, max_tokens 6000)
+4. Snapshot old prompt to .memory/prompt_versions/{timestamp}_{agent}.md
+5. Write new prompt to .agents/prompts/{agent}.md
+6. Stage changes but DO NOT commit yet (will commit with everything)
+
+If no component is weak enough to trigger improvement, skip this step.
+
+#### Step D — Verify Previous Amendments
+
+Read .memory/amendments_pending.json.
+For each entry with status "pending", compare its expected improvement
+against this run's scores:
+- If score on targeted metric improved → mark "confirmed"
+- If score regressed → mark "regression"
+- If unchanged → leave "pending"
+
+Print verification table:
+```
+IMPROVEMENT VERIFICATION CHECK
+────────────────────────────────────────
+Component: {agent} | Expected: {improvement}
+Status: {VERIFIED / PENDING / REGRESSION}
+────────────────────────────────────────
+```
+
+Then print completion message:
 ```
 ══════════════════════════════════════════════════════════
 ✓ Research complete: {topic}
@@ -123,17 +180,28 @@ Then print:
   ├ western_philosophy.md
   ├ ancient_civilizations.md
   ├ contemporary_scholarship.md
-  └ science_technology.md
+  ├ science_technology.md
+  ├ orchestrator_review.md
+  └ auto-evaluated + auto-improved
 
 Type "ingest" to generate atomic notes.
-Type "evaluate" to score this run.
 ══════════════════════════════════════════════════════════
 ```
 
-Commit all files:
+Stage and commit all files together:
 ```bash
-git add vault/research/{slug}/
+git add vault/research/{slug}/ .memory/eval_history.json .memory/gap_log.json .memory/amendments_pending.json
+```
+
+If prompt changes were made (Step C), also stage those:
+```bash
+git add .agents/prompts/{agent}.md .memory/prompt_versions/
+```
+
+Then commit:
+```bash
 git commit -m "research: {topic}"
+git pull origin main --rebase
 git push
 ```
 
@@ -141,12 +209,14 @@ git push
 
 ## INGEST PIPELINE (Atomic Note Extraction)
 
-Load last slug from memory/domain_memory.json (or use provided slug).
+### Step 1 — Generate Atomic Notes
 
+Load last slug from .memory/domain_memory.json (or use provided slug).
 Read all 5 markdown files from vault/research/{slug}/.
 
-Use OpenCode's native LLM to extract atomic notes. Use this ENHANCED PROMPT:
+Use OpenCode's native LLM to extract atomic notes. Temperature 0.2, max_tokens 15000.
 
+Extraction prompt:
 ```
 Extract atomic notes from this research for DAILY READING - clean, efficient, linked format.
 
@@ -197,6 +267,9 @@ KEY RULES:
 5. Identify SYMMETRIC relationships: "A ↔ B" means bidirectional
 6. For "effects" concepts (butterfly effect, emergence, chaos): trace causal chains across traditions
 7. Keep content SHORT - 1-2 sentences max for daily reading
+8. **Cross-tradition links REQUIRED**: Every note must include at least 2 [[wikilinks]] to parallel concepts from OTHER traditions. E.g., a note on saṃskāra should also link to [[automaticity]] and [[Verdrängung]]; a note on System 1 should link to [[citta]] and [[saṃskāra]]. Use the CONVERGENCES section of the orchestrator review as your cross-reference map.
+
+Read ALL 5 research files. Extract notes from all of them. For every note, look across all 5 files to find parallel concepts in other traditions and link to them.
 
 Extract 3-5 research questions as type: question.
 ```
@@ -205,26 +278,55 @@ For each note returned:
 - If file does NOT exist: write to vault/atomic-notes/{type}/{filename}
 - If file EXISTS: append cross-reference line only
 
----
+### Step 2 — Cross-Reference Notes Against Orchestrator Convergences
 
-### Step 2: AUTOMATIC EVALUATION & AMENDMENT
+Read vault/research/{slug}/orchestrator_review.md, specifically the "Notable Convergences" and "Cross-Reference Map" sections.
 
-After extraction, invoke the Atomic Note Agent (agent_atomic_notes.md) to:
+For each convergence, identify the atomic notes that represent each side of the convergence. If note A (e.g., saṃskāra) does not already link to note B (e.g., automaticity), append the missing wikilink to the end of its `## Related Concepts` section. Add a brief Symmetric Link (A ↔ B) for each cross-tradition convergence pair.
 
-1. **Evaluate** each extracted note on 5 metrics:
-   - Connection Direction (25%)
-   - Content Accuracy (25%)
-   - Link Completeness (20%)
-   - Triad Quality (15%)
-   - Source References (15%)
+Process: read each atomic note file, check its linked concepts and symlinks, add any missing cross-tradition links found in the convergences table.
 
+Print:
+```
+[CROSS-REFERENCE COMPLETE]
+  Convergences processed: {n}
+  Cross-links added: {n}
+```
+
+### Step 3 — Auto-Evaluate & Amend Notes
+
+Dispatch the Atomic Note Agent (agent_atomic_notes.md) with this message.
+Skip TASK 1 (extraction already done in Step 1). Perform TASK 2 + TASK 3 only.
+
+DISPATCH MESSAGE:
+```
+TASK: Evaluation + Amendment (skip extraction, notes already written)
+NOTES TO EVALUATE: vault/atomic-notes/{type}/{files from Step 1}
+RESEARCH SLUG: {slug}
+MODEL: {model from config.yaml}
+TEMPERATURE: {config.yaml temperature.ingest — 0.2}
+MAX_TOKENS: 4000
+
+EVALUATION METRICS:
+- Connection Direction (25%)
+- Content Accuracy (25%)
+- Link Completeness (20%)
+- Triad Quality (15%)
+- Source References (15%)
+
+AMENDMENT THRESHOLD: < 8/10
+```
+
+Agent will:
+1. **Evaluate** each note against 5 metrics, weighted as above
 2. **Apply amendments** for notes scoring below 8/10:
    - Fix directional arrows
    - Add missing connections
    - Expand incomplete content
    - Correct source references
+3. **Return** evaluation results
 
-3. **Update memory/atomic_notes_tracker.json** with evaluation results
+Parse the agent's response, apply amendments to the note files, and update .memory/atomic_notes_tracker.json.
 
 Print evaluation summary:
 ```
@@ -242,7 +344,16 @@ Amended: {m} notes
 ══════════════════════════════════════════════
 ```
 
-Update memory/domain_memory.json with new notes and slug.
+### Step 4 — Verify Previous Amendments
+
+Read .memory/amendments_pending.json.
+Check if previously amended atomic notes maintained quality in this ingest.
+For any note that regressed below 8/10, flag in amendments_pending.json.
+Print verification status.
+
+### Step 5 — Commit
+
+Update .memory/domain_memory.json with new notes and slug.
 
 Print final summary:
 ```
@@ -258,31 +369,23 @@ Print final summary:
 
 Commit:
 ```bash
-git add vault/atomic-notes/ memory/domain_memory.json memory/atomic_notes_tracker.json
-git commit -m "ingest: {slug} - {n} notes extracted, {k} evaluated, {p} amended"
-git push
-```
-═══════════════════════════════════════
-✓ Ingest complete: {slug}
-  {n} new atomic notes written
-  {m} existing notes updated
-  vault/atomic-notes/ updated
-═══════════════════════════════════════
-```
-
-Commit:
-```bash
-git add vault/atomic-notes/ memory/domain_memory.json
+git add vault/atomic-notes/ .memory/domain_memory.json .memory/atomic_notes_tracker.json .memory/amendments_pending.json
 git commit -m "ingest: {slug}"
+git pull origin main --rebase
 git push
 ```
 
 ---
 
-## EVALUATE PIPELINE
+## EVALUATION PROTOCOL
 
-Use OpenCode's native LLM to score the last 3 research runs.
-Prompt: "Evaluate these research outputs on 7 metrics (1-10 each):
+This section defines the scoring system used by both:
+- **Auto mode** (after Phase 3, N=1): scores the current run only
+- **Manual mode** (triggered by "evaluate", N=3): scores last 3 runs for batch comparison
+
+### Scoring Prompt
+
+Evaluate these research outputs on 7 metrics (1-10 each):
 1. Source Density - quality and number of sources
 2. Language Coverage - multilingual source diversity
 3. Gap Rate - missing obvious sources
@@ -294,51 +397,55 @@ Prompt: "Evaluate these research outputs on 7 metrics (1-10 each):
 Also evaluate the orchestrator on:
 1. Source Map Quality - better assignment logic
 2. Synthesis Quality - better cross-reference creation
-3. Gap Identification - better missing source detection"
+3. Gap Identification - better missing source detection
 
-Print a score table:
+Settings: temperature 0.1, max_tokens 6000
+
+### Score Table Format
+
 ```
 ═══════════════════════════════════════
 EVALUATION RESULTS
 ───────────────────────────────
 Run: {slug}
   SOURCE AGENTS:
-    Indic Traditions:     {n}/10
-    Western Philosophy:  {n}/10
-    Ancient Civilizations: {n}/10
-    Contemporary:        {n}/10
+    Indic Traditions:         {n}/10
+    Western Philosophy:       {n}/10
+    Ancient Civilizations:    {n}/10
+    Contemporary Scholarship: {n}/10
+    Science & Technology:     {n}/10
   ORCHESTRATOR:
     Source Map Quality:  {n}/10
     Synthesis Quality:   {n}/10
     Gap Identification:  {n}/10
   ─────────────────────────────
-  TOTAL:                {n}/70
+  TOTAL:                {n}/80
   Weakest: {agent} — {metric}
 ═══════════════════════════════════════
 ```
 
-Append results to memory/eval_history.json.
-Update memory/gap_log.json with any new gaps found.
+### Required Post-Scoring Actions (both modes)
 
-**Check for pending improvements verification:**
-- If memory/domain_memory.json has improvements_pending_verification, compare the current run's scores
-- For each pending improvement, check if the targeted metrics improved
-- If verification succeeded, note in evaluation that improvement is CONFIRMED
-- If verification shows regression, flag for review
+1. **Append results** to .memory/eval_history.json (update gap_log.json too)
+2. **Log gaps** — if any agent metric < 6/10, extract detail and append to
+   .memory/gap_log.json and .memory/amendments_pending.json with status "pending"
+3. **Verify previous entries** — check .memory/amendments_pending.json for pending
+   entries, compare scores, update status to confirmed/regression/pending
 
-Print verification status if any improvements are being tested:
-```
-IMPROVEMENT VERIFICATION CHECK
-────────────────────────────────────────
-Component: {agent} | Expected: {improvement}
-Status: {VERIFIED / PENDING}
-────────────────────────────────────────
-```
+### Mode A: Auto (N=1)
+
+Runs automatically after Phase 3 Step A. No separate commit —
+results are committed with the research files.
+
+### Mode B: Manual (N=3, triggered by "evaluate")
+
+Score last 3 runs for batch comparison.
 
 Commit:
 ```bash
-git add memory/
+git add .memory/eval_history.json .memory/gap_log.json .memory/amendments_pending.json
 git commit -m "evaluate: scored {n} runs"
+git pull origin main --rebase
 git push
 ```
 
@@ -346,20 +453,29 @@ git push
 
 ## IMPROVE PIPELINE
 
-Read memory/eval_history.json (last 5 entries).
-Read memory/gap_log.json.
+Read .memory/eval_history.json (last 5 entries).
+Read .memory/gap_log.json.
+Read .memory/atomic_notes_tracker.json.
 
-Identify weakest component (could be agent OR orchestrator).
-Read its current prompt from agents/prompts/.
+Using the unified improvement threshold (any agent subtotal < 60% of max OR any single metric < 6/10 across 2+ consecutive runs), identify the weakest component across BOTH systems:
+- **Research side**: eval_history.json — lowest-scoring agent or orchestrator
+- **Atomic note side**: atomic_notes_tracker.json — if common_issues shows persistent
+  quality problems (3+ notes < 8/10 across 2+ runs), the extraction instructions or
+  agent_atomic_notes.md prompt need improvement
+- Compare both sides: which has the more severe/systemic weakness?
+
+If research side is weaker → target the agent/orchestrator prompt (existing logic).
+If atomic note side is weaker → target agent_atomic_notes.md prompt.
+Read the current prompt from .agents/prompts/.
 
 Generate prompt improvement using OpenCode's native LLM.
-Snapshot old prompt to memory/prompt_versions/{timestamp}_{agent}.md.
-Write new prompt to agents/prompts/{agent}.md.
+Snapshot old prompt to .memory/prompt_versions/{timestamp}_{agent}.md.
+Write new prompt to .agents/prompts/{agent}.md.
 
 Create git branch:
 ```bash
 git checkout -b improve/{agent}-{timestamp}
-git add agents/prompts/{agent}.md
+git add .agents/prompts/{agent}.md
 git commit -m "improve: {agent} prompt - {change_description}"
 git push -u origin improve/{agent}-{timestamp}
 ```
@@ -384,16 +500,32 @@ Print:
 **Verification happens through future research runs** — no duplicate research needed.
 
 **Track pending verification:**
-- Add to memory/domain_memory.json improvements_pending_verification:
+- Add to .memory/amendments_pending.json under research_amendments (if research side) or
+  atomic_amendments (if atomic note side):
 ```json
 {
   "agent": "{agent}",
   "metric_improved": "{metric}",
   "expected_additions": ["{specific sources/areas added}"],
   "created_at": "{timestamp}",
-  "first_test_topic": "{next research topic suggestion}"
+  "first_test_topic": "{next research topic suggestion}",
+  "status": "pending",
+  "verified_on": null
 }
 ```
+
+---
+
+## AMENDMENTS PENDING
+
+File: .memory/amendments_pending.json. Structure documented in AGENTS_REFERENCE.md.
+
+Tracks all amendments across research and atomic notes for continuity. Updated during Phase 3 Step B/D, Ingest Step 3, Evaluation, and Improve.
+
+Status lifecycle:
+- **pending** — awaiting next run for verification
+- **confirmed** — targeted metric improved
+- **regression** — targeted metric worsened (needs review)
 
 ---
 
@@ -438,7 +570,7 @@ Print:
 
 ## ABSOLUTE RULES (never violate)
 
-1. NEVER synthesize findings across traditions. Each agent file is standalone.
+1. Agents must NEVER synthesize across traditions. Each agent file is standalone. Only the orchestrator review (Phase 3) may compare findings across agent outputs.
 2. NEVER auto-merge prompt improvement PRs. Always PR only.
 3. NEVER overwrite an existing atomic note. Append cross-reference only.
 4. NEVER run Phase 3 before all 5 agents are complete.
@@ -453,149 +585,25 @@ Print:
 
 ## BOUNDARY CASE ROUTING RULES
 
-Apply in order when assigning ambiguous sources:
-
-1. Tibetan Buddhist texts → indic_traditions (Indian Buddhist origin)
-2. Sufi poetry (Rumi, Ibn Arabi, Hafez) → ancient_civilizations
-3. Jung, Freud, Adler → western_philosophy
-4. Ken Wilber, Stanislav Grof → contemporary_scholarship
-5. NDE/consciousness science research → contemporary_scholarship
-6. Living Indian teachers regardless of language → indic_traditions
-7. Academic papers cross-citing 3+ traditions → contemporary_scholarship
-8. Celtic/Norse/Mayan/Aztec traditions → ancient_civilizations
-9. Christian mysticism (Eckhart, Böhme) → western_philosophy
-10. Hermeticism, Alchemy, Western Demonology → ancient_civilizations
-11. Tarot, Oracle, Astrology (academic) → contemporary_scholarship
-12. Energy Healing, Reiki (academic research) → contemporary_scholarship
-13. Quantum Physics, Astrophysics → science_technology
-14. AI, Machine Consciousness, AGI → science_technology
-15. When still ambiguous: assign to agent whose scope is BROADER for this topic
+See AGENTS_REFERENCE.md for the full 15-rule routing table.
 
 ---
 
-## FILE PATH REFERENCE
+## BRANCH STRATEGY
 
-| What | Where |
-|---|---|
-| Agent prompts | .agents/prompts/{name}.md |
-| Orchestrator prompt | .agents/prompts/orchestrator.md |
-| Atomic Note Agent | .agents/prompts/agent_atomic_notes.md |
-| Research output | vault/research/{slug}/*.md |
-| Atomic notes | vault/atomic-notes/{type}/{name}.md |
-| Source map | vault/research/{slug}/_source_map.json |
-| Domain memory | memory/domain_memory.json |
-| Gap log | memory/gap_log.json |
-| Eval history | memory/eval_history.json |
-| Atomic notes tracker | memory/atomic_notes_tracker.json |
-| Prompt snapshots | memory/prompt_versions/{ts}_{agent}.md |
-| Config | config.yaml |
+- GitHub Flow: `main` is always stable. Feature/improvement branches branch off and merge back via PR.
+- All research runs, ingests, and improvements happen on `main` or a short-lived feature branch.
+- MERGE pipeline merges approved PRs into `main`, then rebases current work onto `main`.
+- No long-lived side branches.
 
 ---
 
-## SCRIPT TRIAD SYSTEM — HYBRID FORMAT
+## SCRIPT TRIAD SYSTEM
 
-The triad system is the consistent formatting standard for all research output files.
-It balances scholarly rigor (original scripts + transliteration) with readability.
-
-### Core Rule: Major → Blockquote, Secondary → Inline
-
-| Tier | Format | Where | Example |
-|---|---|---|---|
-| **MAJOR** (central concept, first use of key term, verse citation) | Blockquote `>` | Standalone paragraph | `> **चित (citta)** — mind-stuff — the total field of conscious and subconscious activity` |
-| **SECONDARY** (adjacent terms, later mentions, supporting concepts) | Inline in prose | Within paragraph text | `The term कर्म (karma) connects to धर्म (dharma) through action and law.` |
-| **Proper names** (teachers, texts) | Inline with full triad on first occurrence | Within paragraph | `शङ्कर (Śaṅkara) — Shankaracharya (8th century CE Advaita philosopher)` |
-
-### Blockquote Density Limit
-- **Maximum 8–10 blockquotes per section** (keep selective)
-- Most terms should be inline for content depth
-- First occurrence of a major term: blockquote. Subsequent: transliteration only
-
-### Verse Citation Format
-```
-> {original_script}
-> ({transliteration})
-> — {english_translation}
-```
-
-### Per-Language Script Rules
-
-| Language Family | Script | Transliteration Standard |
-|---|---|---|
-| **Sanskrit / Pali** | Devanagari (देवनागरी) | IAST (ISO 15919) |
-| **Tibetan** | Tibetan script (བོད་སྐད) | Wylie transliteration |
-| **Prakrit** | Devanagari | IAST |
-| **Bengali / Assamese** | Bengali script | IAST with Bengali diacritics |
-| **Tamil** | Tamil script (தமிழ்) | ISO 15919 |
-| **Telugu / Kannada / Malayalam** | Respective Brahmic scripts | ISO 15919 |
-| **Hindi / Marathi / Gujarati** | Devanagari / Gujarati script | IAST / ISO 15919 |
-| **Ancient Greek** | Greek alphabet (Ἑλληνική) | IAST for Greek (transliterated) |
-| **Latin** | Roman script | Classical Latin |
-| **German** | Fraktur where original, otherwise Roman | Standard German orthography |
-| **Hebrew** | Hebrew script (עִבְרִית) | ISO 259 / SBL |
-| **Aramaic / Syriac** | Syriac script (ܐܪܡܝܐ) | SBL / ALA-LC |
-| **Arabic** | Arabic script (العربية) | IQTIDAL / ALA-LC |
-| **Persian** | Persian script (فارسی) | ALA-LC |
-| **Avestan** | Avestan script where available, otherwise transliteration | Geldner / Hoffmann |
-| **Egyptian** | Hieroglyphic transliteration | Gardiner sign list |
-| **Old Norse** | Latin (transliterated runes) | Standard scholarly transliteration |
-| **Old Irish** | Latin (transliterated ogham) | Standard scholarly transliteration |
-| **Japanese** | Kanji + Kana (日本語) | Hepburn (rōmaji) |
-| **French** | Standard French | N/A (use original orthography) |
-| **English technical terms** | Standard English | N/A |
-
-### Per-Agent Triad Guidance
-
-| Agent | Triad Usage | Notes |
-|---|---|---|
-| **Indic (A)** | Full triad — Devanagari + IAST + English | Always include original script. Tibetan for Buddhist terms. |
-| **Western (B)** | Greek/Latin/Hebrew with transliteration | German terms in Fraktur where original. German titles: "Sein und Zeit (Being and Time)". |
-| **Civilizations (C)** | Heavy triad across 8+ language families | Hebrew, Arabic, Greek, Egyptian, Old Norse, Latin, Avestan, German. Distinguish time periods. |
-| **Contemporary (D)** | Optional triad — prioritise German, Japanese, French terms not standard in English | Most contemporary terms are English. Use triad for nuance-bearing foreign terms. |
-| **Science & Tech (E)** | Minimal triad — 5–8 blockquotes per section max | Most terms are English. Use blockquote for German philosophical terms in physics (Wellenfunktion, Messproblem). |
-
-### Example Blockquote — Major Concept (Indic)
-```
-> **चित (citta)** — mind-stuff — the total field of conscious and subconscious mental
-> activity, including the subconscious storehouse of past impressions
-```
-
-### Example Inline — Secondary Term
-```
-For example, the term कर्म (karma) connects to धर्म (dharma) through the concept of action and law.
-```
-
-### Example Blockquote — Verse Citation (Indic)
-```
-> ब्रह्म सत्यं जगन्मिथ्या (brahma satyaṃ jagan mithyā)
-> — "Brahman is real, the world is false"
-```
-
-### Example Blockquote — Greek Concept (Western)
-```
-> **ψυχή (psyche)** — soul/life principle — originally meant "breath," only later
-> acquiring its philosophical meaning of "soul" or "consciousness" in Plato's works.
-```
-
-### Example Blockquote — Hebrew Concept (Civilizations)
-```
-> **נפש (nephesh)** — soul/animating principle — appears in Genesis 2:7
-> as the breath of life breathed into Adam
-```
-
-### Example Inline — Proper Name
-```
-शङ्कर (Śaṅkara) — Shankaracharya (8th century CE Advaita philosopher)
-```
+See AGENTS_REFERENCE.md for the full spec: per-language script rules, transliteration standards, per-agent triad guidance, and examples across 18 language families.
 
 ---
 
-## TOKEN BUDGET REFERENCE
+## TOKEN BUDGET
 
-| Call | Temperature | Max Tokens |
-|---|---|---|
-| Phase 1 (source map) | 0.2 | 3000 |
-| Each agent (×5) | 0.3 | 12000 |
-| Phase 3 (review) | 0.4 | 4000 |
-| Ingest extraction | 0.2 | 15000 |
-| Evaluate | 0.1 | 6000 |
-| Improve | 0.3 | 6000 |
+See AGENTS_REFERENCE.md. Critical: agent calls = 12000 tokens, temperature 0.3.

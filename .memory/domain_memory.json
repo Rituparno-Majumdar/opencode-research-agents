@@ -1,49 +1,27 @@
 {
-  "last_slug": "subconscious-mind-daily-life",
-  "last_updated": "2026-05-21T12:00:00Z",
-  "total_notes": 15,
+  "last_slug": null,
+  "last_updated": "2026-05-21T20:00:00Z",
+  "total_notes": 0,
   "notes_by_type": {
-    "concepts": 7,
-    "people": 3,
-    "traditions": 2,
-    "texts": 2,
-    "patterns": 1,
+    "concepts": 0,
+    "people": 0,
+    "traditions": 0,
+    "texts": 0,
+    "patterns": 0,
     "questions": 0
   },
-  "research_runs": [
+  "research_runs": [],
+  "key_concepts": [],
+  "key_people": [],
+  "key_traditions": [],
+  "improvements_pending_verification": [
     {
-      "slug": "subconscious-mind-daily-life",
-      "topic": "How the subconscious mind drives us on a daily basis",
-      "timestamp": "2026-05-21T10:00:00Z",
-      "agent_word_counts": {
-        "indic_traditions": 4630,
-        "western_philosophy": 4128,
-        "ancient_civilizations": 6179,
-        "contemporary_scholarship": 5025,
-        "science_technology": 4729
-      },
-      "total_words": 24691,
-      "evaluation_score": null,
-      "notes_count": 0,
-      "agents": ["indic_traditions", "western_philosophy", "ancient_civilizations", "contemporary_scholarship", "science_technology"]
-    },
-    {
-      "slug": "reincarnation",
-      "timestamp": "2026-05-18T23:48:00Z",
-      "topic": "reincarnation",
-      "notes_count": 15,
-      "agents": ["indic_traditions", "western_philosophy", "ancient_civilizations", "contemporary_scholarship"]
-    },
-    {
-      "slug": "how-humans-pursue-death",
-      "timestamp": "2026-05-18T23:00:00Z",
-      "topic": "how humans pursue death",
-      "notes_count": 0,
-      "agents": ["indic_traditions", "western_philosophy", "ancient_civilizations", "contemporary_scholarship"]
+      "pr": 4,
+      "agent": "contemporary_scholarship",
+      "metric": "language_coverage",
+      "status": "pending",
+      "created": "2026-05-21T12:19:00Z",
+      "expected_improvement": "Add African philosophical traditions (Gyekye, Wiredu, Menkiti), Francophone African scholarship, Portuguese/Spanish academic sources, Latin American death studies"
     }
-  ],
-  "key_concepts": ["saṃsāra", "karma", "moksha", "ātman", "anattā", "metempsychosis", "bardo"],
-  "key_people": ["Ian Stevenson", "Śaṅkara", "Plato"],
-  "key_traditions": ["Advaita Vedānta", "Buddhism"],
-  "improvements_pending_verification": []
+  ]
 }
