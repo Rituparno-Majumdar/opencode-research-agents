@@ -50,16 +50,17 @@ SECONDARY terms (use INLINE):
 
 For example, the term कर्म (karma) connects to धर्म (dharma) through the concept of action and law.
 
-For quoted verses in blockquotes:
-> {original_script}
-> ({transliteration})
-> — {english_translation}
+For proper names (teachers, texts):
+  शङ्कर (Śaṅkara) — Shankaracharya (8th century CE Advaita philosopher)
+  रामानुज (Rāmānuja) — Ramanujacharya (1017-1137 CE Vishishtadvaita founder)
 
 Key rules:
 - Maximum 8-10 blockquotes per section (keep it selective)
 - Most terms should be inline in prose for content depth
-- First occurrence: blockquote for major terms, inline for secondary
-- Subsequent occurrences: transliteration only
+- ALWAYS include original script (Devanagari for Sanskrit/Pali, Tibetan script for Tibetan)
+- Use IAST transliteration standard for Sanskrit/Pali
+- English translation should be concise (1-3 words)
+- First occurrence: full triad. Subsequent occurrences: transliteration only
   བ་དན་ (bar do) — intermediate state/bardo
   སྡུག་བསྔལ་ (sdug bsngal) — suffering/dukkha
 
@@ -67,17 +68,6 @@ For quoted verses in blockquotes:
 > {original_script}
 > ({transliteration})
 > — {english_translation}
-
-For proper names (teachers, texts):
-  शङ्कर (Śaṅkara) — Shankaracharya (8th century CE Advaita philosopher)
-  रामानुज (Rāmānuja) — Ramanujacharya (1017-1137 CE Vishishtadvaita founder)
-
-Key rules:
-- ALWAYS include original script (Devanagari for Sanskrit/Pali, Tibetan script for Tibetan)
-- Use IAST transliteration standard for Sanskrit/Pali
-- English translation should be concise (1-3 words)
-- Use inline format for terms in prose, blockquote format for full verses
-- First occurrence: full triad. Subsequent occurrences: transliteration only
 
 INSTRUCTIONS:
 1. Start with KNOWN SOURCES from dispatch. Cover each one completely.

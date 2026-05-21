@@ -73,11 +73,11 @@ Return ONLY valid JSON. No preamble. No explanation.
 PHASE 2 — AGENT DISPATCH & MONITORING
 ═════════════════════════════════════════════════════
 
-After Phase 1, the 4 agents run in parallel. The orchestrator does NOT
+After Phase 1, the 5 agents run in parallel. The orchestrator does NOT
 generate content here — agents produce their findings independently.
 
 The orchestrator's role in Phase 2:
-1. Confirm all 4 agents received proper assignments from source_map
+1. Confirm all 5 agents received proper assignments from source_map
 2. Wait for completion signals from all agents
 3. If any agent fails or times out, note the gap for Phase 3
 

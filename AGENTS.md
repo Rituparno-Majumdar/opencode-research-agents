@@ -594,7 +594,7 @@ For example, the term कर्म (karma) connects to धर्म (dharma) thr
 | Call | Temperature | Max Tokens |
 |---|---|---|
 | Phase 1 (source map) | 0.2 | 3000 |
-| Each agent (×4) | 0.3 | 12000 |
+| Each agent (×5) | 0.3 | 12000 |
 | Phase 3 (review) | 0.4 | 4000 |
 | Ingest extraction | 0.2 | 15000 |
 | Evaluate | 0.1 | 6000 |

@@ -23,8 +23,8 @@ temperature:
 
 # Paths
 obsidian_vault_path: "./vault"
-agents_path: "./agents/prompts"
-memory_path: "./memory"
+agents_path: "./.agents/prompts"
+memory_path: "./.memory"
 
 # Improvement gates
 min_evals_before_improve: 2
