@@ -1,0 +1,20 @@
+{
+  "last_slug": "subconscious-mind-daily-life",
+  "runs": [
+    {
+      "slug": "subconscious-mind-daily-life",
+      "topic": "How the subconscious mind drives us on a daily basis",
+      "timestamp": "2026-05-21T10:00:00Z",
+      "agent_word_counts": {
+        "indic_traditions": 4630,
+        "western_philosophy": 4128,
+        "ancient_civilizations": 6179,
+        "contemporary_scholarship": 5025,
+        "science_technology": 4729
+      },
+      "total_words": 24691,
+      "evaluation_score": null
+    }
+  ],
+  "improvements_pending_verification": []
+}
