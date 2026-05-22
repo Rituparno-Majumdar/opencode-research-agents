@@ -185,7 +185,22 @@ Then print completion message:
   └ auto-evaluated + auto-improved
 
 Type "ingest" to generate atomic notes.
-══════════════════════════════════════════════════════════
+══════════════════════════════════════════════════════
+```
+
+### Phase 4 — SYNC TO SECOND BRAIN
+
+After Phase 3 is complete (but before git commit), copy the entire research output to the second-brain vault:
+
+```bash
+DEST="/Users/pari/Library/Mobile Documents/iCloud~md~obsidian/Documents/my-second-brain/raw/research"
+mkdir -p "$DEST"
+cp -r vault/research/{slug}/ "$DEST/{slug}/"
+```
+
+Print:
+```
+✓ Synced to my-second-brain/raw/research/{slug}/
 ```
 
 Stage and commit all files together:
