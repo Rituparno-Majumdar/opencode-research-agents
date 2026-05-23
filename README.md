@@ -133,6 +133,49 @@ See `docs/CUSTOMIZATION.md` for a step-by-step walkthrough.
 
 ---
 
+## Keeping Your Fork Up to Date
+
+If you fork this repo and run it as your own private research system, your agent prompts will improve over time through the auto-improvement loop. Use the sync script to push those improvements back to your public fork safely — without exposing vault content, memory files, or credentials.
+
+### How the sync works
+
+The script reads a manifest (`scripts/publicsync.manifest`) that declares exactly which files sync and how:
+
+- **`copy`** — verbatim copy (safe agent prompts, reference docs)
+- **`scrub`** — personal paths are replaced with generic env-var form before copying (`AGENTS.md`)
+- **`review`** — staged as `{file}.staged` for manual merge before committing (`config.yaml`, which may accumulate personal routing rules)
+
+A secret scanner runs against every staged file before anything touches the working tree. Any match aborts the sync immediately.
+
+### Usage
+
+```bash
+# Preview what would change (safe — nothing is committed)
+PRIVATE_REPO="/path/to/your/private-research-repo" \
+  ./scripts/sync-from-private.sh
+
+# If the diff looks right, commit the changes
+PRIVATE_REPO="/path/to/your/private-research-repo" \
+  ./scripts/sync-from-private.sh --commit
+
+# Then push manually
+git push origin main
+```
+
+After a sync, check for `config.yaml.staged` — if it exists, review the diff against your public `config.yaml` and merge any changes you want to share.
+
+### What is never synced
+
+| Path | Why |
+|---|---|
+| `vault/research/` | Personal research output |
+| `vault/atomic-notes/` | Personal knowledge graph |
+| `.memory/*.json` | Evaluation history with your research topics |
+| `.env` | API keys |
+| `.obsidian/workspace.json` | Personal vault layout |
+
+---
+
 ## Roadmap
 
 - **NVIDIA NIM integration** — run the pipeline on 50+ open models (Llama, Mistral, DeepSeek, Qwen) using the NVIDIA API Catalog. Free tier available. Add `NVIDIA_API_KEY` to `.env` and set the model in `config.yaml`.
