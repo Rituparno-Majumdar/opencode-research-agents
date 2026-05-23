@@ -20,6 +20,17 @@ PHASE 1 — PRE-DISPATCH PLANNING
 
 Produce a JSON source map for the given research topic.
 Resolve every source assignment ambiguity before any agent is dispatched.
+Score each agent's relevance to this topic before deciding whether to dispatch it.
+
+Relevance scoring criteria:
+| Score | Meaning |
+|---|---|
+| 8-10 | Core tradition — directly addresses the topic |
+| 5-7 | Adjacent — likely peripheral but may contribute |
+| 1-4 | Irrelevant — this tradition has nothing substantive to contribute |
+
+Agents scoring ≤ relevance_threshold (from config.yaml, default 5) are marked active: false.
+Active agents get token_budget: full (12000). Inactive agents get token_budget: reduced (4000) and are not dispatched.
 
 Return ONLY valid JSON. No preamble. No explanation.
 
@@ -30,30 +41,50 @@ Return ONLY valid JSON. No preamble. No explanation.
   "timestamp": "<ISO 8601>",
   "agent_assignments": {
     "indic_traditions": {
+      "active": true,
+      "relevance": 8,
+      "relevance_rationale": "<one sentence why this score>",
+      "token_budget": 12000,
       "scope": "<what this agent covers for this specific topic>",
       "known_sources": ["<Title — Author>", ...],
       "search_languages": ["Sanskrit", "Bengali", "Hindi", "Tamil", "Pali"],
       "special_instructions": "<depth or boundary notes>"
     },
     "western_philosophy": {
+      "active": true,
+      "relevance": 7,
+      "relevance_rationale": "...",
+      "token_budget": 12000,
       "scope": "...",
       "known_sources": [...],
       "search_languages": ["German", "English", "Latin", "French"],
       "special_instructions": "..."
     },
     "ancient_civilizations": {
+      "active": true,
+      "relevance": 6,
+      "relevance_rationale": "...",
+      "token_budget": 12000,
       "scope": "...",
       "known_sources": [...],
       "search_languages": ["Ancient Greek", "Hebrew", "Arabic", "Persian", "Latin"],
       "special_instructions": "..."
     },
     "contemporary_scholarship": {
+      "active": true,
+      "relevance": 9,
+      "relevance_rationale": "...",
+      "token_budget": 12000,
       "scope": "...",
       "known_sources": [...],
       "search_languages": ["English", "German", "French", "Japanese"],
       "special_instructions": "..."
     },
     "science_technology": {
+      "active": false,
+      "relevance": 3,
+      "relevance_rationale": "...",
+      "token_budget": 4000,
       "scope": "...",
       "known_sources": [...],
       "search_languages": ["English", "German", "French"],
@@ -88,8 +119,8 @@ No orchestrator output at this stage. Proceed to Phase 3 only when all
 PHASE 3 — ORCHESTRATOR REVIEW
 ════════════════════════════════════════════════════════════
 
-You will receive 5 complete agent findings files.
-Read all five. Produce orchestrator_review.md in the OLD FORMAT:
+You will receive the findings files for all active agents (1–5, depending on topic relevance).
+Read all files present. Produce orchestrator_review.md in the OLD FORMAT:
 - Executive Summary at the top
 - Source Evaluation for each agent with score
 - Detailed analysis sections

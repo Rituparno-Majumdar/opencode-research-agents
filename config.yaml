@@ -30,6 +30,12 @@ memory_path: "./.memory"
 min_evals_before_improve: 2
 improvement_score_threshold: 0.5
 
+# Relevance filtering
+relevance_threshold: 5
+relevance_budget_tiers:
+  full: 12000      # agents scoring > threshold get full budget
+  reduced: 4000    # agents scoring <= threshold are marked inactive
+
 # Atomic note types
 atomic_note_types:
   - concepts
@@ -50,6 +56,22 @@ routing_defaults:
   academic_cross_tradition: contemporary_scholarship
   christian_mysticism: western_philosophy
   celtic_norse_mayan: ancient_civilizations
+  # New rules for system expansion (2026-05)
+  hermeticism: ancient_civilizations
+  alchemy_western: ancient_civilizations
+  western_demonology: ancient_civilizations
+  spiritualism: ancient_civilizations
+  gnosticism: ancient_civilizations
+  tarot: contemporary_scholarship
+  oracle_divination: contemporary_scholarship
+  astrology: contemporary_scholarship
+  energy_healing: contemporary_scholarship
+  reiki: contemporary_scholarship
+  paranormal: contemporary_scholarship
+  quantum_physics: science_technology
+  astrophysics: science_technology
+  ai_machine_consciousness: science_technology
+  agi_timelines: science_technology
   # New rules for system expansion (2026-05)
   hermeticism: ancient_civilizations
   alchemy_western: ancient_civilizations

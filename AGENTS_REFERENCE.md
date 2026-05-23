@@ -136,6 +136,33 @@ Apply in order when assigning ambiguous sources:
 
 ---
 
+## RELEVANCE FILTERING SYSTEM
+
+Each research run evaluates how relevant each tradition is to the topic before dispatch.
+
+### How It Works
+
+Phase 1 scores every agent 1–10 for topic relevance. Agents at or below `relevance_threshold` (config.yaml, default 5) are marked `active: false` and not dispatched.
+
+### Scoring Tiers
+
+| Score | Tier | Token Budget | Dispatched? |
+|---|---|---|---|
+| 8-10 | Core | full (12000) | Yes |
+| 6-7 | Adjacent | full (12000) | Yes |
+| 1-5 | Irrelevant | reduced (4000) | No |
+
+Adjust `relevance_threshold` in config.yaml to tighten or loosen filtering (range: 1–9).
+
+### Effect on Evaluation
+
+Evaluation max scales with active agent count:
+- `(active_count × 70) + 30` total points
+- Auto-improve triggers below 60% of `(active_count × 70)` for agents
+- Prevents unfair scoring when agents are correctly skipped for off-tradition topics
+
+---
+
 ## AMENDMENTS PENDING STRUCTURE
 
 ```json

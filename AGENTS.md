@@ -74,7 +74,7 @@ Starting parallel agent dispatch...
 
 ### PHASE 2 — PARALLEL AGENT DISPATCH
 
-Dispatch all 5 agents simultaneously (true parallel, not sequential).
+Dispatch only agents where `active: true` in the source map. Skip inactive agents entirely.
 
 Agent mapping:
 - .agents/prompts/agent_a_indic.md        → vault/research/{slug}/indic_traditions.md
@@ -82,6 +82,11 @@ Agent mapping:
 - .agents/prompts/agent_c_civilizations.md → vault/research/{slug}/ancient_civilizations.md
 - .agents/prompts/agent_d_contemporary.md → vault/research/{slug}/contemporary_scholarship.md
 - .agents/prompts/agent_e_science.md      → vault/research/{slug}/science_technology.md
+
+For each inactive agent, print:
+```
+  [Skipping {agent_label} — relevance {score}/10, below threshold]
+```
 
 For each agent, construct dispatch message:
 ```
@@ -97,7 +102,7 @@ TIMESTAMP: {iso_timestamp}
 
 Settings per agent call:
 - temperature: 0.3
-- max_tokens: 12000
+- max_tokens: token_budget from source map (full=12000, reduced=4000)
 - model: from config.yaml
 
 As each agent completes, print:
@@ -109,7 +114,7 @@ As each agent completes, print:
 
 ### PHASE 3 — ORCHESTRATOR REVIEW & AUTO-IMPROVEMENT LOOP
 
-After ALL 5 agents are complete (not before), read all 5 output files.
+After all active agents are complete (not before), read all active agent output files.
 Pass their full contents to orchestrator.md Phase 3 instructions.
 
 Settings: temperature 0.4, max_tokens 4000
@@ -126,6 +131,9 @@ completion message.
 Use OpenCode's native LLM to score this single run on 7 agent metrics
 and 3 orchestrator metrics. Follow the EVALUATION PROTOCOL below with
 N=1 (current run only). Temperature 0.1, max_tokens 6000.
+
+Evaluation max scales with active agent count: (active_count × 70) + 30 total points.
+Auto-improve triggers below 60% of (active_count × 70) for agents, or below 18/30 for orchestrator.
 
 Print the results table to terminal.
 
@@ -176,11 +184,9 @@ Then print completion message:
 ✓ Research complete: {topic}
   vault/research/{slug}/
   ├ _source_map.json
-  ├ indic_traditions.md
-  ├ western_philosophy.md
-  ├ ancient_civilizations.md
-  ├ contemporary_scholarship.md
-  ├ science_technology.md
+  ├ {active_agent_file_1}.md
+  ├ {active_agent_file_2}.md
+  ... (only dispatched agents listed)
   ├ orchestrator_review.md
   └ auto-evaluated + auto-improved
 
@@ -195,7 +201,7 @@ After Phase 3 is complete (but before git commit), copy research files only (exc
 ```bash
 DEST="$OBSIDIAN_SECOND_BRAIN_PATH"
 mkdir -p "$DEST/{slug}"
-cp vault/research/{slug}/*.md "$DEST/{slug}/"
+find vault/research/{slug}/ -name "*.md" ! -name "_source_map.json" -exec cp {} "$DEST/{slug}/" \;
 ```
 
 Print:
@@ -227,7 +233,7 @@ git push
 ### Step 1 — Generate Atomic Notes
 
 Load last slug from .memory/domain_memory.json (or use provided slug).
-Read all 5 markdown files from vault/research/{slug}/.
+Read all markdown files present in vault/research/{slug}/ (excluding _source_map.json).
 
 Use OpenCode's native LLM to extract atomic notes. Temperature 0.2, max_tokens 15000.
 
