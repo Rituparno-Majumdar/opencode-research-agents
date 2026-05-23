@@ -1,0 +1,50 @@
+{
+  "atomic-notes-graph": {
+    "id": "atomic-notes-graph",
+    "name": "Atomic Notes Graph",
+    "open": true,
+    "tabs": [
+      {
+        "id": "graph-tab-1",
+        "type": "graph",
+        "state": {
+          "graph": {
+            "mode": "local",
+            "rules": {
+              "folders": [
+                "vault/atomic-notes"
+              ],
+              "tags": [],
+              "files": [
+                "vault/atomic-notes/**"
+              ]
+            },
+            "options": {
+              "showTags": true,
+              "showLinks": true,
+              "showOrphans": false,
+              "centrality": 30,
+              "collapse": false,
+              "maxDistance": 6,
+              "cluster": true
+            },
+            "filters": {
+              "showAttachments": false,
+              "showComments": false,
+              "showImplicitLinks": false,
+              "showWikiLinks": true,
+              "showMarkdownLinks": true
+            },
+            "keyboard": {
+              "remove": [],
+              "navigation": []
+            }
+          },
+          "file": "vault/atomic-notes/graph-view-guide.md"
+        }
+      }
+    ],
+    "activeTab": "graph-tab-1",
+    "leafState": {}
+  }
+}

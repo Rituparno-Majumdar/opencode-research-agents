@@ -1,0 +1,9 @@
+[
+  {
+    "_comment": "Example entry — shows schema. Gaps are logged here automatically after each evaluation.",
+    "slug": "example-topic",
+    "agent": "agent_1",
+    "gap": "Example gap: primary sources from [tradition X] underrepresented; key scholars not cited",
+    "timestamp": "2026-01-01T00:00:00Z"
+  }
+]

@@ -1,0 +1,68 @@
+# config.yaml — Central configuration. All settings live here. Never hardcode.
+
+# Model
+model: "gemini-2.5-flash"
+
+# Token budgets per call type
+max_tokens:
+  source_map: 3000
+  agent: 12000
+  review: 4000
+  ingest: 15000
+  evaluate: 6000
+  improve: 6000
+
+# Temperatures
+temperature:
+  source_map: 0.2
+  agent: 0.3
+  review: 0.4
+  ingest: 0.2
+  evaluate: 0.1
+  improve: 0.3
+
+# Paths
+obsidian_vault_path: "./vault"
+agents_path: "./.agents/prompts"
+memory_path: "./.memory"
+
+# Improvement gates
+min_evals_before_improve: 2
+improvement_score_threshold: 0.5
+
+# Atomic note types
+atomic_note_types:
+  - concepts
+  - people
+  - texts
+  - patterns
+  - traditions
+  - questions
+
+# Boundary case routing defaults (resolved per-topic in _source_map.json)
+routing_defaults:
+  tibetan_buddhist: indic_traditions
+  sufi_poetry: ancient_civilizations
+  jung: western_philosophy
+  ken_wilber: contemporary_scholarship
+  nde_research: contemporary_scholarship
+  living_indian_teachers: indic_traditions
+  academic_cross_tradition: contemporary_scholarship
+  christian_mysticism: western_philosophy
+  celtic_norse_mayan: ancient_civilizations
+  # New rules for system expansion (2026-05)
+  hermeticism: ancient_civilizations
+  alchemy_western: ancient_civilizations
+  western_demonology: ancient_civilizations
+  spiritualism: ancient_civilizations
+  gnosticism: ancient_civilizations
+  tarot: contemporary_scholarship
+  oracle_divination: contemporary_scholarship
+  astrology: contemporary_scholarship
+  energy_healing: contemporary_scholarship
+  reiki: contemporary_scholarship
+  paranormal: contemporary_scholarship
+  quantum_physics: science_technology
+  astrophysics: science_technology
+  ai_machine_consciousness: science_technology
+  agi_timelines: science_technology

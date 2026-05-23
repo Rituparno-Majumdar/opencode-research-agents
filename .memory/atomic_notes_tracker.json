@@ -1,0 +1,14 @@
+{
+  "last_evaluation": null,
+  "total_notes_evaluated": 0,
+  "total_notes_amended": 0,
+  "notes_by_status": {
+    "excellent": 0,
+    "good": 0,
+    "fair": 0,
+    "poor": 0
+  },
+  "common_issues": [],
+  "improvement_history": [],
+  "by_topic": {}
+}
