@@ -188,13 +188,11 @@ Type "ingest" to generate atomic notes.
 ══════════════════════════════════════════════════════
 ```
 
-### Phase 4 — SYNC TO SECOND BRAIN (optional)
+### Phase 4 — SYNC TO SECOND BRAIN
 
-If `OBSIDIAN_SECOND_BRAIN_PATH` is set in `.env`, copy research files (excluding `_source_map.json`) to that vault after Phase 3:
+After Phase 3 is complete (but before git commit), copy research files only (exclude `_source_map.json`) to the second-brain vault:
 
 ```bash
-# Set OBSIDIAN_SECOND_BRAIN_PATH in .env to enable
-# Example: OBSIDIAN_SECOND_BRAIN_PATH=/path/to/your/obsidian-vault/raw/research
 DEST="$OBSIDIAN_SECOND_BRAIN_PATH"
 mkdir -p "$DEST/{slug}"
 cp vault/research/{slug}/*.md "$DEST/{slug}/"
@@ -204,8 +202,6 @@ Print:
 ```
 ✓ Synced to second-brain/raw/research/{slug}/
 ```
-
-Skip this step silently if `OBSIDIAN_SECOND_BRAIN_PATH` is not set.
 
 Stage and commit all files together:
 ```bash

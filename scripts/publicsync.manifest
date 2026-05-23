@@ -1,0 +1,30 @@
+# publicsync.manifest
+# Declarative mapping of private repo files to public repo destinations.
+#
+# Format:  mode | src (relative to PRIVATE_REPO root) | dest (relative to public repo root)
+#
+# Modes:
+#   copy   — verbatim copy
+#   scrub  — apply sed transform to strip personal paths, then copy
+#   review — copy to {dest}.staged for manual merge; never auto-overwrites dest
+
+# Core agents (generic, safe to copy verbatim)
+copy   | .agents/prompts/orchestrator.md              | .agents/prompts/orchestrator.md
+copy   | .agents/prompts/agent_atomic_notes.md        | .agents/prompts/agent_atomic_notes.md
+copy   | .agents/prompts/prompt_updater.md            | .agents/prompts/improvement_agent.md
+
+# Operational spec — contains a personal iCloud path; must be scrubbed
+scrub  | AGENTS.md                                    | AGENTS.md
+
+# Reference manual — safe to copy verbatim
+copy   | AGENTS_REFERENCE.md                          | AGENTS_REFERENCE.md
+
+# Config — carries personal routing taxonomy; requires human review before merge
+review | config.yaml                                  | config.yaml
+
+# Domain agents (private root → public examples/philosophy-research/)
+copy   | .agents/prompts/agent_a_indic.md             | examples/philosophy-research/.agents/prompts/agent_a_indic.md
+copy   | .agents/prompts/agent_b_western.md           | examples/philosophy-research/.agents/prompts/agent_b_western.md
+copy   | .agents/prompts/agent_c_civilizations.md     | examples/philosophy-research/.agents/prompts/agent_c_civilizations.md
+copy   | .agents/prompts/agent_d_contemporary.md      | examples/philosophy-research/.agents/prompts/agent_d_contemporary.md
+copy   | .agents/prompts/agent_e_science.md           | examples/philosophy-research/.agents/prompts/agent_e_science.md
