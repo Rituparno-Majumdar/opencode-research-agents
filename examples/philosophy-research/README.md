@@ -2,6 +2,16 @@
 
 This is a fully configured 5-agent setup for comparative philosophy and religious studies across world traditions.
 
+## Why this domain?
+
+Comparative philosophy and religious studies was chosen as the primary example because it stress-tests all three of the system's core innovations simultaneously:
+
+- **Epistemic parallelism** — the traditions are genuinely distinct. An Indic agent and a Western agent will produce completely different source bases, languages, and conceptual frameworks for the same topic. There is no overlap to paper over.
+- **Luhmann linkage** — the potential for cross-tradition convergence is exceptionally high. Concepts like *ātman*, *Seele*, and *soul* converge and diverge in ways that generate dense, meaningful wikilinks across the vault.
+- **Agent improvement** — the domain is demanding enough (multilingual, multi-script, spanning 5000 years) that agents consistently find gaps, which drives the improvement loop with real evidence.
+
+If the system works well for comparative philosophy, it works well for any domain.
+
 ## What it covers
 
 | Agent | File | Domain |

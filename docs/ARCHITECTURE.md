@@ -103,13 +103,15 @@ Any metric below 6/10 triggers a specific gap entry in `.memory/gap_log.json`:
 
 If any agent scores below 60% of its maximum across 2+ consecutive runs, or if a single metric is below 6/10 repeatedly:
 
-1. The `improvement_agent.md` reads the current prompt
-2. Generates a targeted improvement based on the gap log
-3. Snapshots the old prompt to `.memory/prompt_versions/`
+1. The `improvement_agent.md` reads the current prompt and the gap log
+2. Generates a targeted improvement — not a generic rewrite, but a specific fix for the identified gap
+3. Snapshots the old prompt to `.memory/prompt_versions/{timestamp}_{agent}.md`
 4. Writes the new prompt to `.agents/prompts/{agent}.md`
 5. Opens a GitHub PR for human review
 
 **You always review and merge the PR — the system never auto-merges.**
+
+This is the system's learning loop. Every research run produces evidence. Evidence accumulates in the gap log. The gap log drives targeted fixes. Fixes get verified in subsequent runs. Over time, agents become demonstrably better at their domain — not through fine-tuning, but through prompt engineering guided by empirical evaluation.
 
 ### Verification (Step D)
 
@@ -125,6 +127,22 @@ On each subsequent run, the system checks whether previous improvements worked:
 Triggered by typing `ingest` after a research run.
 
 The system extracts structured atomic notes into `vault/atomic-notes/{type}/`:
+
+### The Luhmann Linkage Model
+
+The atomic note system is modelled on Niklas Luhmann's Zettelkasten — the slip-box method he used to produce over 70 books and 400 articles. Luhmann's key insight: knowledge does not grow by accumulation but by *connection*. Each slip in his box linked to other slips, creating emergent structure that no individual note contained.
+
+This system implements that principle digitally, extended across traditions:
+
+| Link type | Notation | Meaning |
+|---|---|---|
+| Causal | `[[A]] → [[B]]` | A causes, produces, or leads to B |
+| Effect | `[[A]] ← [[B]]` | A is produced by or results from B |
+| Convergence | `[[A]] ↔ [[B]]` | A and B are parallel concepts from different traditions |
+
+The convergence links (`↔`) are the most important. They are not manual — they are derived from the orchestrator's Phase 3 cross-reference map. If the orchestrator identifies that *saṃskāra* (Indic habit-formation) converges with *automaticity* (cognitive science) and *Verdrängung* (Freudian repression), the ingest pipeline adds `↔` links between all three notes automatically.
+
+**Merge rule:** If a note already exists, only a new cross-reference link is appended. The note is never overwritten. This means the vault grows richer with each research run without losing prior structure.
 
 | Type | What it captures |
 |---|---|
