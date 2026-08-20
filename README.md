@@ -1,5 +1,15 @@
 # OpenCode Research Agents
 
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![CLI](https://img.shields.io/badge/CLI-ready-2ea043?style=for-the-badge)
+![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-4c1d95?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+
+</div>
+
+
 A multi-agent research orchestration system that runs inside [OpenCode](https://opencode.ai) and saves findings to an [Obsidian](https://obsidian.md) vault.
 
 Type a research topic. Five specialized agents research it in parallel, each from a distinct epistemic lens. An orchestrator synthesizes findings, evaluates quality, and improves the weakest agent over time — automatically.
